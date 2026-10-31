@@ -1,0 +1,60 @@
+[
+   {
+      "at": [
+         "results"
+      ],
+      "keys": [
+         {
+            "const": "repository"
+         },
+         {
+            "path": [
+               "repositoryName"
+            ]
+         }
+      ],
+      "operation": "DescribeReplicationBackfillResults",
+      "target": {
+         "operation": "DescribeRepositories",
+         "params": {
+            "repositoryName": [
+               "repositoryName"
+            ]
+         }
+      }
+   },
+   {
+      "at": [
+         "results"
+      ],
+      "keys": [
+         {
+            "const": "image"
+         },
+         {
+            "path": [
+               "repositoryName"
+            ]
+         },
+         {
+            "path": [
+               "imageId",
+               "imageDigest"
+            ]
+         }
+      ],
+      "operation": "DescribeReplicationBackfillResults",
+      "target": {
+         "operation": "DescribeImages",
+         "params": {
+            "imageDigest": [
+               "imageId",
+               "imageDigest"
+            ],
+            "repositoryName": [
+               "repositoryName"
+            ]
+         }
+      }
+   }
+]

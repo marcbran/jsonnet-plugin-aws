@@ -1,0 +1,1 @@
+{"collection":null,"confidence":"high","decision":"skip","id":null,"operation":"GetAccountSetting","reason":"Requires an account setting name, which no candidate collection supplies as a resource identifier."}

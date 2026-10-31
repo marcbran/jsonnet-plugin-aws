@@ -1,0 +1,1 @@
+{"links":[{"at":[],"confidence":"high","keys":[{"const":"repository","path":null},{"const":null,"path":["repositoryName"]}],"reason":"The response's repositoryName identifies the repository resource.","target":"DescribeRepositories","vars":[{"param":"repositoryName","path":["repositoryName"]}]}],"operation":"GetRepositoryPolicy"}

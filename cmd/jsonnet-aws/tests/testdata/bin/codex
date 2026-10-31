@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+set -euo pipefail
+dir=""; out=""
+while [ $# -gt 0 ]; do
+  case "$1" in
+    --cd) dir="$2"; shift 2 ;;
+    --output-last-message) out="$2"; shift 2 ;;
+    *) shift ;;
+  esac
+done
+input="$dir/input.json"
+op=$(jq -r '.operation' "$input")
+echo "$op" >> "$FAKE_CODEX_LOG"
+if jq -e 'has("listCandidates")' "$input" >/dev/null; then
+  jq '{operation, decision: "list", items: .listCandidates[0], confidence: "high", reason: "fake"}' "$input" > "$out"
+elif jq -e 'has("candidates")' "$input" >/dev/null; then
+  jq '{operation, decision: "skip", collection: null, id: null, confidence: "high", reason: "fake"}' "$input" > "$out"
+elif jq -e 'has("targets")' "$input" >/dev/null; then
+  jq '{operation, links: []}' "$input" > "$out"
+else
+  jq '{operation, array, columns: [ (if .itemSchema.type == "object" then {key: (.itemSchema.properties | keys[0]), path: [(.itemSchema.properties | keys[0])]} else {key: "item", path: []} end) + {label: "First", kind: "text", priority: "primary", reason: "fake"} ], confidence: "high", reason: "fake"}' "$input" > "$out"
+fi

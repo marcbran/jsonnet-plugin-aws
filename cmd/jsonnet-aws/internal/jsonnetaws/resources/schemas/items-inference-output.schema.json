@@ -1,0 +1,12 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["operation", "decision", "items", "confidence", "reason"],
+  "properties": {
+    "operation": { "type": "string" },
+    "decision": { "type": "string", "enum": ["list", "none"] },
+    "items": { "type": ["array", "null"], "items": { "type": "string" } },
+    "confidence": { "type": "string", "enum": ["high", "medium", "low"] },
+    "reason": { "type": "string" }
+  }
+}

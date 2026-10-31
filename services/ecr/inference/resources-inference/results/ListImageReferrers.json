@@ -1,0 +1,8 @@
+{
+  "collection": null,
+  "confidence": "high",
+  "decision": "skip",
+  "id": null,
+  "operation": "ListImageReferrers",
+  "reason": "Corrected by hand: image referrers are not children of lifecycle policy preview results, and the images collection already feeds imageId to its children."
+}

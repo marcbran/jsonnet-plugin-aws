@@ -1,0 +1,1 @@
+{"confidence":"medium","decision":"list","items":["imageScanFindings","findings"],"operation":"DescribeImageScanFindings","reason":"The operation describes scan findings generally, making findings the primary record list; enhancedFindings is an alternative enhanced representation."}

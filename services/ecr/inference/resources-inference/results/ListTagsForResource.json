@@ -1,0 +1,1 @@
+{"collection":null,"confidence":"high","decision":"skip","id":null,"operation":"ListTagsForResource","reason":"The operation requires a resourceArn, and no candidate identifies the ECR resource being tagged. The signingProfileArn identifies a signing profile, not an ECR resource."}

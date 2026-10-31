@@ -1,0 +1,11 @@
+[
+  {
+    "operation": "DescribePullThroughCacheRules",
+    "at": ["pullThroughCacheRules"],
+    "keys": [{ "const": "upstream repository" }, { "path": ["upstreamRepositoryPrefix"] }],
+    "target": {
+      "operation": "DescribeRepositories",
+      "params": { "repositoryName": ["upstreamRepositoryPrefix"] }
+    }
+  }
+]

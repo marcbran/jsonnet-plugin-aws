@@ -1,0 +1,51 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["operation", "decision", "collection", "id", "confidence", "reason"],
+  "properties": {
+    "operation": { "type": "string" },
+    "decision": { "type": "string", "enum": ["place", "skip"] },
+    "collection": { "type": ["string", "null"] },
+    "id": {
+      "anyOf": [
+        { "type": "null" },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["param", "path", "inputs", "filter"],
+          "properties": {
+            "param": { "type": "string" },
+            "path": { "type": "array", "items": { "type": "string" } },
+            "inputs": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": ["path"],
+                "properties": {
+                  "path": { "type": "array", "items": { "type": "string" } }
+                }
+              }
+            },
+            "filter": {
+              "anyOf": [
+                { "type": "null" },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": ["member", "itemPath"],
+                  "properties": {
+                    "member": { "type": "string" },
+                    "itemPath": { "type": "array", "items": { "type": "string" } }
+                  }
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "confidence": { "type": "string", "enum": ["high", "medium", "low"] },
+    "reason": { "type": "string" }
+  }
+}

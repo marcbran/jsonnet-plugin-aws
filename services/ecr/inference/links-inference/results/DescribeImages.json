@@ -1,0 +1,1 @@
+{"links":[{"at":["imageDetails"],"confidence":"high","keys":[{"const":"repository","path":null},{"const":null,"path":["imageDigest"]}],"reason":"Each image detail includes its repositoryName, which identifies the repository resource.","target":"DescribeRepositories","vars":[{"param":"repositoryName","path":["repositoryName"]}]}],"operation":"DescribeImages"}
