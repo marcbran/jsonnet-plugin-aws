@@ -9,6 +9,7 @@ import (
 	sdkaws "github.com/aws/aws-sdk-go-v2/aws"
 	"github.com/marcbran/jpoet/pkg/jpoet"
 	"github.com/marcbran/jsonnet-plugin-aws/aws"
+	"github.com/marcbran/jsonnet-plugin-aws/services/ec2"
 	"github.com/marcbran/jsonnet-plugin-aws/services/ecr"
 )
 
@@ -24,7 +25,7 @@ type JpoetFacade struct {
 
 func NewE2EFacade(endpoint string, imports map[string]string) Facade {
 	plugin := aws.Plugin(
-		aws.WithServices(ecr.Service),
+		aws.WithServices(ecr.Service, ec2.Service),
 		aws.WithEndpointResolver(func(*aws.Service, string) (string, error) {
 			return endpoint, nil
 		}),

@@ -1,0 +1,213 @@
+{
+  "links": [
+    {
+      "at": [
+        "SecurityGroups"
+      ],
+      "confidence": "high",
+      "keys": [
+        {
+          "const": "vpc",
+          "path": null
+        },
+        {
+          "const": null,
+          "path": [
+            "GroupId"
+          ]
+        }
+      ],
+      "reason": "Each security group belongs to the VPC identified by VpcId.",
+      "target": "DescribeVpcs",
+      "vars": [
+        {
+          "param": "VpcId",
+          "path": [
+            "VpcId"
+          ]
+        }
+      ]
+    },
+    {
+      "at": [
+        "SecurityGroups",
+        "IpPermissions",
+        "UserIdGroupPairs"
+      ],
+      "confidence": "high",
+      "keys": [
+        {
+          "const": "referenced security group",
+          "path": null
+        },
+        {
+          "const": null,
+          "path": [
+            "GroupId"
+          ]
+        }
+      ],
+      "reason": "A user ID group pair can reference another security group.",
+      "target": "DescribeSecurityGroups",
+      "vars": [
+        {
+          "param": "GroupId",
+          "path": [
+            "GroupId"
+          ]
+        }
+      ]
+    },
+    {
+      "at": [
+        "SecurityGroups",
+        "IpPermissions",
+        "UserIdGroupPairs"
+      ],
+      "confidence": "high",
+      "keys": [
+        {
+          "const": "vpc",
+          "path": null
+        },
+        {
+          "const": null,
+          "path": [
+            "GroupId"
+          ]
+        }
+      ],
+      "reason": "The group pair's VpcId identifies its VPC.",
+      "target": "DescribeVpcs",
+      "vars": [
+        {
+          "param": "VpcId",
+          "path": [
+            "VpcId"
+          ]
+        }
+      ]
+    },
+    {
+      "at": [
+        "SecurityGroups",
+        "IpPermissions",
+        "UserIdGroupPairs"
+      ],
+      "confidence": "high",
+      "keys": [
+        {
+          "const": "VPC peering connection",
+          "path": null
+        },
+        {
+          "const": null,
+          "path": [
+            "GroupId"
+          ]
+        }
+      ],
+      "reason": "VpcPeeringConnectionId identifies the peering connection associated with the group pair.",
+      "target": "DescribeVpcPeeringConnections",
+      "vars": [
+        {
+          "param": "VpcPeeringConnectionId",
+          "path": [
+            "VpcPeeringConnectionId"
+          ]
+        }
+      ]
+    },
+    {
+      "at": [
+        "SecurityGroups",
+        "IpPermissionsEgress",
+        "UserIdGroupPairs"
+      ],
+      "confidence": "high",
+      "keys": [
+        {
+          "const": "referenced security group (egress)",
+          "path": null
+        },
+        {
+          "const": null,
+          "path": [
+            "GroupId"
+          ]
+        }
+      ],
+      "reason": "Corrected by hand: egress rules reference groups, VPCs and peering connections the same way as ingress rules.",
+      "target": "DescribeSecurityGroups",
+      "vars": [
+        {
+          "param": "GroupId",
+          "path": [
+            "GroupId"
+          ]
+        }
+      ]
+    },
+    {
+      "at": [
+        "SecurityGroups",
+        "IpPermissionsEgress",
+        "UserIdGroupPairs"
+      ],
+      "confidence": "high",
+      "keys": [
+        {
+          "const": "vpc (egress)",
+          "path": null
+        },
+        {
+          "const": null,
+          "path": [
+            "GroupId"
+          ]
+        }
+      ],
+      "reason": "Corrected by hand: egress rules reference groups, VPCs and peering connections the same way as ingress rules.",
+      "target": "DescribeVpcs",
+      "vars": [
+        {
+          "param": "VpcId",
+          "path": [
+            "VpcId"
+          ]
+        }
+      ]
+    },
+    {
+      "at": [
+        "SecurityGroups",
+        "IpPermissionsEgress",
+        "UserIdGroupPairs"
+      ],
+      "confidence": "high",
+      "keys": [
+        {
+          "const": "VPC peering connection (egress)",
+          "path": null
+        },
+        {
+          "const": null,
+          "path": [
+            "GroupId"
+          ]
+        }
+      ],
+      "reason": "Corrected by hand: egress rules reference groups, VPCs and peering connections the same way as ingress rules.",
+      "target": "DescribeVpcPeeringConnections",
+      "vars": [
+        {
+          "param": "VpcPeeringConnectionId",
+          "path": [
+            "VpcPeeringConnectionId"
+          ]
+        }
+      ]
+    }
+  ],
+  "operation": "DescribeSecurityGroups"
+}

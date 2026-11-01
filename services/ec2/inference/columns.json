@@ -1,0 +1,1523 @@
+[
+   {
+      "array": [
+         "Addresses"
+      ],
+      "columns": [
+         {
+            "key": "publicIp",
+            "kind": "identifier",
+            "label": "Public IP",
+            "path": [
+               "PublicIp"
+            ],
+            "priority": "primary"
+         },
+         {
+            "key": "allocationId",
+            "kind": "identifier",
+            "label": "Allocation ID",
+            "path": [
+               "AllocationId"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "instanceId",
+            "kind": "identifier",
+            "label": "Instance ID",
+            "path": [
+               "InstanceId"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "privateIpAddress",
+            "kind": "identifier",
+            "label": "Private IP",
+            "path": [
+               "PrivateIpAddress"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "domain",
+            "kind": "text",
+            "label": "Domain",
+            "path": [
+               "Domain"
+            ],
+            "priority": "tertiary"
+         }
+      ],
+      "operation": "DescribeAddresses"
+   },
+   {
+      "array": [
+         "AuthorizationRules"
+      ],
+      "columns": [
+         {
+            "key": "destinationCidr",
+            "kind": "text",
+            "label": "Destination CIDR",
+            "path": [
+               "DestinationCidr"
+            ],
+            "priority": "primary"
+         },
+         {
+            "key": "groupId",
+            "kind": "identifier",
+            "label": "Group ID",
+            "path": [
+               "GroupId"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "status",
+            "kind": "status",
+            "label": "Status",
+            "path": [
+               "Status",
+               "Code"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "accessAll",
+            "kind": "boolean",
+            "label": "Access All",
+            "path": [
+               "AccessAll"
+            ],
+            "priority": "secondary"
+         }
+      ],
+      "operation": "DescribeClientVpnAuthorizationRules"
+   },
+   {
+      "array": [
+         "Connections"
+      ],
+      "columns": [
+         {
+            "key": "username",
+            "kind": "name",
+            "label": "Username",
+            "path": [
+               "Username"
+            ],
+            "priority": "primary"
+         },
+         {
+            "key": "connectionId",
+            "kind": "identifier",
+            "label": "Connection ID",
+            "path": [
+               "ConnectionId"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "status",
+            "kind": "status",
+            "label": "Status",
+            "path": [
+               "Status",
+               "Code"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "clientIp",
+            "kind": "text",
+            "label": "Client IP",
+            "path": [
+               "ClientIp"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "established",
+            "kind": "timestamp",
+            "label": "Established",
+            "path": [
+               "ConnectionEstablishedTime"
+            ],
+            "priority": "tertiary"
+         }
+      ],
+      "operation": "DescribeClientVpnConnections"
+   },
+   {
+      "array": [
+         "ClientVpnEndpoints"
+      ],
+      "columns": [
+         {
+            "key": "endpointId",
+            "kind": "identifier",
+            "label": "Endpoint ID",
+            "path": [
+               "ClientVpnEndpointId"
+            ],
+            "priority": "primary"
+         },
+         {
+            "key": "status",
+            "kind": "status",
+            "label": "Status",
+            "path": [
+               "Status",
+               "Code"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "vpcId",
+            "kind": "identifier",
+            "label": "VPC ID",
+            "path": [
+               "VpcId"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "clientCidrBlock",
+            "kind": "text",
+            "label": "Client CIDR",
+            "path": [
+               "ClientCidrBlock"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "creationTime",
+            "kind": "timestamp",
+            "label": "Created",
+            "path": [
+               "CreationTime"
+            ],
+            "priority": "tertiary"
+         }
+      ],
+      "operation": "DescribeClientVpnEndpoints"
+   },
+   {
+      "array": [
+         "Routes"
+      ],
+      "columns": [
+         {
+            "key": "destination",
+            "kind": "text",
+            "label": "Destination CIDR",
+            "path": [
+               "DestinationCidr"
+            ],
+            "priority": "primary"
+         },
+         {
+            "key": "status",
+            "kind": "status",
+            "label": "Status",
+            "path": [
+               "Status",
+               "Code"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "target_subnet",
+            "kind": "identifier",
+            "label": "Target subnet",
+            "path": [
+               "TargetSubnet"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "origin",
+            "kind": "text",
+            "label": "Origin",
+            "path": [
+               "Origin"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "type",
+            "kind": "text",
+            "label": "Type",
+            "path": [
+               "Type"
+            ],
+            "priority": "tertiary"
+         }
+      ],
+      "operation": "DescribeClientVpnRoutes"
+   },
+   {
+      "array": [
+         "ClientVpnTargetNetworks"
+      ],
+      "columns": [
+         {
+            "key": "targetNetworkId",
+            "kind": "identifier",
+            "label": "Target Network ID",
+            "path": [
+               "TargetNetworkId"
+            ],
+            "priority": "primary"
+         },
+         {
+            "key": "status",
+            "kind": "status",
+            "label": "Status",
+            "path": [
+               "Status",
+               "Code"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "associationId",
+            "kind": "identifier",
+            "label": "Association ID",
+            "path": [
+               "AssociationId"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "vpcId",
+            "kind": "identifier",
+            "label": "VPC ID",
+            "path": [
+               "VpcId"
+            ],
+            "priority": "tertiary"
+         }
+      ],
+      "operation": "DescribeClientVpnTargetNetworks"
+   },
+   {
+      "array": [
+         "CustomerGateways"
+      ],
+      "columns": [
+         {
+            "key": "customerGatewayId",
+            "kind": "identifier",
+            "label": "Gateway ID",
+            "path": [
+               "CustomerGatewayId"
+            ],
+            "priority": "primary"
+         },
+         {
+            "key": "deviceName",
+            "kind": "name",
+            "label": "Device name",
+            "path": [
+               "DeviceName"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "state",
+            "kind": "status",
+            "label": "State",
+            "path": [
+               "State"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "ipAddress",
+            "kind": "text",
+            "label": "IP address",
+            "path": [
+               "IpAddress"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "type",
+            "kind": "text",
+            "label": "Type",
+            "path": [
+               "Type"
+            ],
+            "priority": "tertiary"
+         }
+      ],
+      "operation": "DescribeCustomerGateways"
+   },
+   {
+      "array": [
+         "DhcpOptions"
+      ],
+      "columns": [
+         {
+            "key": "dhcpOptionsId",
+            "kind": "identifier",
+            "label": "DHCP options ID",
+            "path": [
+               "DhcpOptionsId"
+            ],
+            "priority": "primary"
+         },
+         {
+            "key": "ownerId",
+            "kind": "identifier",
+            "label": "Owner ID",
+            "path": [
+               "OwnerId"
+            ],
+            "priority": "secondary"
+         }
+      ],
+      "operation": "DescribeDhcpOptions"
+   },
+   {
+      "array": [
+         "EgressOnlyInternetGateways"
+      ],
+      "columns": [
+         {
+            "key": "gatewayId",
+            "kind": "identifier",
+            "label": "Gateway ID",
+            "path": [
+               "EgressOnlyInternetGatewayId"
+            ],
+            "priority": "primary"
+         }
+      ],
+      "operation": "DescribeEgressOnlyInternetGateways"
+   },
+   {
+      "array": [
+         "Reservations",
+         "Instances"
+      ],
+      "columns": [
+         {
+            "key": "instanceId",
+            "kind": "identifier",
+            "label": "Instance ID",
+            "path": [
+               "InstanceId"
+            ],
+            "priority": "primary"
+         },
+         {
+            "key": "state",
+            "kind": "status",
+            "label": "State",
+            "path": [
+               "State",
+               "Name"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "instanceType",
+            "kind": "text",
+            "label": "Instance type",
+            "path": [
+               "InstanceType"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "privateIp",
+            "kind": "text",
+            "label": "Private IP",
+            "path": [
+               "PrivateIpAddress"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "availabilityZone",
+            "kind": "text",
+            "label": "Availability zone",
+            "path": [
+               "Placement",
+               "AvailabilityZone"
+            ],
+            "priority": "tertiary"
+         }
+      ],
+      "operation": "DescribeInstances"
+   },
+   {
+      "array": [
+         "InternetGateways"
+      ],
+      "columns": [
+         {
+            "key": "internet_gateway_id",
+            "kind": "identifier",
+            "label": "Internet gateway ID",
+            "path": [
+               "InternetGatewayId"
+            ],
+            "priority": "primary"
+         },
+         {
+            "key": "owner_id",
+            "kind": "identifier",
+            "label": "Owner ID",
+            "path": [
+               "OwnerId"
+            ],
+            "priority": "secondary"
+         }
+      ],
+      "operation": "DescribeInternetGateways"
+   },
+   {
+      "array": [
+         "KeyPairs"
+      ],
+      "columns": [
+         {
+            "key": "key_name",
+            "kind": "name",
+            "label": "Key name",
+            "path": [
+               "KeyName"
+            ],
+            "priority": "primary"
+         },
+         {
+            "key": "key_pair_id",
+            "kind": "identifier",
+            "label": "Key pair ID",
+            "path": [
+               "KeyPairId"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "key_type",
+            "kind": "text",
+            "label": "Key type",
+            "path": [
+               "KeyType"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "create_time",
+            "kind": "timestamp",
+            "label": "Created",
+            "path": [
+               "CreateTime"
+            ],
+            "priority": "tertiary"
+         },
+         {
+            "key": "fingerprint",
+            "kind": "text",
+            "label": "Fingerprint",
+            "path": [
+               "KeyFingerprint"
+            ],
+            "priority": "tertiary"
+         }
+      ],
+      "operation": "DescribeKeyPairs"
+   },
+   {
+      "array": [
+         "LaunchTemplates"
+      ],
+      "columns": [
+         {
+            "key": "LaunchTemplateName",
+            "kind": "name",
+            "label": "Launch template",
+            "path": [
+               "LaunchTemplateName"
+            ],
+            "priority": "primary"
+         },
+         {
+            "key": "LaunchTemplateId",
+            "kind": "identifier",
+            "label": "Template ID",
+            "path": [
+               "LaunchTemplateId"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "DefaultVersionNumber",
+            "kind": "number",
+            "label": "Default version",
+            "path": [
+               "DefaultVersionNumber"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "LatestVersionNumber",
+            "kind": "number",
+            "label": "Latest version",
+            "path": [
+               "LatestVersionNumber"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "CreateTime",
+            "kind": "timestamp",
+            "label": "Created",
+            "path": [
+               "CreateTime"
+            ],
+            "priority": "tertiary"
+         }
+      ],
+      "operation": "DescribeLaunchTemplates"
+   },
+   {
+      "array": [
+         "NatGateways"
+      ],
+      "columns": [
+         {
+            "key": "nat_gateway_id",
+            "kind": "identifier",
+            "label": "NAT Gateway ID",
+            "path": [
+               "NatGatewayId"
+            ],
+            "priority": "primary"
+         },
+         {
+            "key": "state",
+            "kind": "status",
+            "label": "State",
+            "path": [
+               "State"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "connectivity_type",
+            "kind": "text",
+            "label": "Connectivity",
+            "path": [
+               "ConnectivityType"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "subnet_id",
+            "kind": "identifier",
+            "label": "Subnet ID",
+            "path": [
+               "SubnetId"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "vpc_id",
+            "kind": "identifier",
+            "label": "VPC ID",
+            "path": [
+               "VpcId"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "create_time",
+            "kind": "timestamp",
+            "label": "Created",
+            "path": [
+               "CreateTime"
+            ],
+            "priority": "tertiary"
+         }
+      ],
+      "operation": "DescribeNatGateways"
+   },
+   {
+      "array": [
+         "NetworkAcls"
+      ],
+      "columns": [
+         {
+            "key": "networkAclId",
+            "kind": "identifier",
+            "label": "Network ACL ID",
+            "path": [
+               "NetworkAclId"
+            ],
+            "priority": "primary"
+         },
+         {
+            "key": "vpcId",
+            "kind": "identifier",
+            "label": "VPC ID",
+            "path": [
+               "VpcId"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "isDefault",
+            "kind": "boolean",
+            "label": "Default",
+            "path": [
+               "IsDefault"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "ownerId",
+            "kind": "identifier",
+            "label": "Owner ID",
+            "path": [
+               "OwnerId"
+            ],
+            "priority": "tertiary"
+         }
+      ],
+      "operation": "DescribeNetworkAcls"
+   },
+   {
+      "array": [
+         "Groups"
+      ],
+      "columns": [
+         {
+            "key": "groupName",
+            "kind": "name",
+            "label": "Group name",
+            "path": [
+               "GroupName"
+            ],
+            "priority": "primary"
+         },
+         {
+            "key": "groupId",
+            "kind": "identifier",
+            "label": "Group ID",
+            "path": [
+               "GroupId"
+            ],
+            "priority": "secondary"
+         }
+      ],
+      "operation": "DescribeNetworkInterfaceAttribute"
+   },
+   {
+      "array": [
+         "NetworkInterfaces"
+      ],
+      "columns": [
+         {
+            "key": "networkInterfaceId",
+            "kind": "identifier",
+            "label": "Network interface ID",
+            "path": [
+               "NetworkInterfaceId"
+            ],
+            "priority": "primary"
+         },
+         {
+            "key": "status",
+            "kind": "status",
+            "label": "Status",
+            "path": [
+               "Status"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "privateIpAddress",
+            "kind": "text",
+            "label": "Private IP",
+            "path": [
+               "PrivateIpAddress"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "subnetId",
+            "kind": "identifier",
+            "label": "Subnet ID",
+            "path": [
+               "SubnetId"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "instanceId",
+            "kind": "identifier",
+            "label": "Instance ID",
+            "path": [
+               "Attachment",
+               "InstanceId"
+            ],
+            "priority": "tertiary"
+         }
+      ],
+      "operation": "DescribeNetworkInterfaces"
+   },
+   {
+      "array": [
+         "RouteTables"
+      ],
+      "columns": [
+         {
+            "key": "routeTableId",
+            "kind": "identifier",
+            "label": "Route table ID",
+            "path": [
+               "RouteTableId"
+            ],
+            "priority": "primary"
+         },
+         {
+            "key": "vpcId",
+            "kind": "identifier",
+            "label": "VPC ID",
+            "path": [
+               "VpcId"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "ownerId",
+            "kind": "identifier",
+            "label": "Owner ID",
+            "path": [
+               "OwnerId"
+            ],
+            "priority": "tertiary"
+         }
+      ],
+      "operation": "DescribeRouteTables"
+   },
+   {
+      "array": [
+         "SecurityGroupReferenceSet"
+      ],
+      "columns": [
+         {
+            "key": "groupId",
+            "kind": "identifier",
+            "label": "Group ID",
+            "path": [
+               "GroupId"
+            ],
+            "priority": "primary"
+         },
+         {
+            "key": "referencingVpcId",
+            "kind": "identifier",
+            "label": "Referencing VPC",
+            "path": [
+               "ReferencingVpcId"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "transitGatewayId",
+            "kind": "identifier",
+            "label": "Transit Gateway",
+            "path": [
+               "TransitGatewayId"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "vpcPeeringConnectionId",
+            "kind": "identifier",
+            "label": "Peering Connection",
+            "path": [
+               "VpcPeeringConnectionId"
+            ],
+            "priority": "secondary"
+         }
+      ],
+      "operation": "DescribeSecurityGroupReferences"
+   },
+   {
+      "array": [
+         "SecurityGroups"
+      ],
+      "columns": [
+         {
+            "key": "groupName",
+            "kind": "name",
+            "label": "Group name",
+            "path": [
+               "GroupName"
+            ],
+            "priority": "primary"
+         },
+         {
+            "key": "groupId",
+            "kind": "identifier",
+            "label": "Group ID",
+            "path": [
+               "GroupId"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "vpcId",
+            "kind": "identifier",
+            "label": "VPC ID",
+            "path": [
+               "VpcId"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "ownerId",
+            "kind": "identifier",
+            "label": "Owner ID",
+            "path": [
+               "OwnerId"
+            ],
+            "priority": "tertiary"
+         }
+      ],
+      "operation": "DescribeSecurityGroups"
+   },
+   {
+      "array": [
+         "StaleSecurityGroupSet"
+      ],
+      "columns": [
+         {
+            "key": "groupName",
+            "kind": "name",
+            "label": "Group name",
+            "path": [
+               "GroupName"
+            ],
+            "priority": "primary"
+         },
+         {
+            "key": "groupId",
+            "kind": "identifier",
+            "label": "Group ID",
+            "path": [
+               "GroupId"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "vpcId",
+            "kind": "identifier",
+            "label": "VPC ID",
+            "path": [
+               "VpcId"
+            ],
+            "priority": "secondary"
+         }
+      ],
+      "operation": "DescribeStaleSecurityGroups"
+   },
+   {
+      "array": [
+         "Subnets"
+      ],
+      "columns": [
+         {
+            "key": "subnetId",
+            "kind": "identifier",
+            "label": "Subnet ID",
+            "path": [
+               "SubnetId"
+            ],
+            "priority": "primary"
+         },
+         {
+            "key": "cidrBlock",
+            "kind": "text",
+            "label": "IPv4 CIDR",
+            "path": [
+               "CidrBlock"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "availabilityZone",
+            "kind": "text",
+            "label": "Availability Zone",
+            "path": [
+               "AvailabilityZone"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "state",
+            "kind": "status",
+            "label": "State",
+            "path": [
+               "State"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "availableIpAddressCount",
+            "kind": "count",
+            "label": "Available IPs",
+            "path": [
+               "AvailableIpAddressCount"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "vpcId",
+            "kind": "identifier",
+            "label": "VPC ID",
+            "path": [
+               "VpcId"
+            ],
+            "priority": "tertiary"
+         }
+      ],
+      "operation": "DescribeSubnets"
+   },
+   {
+      "array": [
+         "TransitGatewayAttachments"
+      ],
+      "columns": [
+         {
+            "key": "attachmentId",
+            "kind": "identifier",
+            "label": "Attachment ID",
+            "path": [
+               "TransitGatewayAttachmentId"
+            ],
+            "priority": "primary"
+         },
+         {
+            "key": "resourceId",
+            "kind": "identifier",
+            "label": "Resource ID",
+            "path": [
+               "ResourceId"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "resourceType",
+            "kind": "text",
+            "label": "Resource type",
+            "path": [
+               "ResourceType"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "state",
+            "kind": "status",
+            "label": "State",
+            "path": [
+               "State"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "transitGatewayId",
+            "kind": "identifier",
+            "label": "Transit gateway ID",
+            "path": [
+               "TransitGatewayId"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "creationTime",
+            "kind": "timestamp",
+            "label": "Created",
+            "path": [
+               "CreationTime"
+            ],
+            "priority": "tertiary"
+         }
+      ],
+      "operation": "DescribeTransitGatewayAttachments"
+   },
+   {
+      "array": [
+         "TransitGateways"
+      ],
+      "columns": [
+         {
+            "key": "transitGatewayId",
+            "kind": "identifier",
+            "label": "Transit Gateway ID",
+            "path": [
+               "TransitGatewayId"
+            ],
+            "priority": "primary"
+         },
+         {
+            "key": "state",
+            "kind": "status",
+            "label": "State",
+            "path": [
+               "State"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "creationTime",
+            "kind": "timestamp",
+            "label": "Created",
+            "path": [
+               "CreationTime"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "amazonSideAsn",
+            "kind": "number",
+            "label": "Amazon-side ASN",
+            "path": [
+               "Options",
+               "AmazonSideAsn"
+            ],
+            "priority": "tertiary"
+         },
+         {
+            "key": "dnsSupport",
+            "kind": "boolean",
+            "label": "DNS support",
+            "path": [
+               "Options",
+               "DnsSupport"
+            ],
+            "priority": "tertiary"
+         }
+      ],
+      "operation": "DescribeTransitGateways"
+   },
+   {
+      "array": [
+         "Volumes"
+      ],
+      "columns": [
+         {
+            "key": "volumeId",
+            "kind": "identifier",
+            "label": "Volume ID",
+            "path": [
+               "VolumeId"
+            ],
+            "priority": "primary"
+         },
+         {
+            "key": "state",
+            "kind": "status",
+            "label": "State",
+            "path": [
+               "State"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "size",
+            "kind": "count",
+            "label": "Size (GiB)",
+            "path": [
+               "Size"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "volumeType",
+            "kind": "text",
+            "label": "Type",
+            "path": [
+               "VolumeType"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "availabilityZone",
+            "kind": "text",
+            "label": "Availability Zone",
+            "path": [
+               "AvailabilityZone"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "createTime",
+            "kind": "timestamp",
+            "label": "Created",
+            "path": [
+               "CreateTime"
+            ],
+            "priority": "tertiary"
+         }
+      ],
+      "operation": "DescribeVolumes"
+   },
+   {
+      "array": [
+         "VpcEndpoints"
+      ],
+      "columns": [
+         {
+            "key": "vpcEndpointId",
+            "kind": "identifier",
+            "label": "Endpoint ID",
+            "path": [
+               "VpcEndpointId"
+            ],
+            "priority": "primary"
+         },
+         {
+            "key": "serviceName",
+            "kind": "name",
+            "label": "Service",
+            "path": [
+               "ServiceName"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "state",
+            "kind": "status",
+            "label": "State",
+            "path": [
+               "State"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "vpcId",
+            "kind": "identifier",
+            "label": "VPC ID",
+            "path": [
+               "VpcId"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "endpointType",
+            "kind": "text",
+            "label": "Type",
+            "path": [
+               "VpcEndpointType"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "creationTimestamp",
+            "kind": "timestamp",
+            "label": "Created",
+            "path": [
+               "CreationTimestamp"
+            ],
+            "priority": "tertiary"
+         }
+      ],
+      "operation": "DescribeVpcEndpoints"
+   },
+   {
+      "array": [
+         "VpcPeeringConnections"
+      ],
+      "columns": [
+         {
+            "key": "connectionId",
+            "kind": "identifier",
+            "label": "Peering connection",
+            "path": [
+               "VpcPeeringConnectionId"
+            ],
+            "priority": "primary"
+         },
+         {
+            "key": "status",
+            "kind": "status",
+            "label": "Status",
+            "path": [
+               "Status",
+               "Code"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "requesterVpc",
+            "kind": "identifier",
+            "label": "Requester VPC",
+            "path": [
+               "RequesterVpcInfo",
+               "VpcId"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "accepterVpc",
+            "kind": "identifier",
+            "label": "Accepter VPC",
+            "path": [
+               "AccepterVpcInfo",
+               "VpcId"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "expirationTime",
+            "kind": "timestamp",
+            "label": "Expires",
+            "path": [
+               "ExpirationTime"
+            ],
+            "priority": "tertiary"
+         }
+      ],
+      "operation": "DescribeVpcPeeringConnections"
+   },
+   {
+      "array": [
+         "Vpcs"
+      ],
+      "columns": [
+         {
+            "key": "vpcId",
+            "kind": "identifier",
+            "label": "VPC ID",
+            "path": [
+               "VpcId"
+            ],
+            "priority": "primary"
+         },
+         {
+            "key": "cidrBlock",
+            "kind": "text",
+            "label": "IPv4 CIDR",
+            "path": [
+               "CidrBlock"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "state",
+            "kind": "status",
+            "label": "State",
+            "path": [
+               "State"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "isDefault",
+            "kind": "boolean",
+            "label": "Default",
+            "path": [
+               "IsDefault"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "instanceTenancy",
+            "kind": "text",
+            "label": "Tenancy",
+            "path": [
+               "InstanceTenancy"
+            ],
+            "priority": "tertiary"
+         }
+      ],
+      "operation": "DescribeVpcs"
+   },
+   {
+      "array": [
+         "VpnConnections"
+      ],
+      "columns": [
+         {
+            "key": "vpnConnectionId",
+            "kind": "identifier",
+            "label": "VPN connection ID",
+            "path": [
+               "VpnConnectionId"
+            ],
+            "priority": "primary"
+         },
+         {
+            "key": "state",
+            "kind": "status",
+            "label": "State",
+            "path": [
+               "State"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "customerGatewayId",
+            "kind": "identifier",
+            "label": "Customer gateway ID",
+            "path": [
+               "CustomerGatewayId"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "vpnGatewayId",
+            "kind": "identifier",
+            "label": "VPN gateway ID",
+            "path": [
+               "VpnGatewayId"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "transitGatewayId",
+            "kind": "identifier",
+            "label": "Transit gateway ID",
+            "path": [
+               "TransitGatewayId"
+            ],
+            "priority": "tertiary"
+         }
+      ],
+      "operation": "DescribeVpnConnections"
+   },
+   {
+      "array": [
+         "VpnGateways"
+      ],
+      "columns": [
+         {
+            "key": "vpnGatewayId",
+            "kind": "identifier",
+            "label": "VPN Gateway ID",
+            "path": [
+               "VpnGatewayId"
+            ],
+            "priority": "primary"
+         },
+         {
+            "key": "state",
+            "kind": "status",
+            "label": "State",
+            "path": [
+               "State"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "amazonSideAsn",
+            "kind": "number",
+            "label": "Amazon-side ASN",
+            "path": [
+               "AmazonSideAsn"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "availabilityZone",
+            "kind": "text",
+            "label": "Availability zone",
+            "path": [
+               "AvailabilityZone"
+            ],
+            "priority": "tertiary"
+         },
+         {
+            "key": "type",
+            "kind": "text",
+            "label": "Type",
+            "path": [
+               "Type"
+            ],
+            "priority": "tertiary"
+         }
+      ],
+      "operation": "DescribeVpnGateways"
+   },
+   {
+      "array": [
+         "SecurityGroupForVpcs"
+      ],
+      "columns": [
+         {
+            "key": "group_name",
+            "kind": "name",
+            "label": "Group name",
+            "path": [
+               "GroupName"
+            ],
+            "priority": "primary"
+         },
+         {
+            "key": "group_id",
+            "kind": "identifier",
+            "label": "Group ID",
+            "path": [
+               "GroupId"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "vpc_id",
+            "kind": "identifier",
+            "label": "VPC ID",
+            "path": [
+               "PrimaryVpcId"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "owner_id",
+            "kind": "identifier",
+            "label": "Owner ID",
+            "path": [
+               "OwnerId"
+            ],
+            "priority": "tertiary"
+         }
+      ],
+      "operation": "GetSecurityGroupsForVpc"
+   },
+   {
+      "array": [
+         "TransitGatewayAttachmentPropagations"
+      ],
+      "columns": [
+         {
+            "key": "transitGatewayRouteTableId",
+            "kind": "identifier",
+            "label": "Route table ID",
+            "path": [
+               "TransitGatewayRouteTableId"
+            ],
+            "priority": "primary"
+         },
+         {
+            "key": "state",
+            "kind": "status",
+            "label": "State",
+            "path": [
+               "State"
+            ],
+            "priority": "secondary"
+         }
+      ],
+      "operation": "GetTransitGatewayAttachmentPropagations"
+   }
+]

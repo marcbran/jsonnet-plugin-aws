@@ -1,0 +1,1 @@
+{"links":[{"at":["Subnets"],"confidence":"high","keys":[{"const":"vpc","path":null},{"const":null,"path":["SubnetId"]}],"reason":"Each subnet contains a VpcId reference to its VPC.","target":"DescribeVpcs","vars":[{"param":"VpcId","path":["VpcId"]}]}],"operation":"DescribeSubnets"}

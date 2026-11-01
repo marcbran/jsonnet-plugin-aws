@@ -7,7 +7,7 @@ function(model, resources, linksInference)
   local index = treeIndex(model, resources);
   local sources = { [s.operation]: s for s in linksSources.sources(index) };
   local targetPaths = { [c.operation]: c.detailPath for c in index.collections if c.detailPath != null };
-  [
+  local rendered = [
     {
       operation: result.operation,
       at: link.at,
@@ -21,5 +21,11 @@ function(model, resources, linksInference)
     if std.objectHas(sources, result.operation)
     for link in result.links
     if std.objectHas(targetPaths, link.target)
-    if !linksSources.isAncestor(targetPaths[link.target], sources[result.operation].path)
+  ];
+  [
+    link
+    for link in rendered
+    for source in [sources[link.operation]]
+    if !linksSources.isSelfLink(index, source, link)
+    if link.target.operation == source.own || !linksSources.isAncestor(targetPaths[link.target.operation], source.path)
   ]

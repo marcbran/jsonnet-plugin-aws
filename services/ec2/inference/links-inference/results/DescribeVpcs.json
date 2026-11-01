@@ -1,0 +1,1 @@
+{"links":[{"at":["Vpcs"],"confidence":"high","keys":[{"const":"dhcp options","path":null},{"const":null,"path":["VpcId"]}],"reason":"Each VPC can reference its associated DHCP options set by DhcpOptionsId.","target":"DescribeDhcpOptions","vars":[{"param":"DhcpOptionsId","path":["DhcpOptionsId"]}]}],"operation":"DescribeVpcs"}

@@ -31,6 +31,7 @@ local model = {
           'GetSettings',
           'ListOrphans',
           'DescribeWidgetHistory',
+          'DescribeMachines',
         ]
       ],
     },
@@ -43,6 +44,15 @@ local model = {
       createdAt: member('demo#Timestamp'),
       tags: member('demo#Names'),
     }),
+    'demo#Tag': structure({ Key: member('demo#String'), Value: member('demo#String') }),
+    'demo#Tags': list('demo#Tag'),
+    'demo#Machine': structure({ MachineId: member('demo#String'), State: member('demo#String'), Tags: member('demo#Tags') }),
+    'demo#Machines': list('demo#Machine'),
+    'demo#Reservation': structure({ ReservationId: member('demo#String'), Machines: member('demo#Machines') }),
+    'demo#Reservations': list('demo#Reservation'),
+    'demo#DescribeMachines': operation('demo#DescribeMachinesRequest', 'demo#DescribeMachinesResponse', { inputToken: 'NextToken', outputToken: 'NextToken', pageSize: 'MaxResults', items: 'Reservations' }),
+    'demo#DescribeMachinesRequest': structure({ MachineIds: member('demo#Names'), NextToken: member('demo#String'), MaxResults: member('demo#Count') }),
+    'demo#DescribeMachinesResponse': structure({ Reservations: member('demo#Reservations'), NextToken: member('demo#String') }),
     'demo#Widgets': list('demo#Widget'),
     'demo#Names': list('demo#String'),
     'demo#Gizmo': structure({ gizmoId: member('demo#String') }),
@@ -84,6 +94,8 @@ local treeOf(resources={}, columns=[]) =
     columns:: columns,
   };
 
+local widgets(tree) = [c for c in tree.root.collections if c.name == 'DescribeWidgets'][0];
+
 local outline(node) =
   {
     [c.segment]: {
@@ -112,6 +124,7 @@ local outline(node) =
         },
       expected: {
         outline: {
+          machines: { operation: 'DescribeMachines', id: 'MachineId', detail: 'MachineIds', children: {} },
           widgets: {
             operation: 'DescribeWidgets',
             id: 'widgetName',
@@ -131,7 +144,7 @@ local outline(node) =
     {
       name: 'uses the plural list filter as detail when there is no get operation',
       input:: function()
-        local id = treeOf({ operations: { GetWidget: { skip: true } } }).root.collections[0].id;
+        local id = widgets(treeOf({ operations: { GetWidget: { skip: true } } })).id;
         { param: id.param, filter: id.filter, input: id.input },
       expected: {
         param: 'widgetName',
@@ -155,6 +168,7 @@ local outline(node) =
         },
       expected: {
         outline: {
+          machines: { operation: 'DescribeMachines', id: 'MachineId', detail: 'MachineIds', children: {} },
           widgets: {
             operation: 'DescribeWidgets',
             id: 'widgetName',
@@ -172,12 +186,12 @@ local outline(node) =
     {
       name: 'collection params, pagination and default columns',
       input:: function()
-        local widgets = treeOf().root.collections[0];
+        local collection = widgets(treeOf());
         {
-          params: widgets.params,
-          paginated: widgets.paginated,
-          itemsPath: widgets.itemsPath,
-          columns: widgets.columns,
+          params: collection.params,
+          paginated: collection.paginated,
+          itemsPath: collection.itemsPath,
+          columns: collection.columns,
         },
       expected: {
         params: [{ name: 'owner', type: 'string' }],
@@ -193,13 +207,13 @@ local outline(node) =
     {
       name: 'explicit columns replace the default columns',
       input:: function()
-        treeOf(columns=[{ operation: 'DescribeWidgets', columns: [{ label: 'Name', path: ['widgetName'] }] }]).root.collections[0].columns,
+        widgets(treeOf(columns=[{ operation: 'DescribeWidgets', columns: [{ label: 'Name', path: ['widgetName'] }] }])).columns,
       expected: [{ label: 'Name', path: ['widgetName'] }],
     },
     {
       name: 'paginated operations without an items path list their single nested list',
       input:: function()
-        local history = treeOf().root.collections[0].children.collections[1];
+        local history = [c for c in widgets(treeOf()).children.collections if c.name == 'DescribeWidgetHistory'][0];
         { operation: history.name, itemsPath: history.itemsPath, paginated: history.paginated != null },
       expected: { operation: 'DescribeWidgetHistory', itemsPath: ['history', 'entries'], paginated: true },
     },
@@ -213,21 +227,62 @@ local outline(node) =
       expected: [{ operation: 'DescribeWidgetHistory', candidates: [['history', 'archived'], ['history', 'entries']] }],
     },
     {
+      name: 'include keeps the named top-level operations and everything below them',
+      input:: function()
+        local tree = treeOf({ include: ['DescribeWidgets', 'ListOrphans'] });
+        { outline: outline(tree.root), unplaced: tree.unplaced },
+      expected: {
+        outline: {
+          widgets: {
+            operation: 'DescribeWidgets',
+            id: 'widgetName',
+            detail: 'GetWidget',
+            children: {
+              gizmos: { operation: 'ListGizmos', id: 'gizmoId', detail: null, children: {} },
+              history: { operation: 'DescribeWidgetHistory', id: null, detail: null, children: null },
+              policy: 'GetWidgetPolicy',
+            },
+          },
+        },
+        unplaced: ['ListOrphans'],
+      },
+    },
+    {
+      name: 'operations outside include are not reported as unplaced',
+      input:: function()
+        treeOf({ include: ['DescribeWidgets'] }).unplaced,
+      expected: [],
+    },
+    {
+      name: 'paged wrapper items holding a list named like the operation are flattened to that list',
+      input:: function()
+        local machines = [c for c in treeOf().root.collections if c.name == 'DescribeMachines'][0];
+        { itemsPath: machines.itemsPath, flatten: machines.itemsFlatten, id: machines.id.param, filter: machines.id.filter },
+      expected: { itemsPath: ['Reservations', 'Machines'], flatten: true, id: 'MachineId', filter: 'MachineIds' },
+    },
+    {
+      name: 'items with EC2-style tags get a Name column first',
+      input:: function()
+        local machines = [c for c in treeOf().root.collections if c.name == 'DescribeMachines'][0];
+        machines.columns[0],
+      expected: { label: 'Name', tag: 'Name' },
+    },
+    {
       name: 'items override wins over the inferred items path',
       input:: function()
-        treeOf({ operations: { DescribeWidgets: { items: ['widgets'] } } }).root.collections[0].itemsPath,
+        widgets(treeOf({ operations: { DescribeWidgets: { items: ['widgets'] } } })).itemsPath,
       expected: ['widgets'],
     },
     {
       name: 'hidden params are not exposed',
       input:: function()
-        treeOf({ hiddenParams: ['owner'] }).root.collections[0].params,
+        widgets(treeOf({ hiddenParams: ['owner'] })).params,
       expected: [],
     },
     {
       name: 'empty explicit columns fall back to the default columns',
       input:: function()
-        std.length(treeOf(columns=[{ operation: 'DescribeWidgets', columns: [] }]).root.collections[0].columns),
+        std.length(widgets(treeOf(columns=[{ operation: 'DescribeWidgets', columns: [] }])).columns),
       expected: 3,
     },
   ],

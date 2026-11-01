@@ -1,0 +1,1 @@
+{"links":[{"at":["InternetGateways","Attachments"],"confidence":"high","keys":[{"const":"vpc","path":null},{"const":null,"path":["VpcId"]}],"reason":"Each internet gateway attachment contains a VpcId identifying a VPC.","target":"DescribeVpcs","vars":[{"param":"VpcId","path":["VpcId"]}]}],"operation":"DescribeInternetGateways"}

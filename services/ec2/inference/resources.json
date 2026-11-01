@@ -1,0 +1,30 @@
+{
+  "hiddenParams": [
+    "DryRun"
+  ],
+  "include": [
+    "DescribeVpcs",
+    "DescribeSubnets",
+    "DescribeRouteTables",
+    "DescribeInternetGateways",
+    "DescribeEgressOnlyInternetGateways",
+    "DescribeNatGateways",
+    "DescribeSecurityGroups",
+    "DescribeNetworkAcls",
+    "DescribeNetworkInterfaces",
+    "DescribeVpcEndpoints",
+    "DescribeVpcPeeringConnections",
+    "DescribeAddresses",
+    "DescribeDhcpOptions",
+    "DescribeTransitGateways",
+    "DescribeTransitGatewayAttachments",
+    "DescribeVpnConnections",
+    "DescribeVpnGateways",
+    "DescribeCustomerGateways",
+    "DescribeClientVpnEndpoints",
+    "DescribeInstances",
+    "DescribeVolumes",
+    "DescribeKeyPairs",
+    "DescribeLaunchTemplates"
+  ]
+}

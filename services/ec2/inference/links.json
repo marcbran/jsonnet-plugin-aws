@@ -1,0 +1,2008 @@
+[
+   {
+      "at": [
+         "Addresses"
+      ],
+      "keys": [
+         {
+            "const": "instance"
+         },
+         {
+            "path": [
+               "InstanceId"
+            ]
+         }
+      ],
+      "operation": "DescribeAddresses",
+      "target": {
+         "operation": "DescribeInstances",
+         "params": {
+            "InstanceId": [
+               "InstanceId"
+            ]
+         }
+      }
+   },
+   {
+      "at": [
+         "Addresses"
+      ],
+      "keys": [
+         {
+            "const": "network interface"
+         },
+         {
+            "path": [
+               "NetworkInterfaceId"
+            ]
+         }
+      ],
+      "operation": "DescribeAddresses",
+      "target": {
+         "operation": "DescribeNetworkInterfaces",
+         "params": {
+            "NetworkInterfaceId": [
+               "NetworkInterfaceId"
+            ]
+         }
+      }
+   },
+   {
+      "at": [
+         "Addresses"
+      ],
+      "keys": [
+         {
+            "const": "subnet"
+         },
+         {
+            "path": [
+               "SubnetId"
+            ]
+         }
+      ],
+      "operation": "DescribeAddresses",
+      "target": {
+         "operation": "DescribeSubnets",
+         "params": {
+            "SubnetId": [
+               "SubnetId"
+            ]
+         }
+      }
+   },
+   {
+      "at": [
+         "ClientVpnEndpoints",
+         "AssociatedTargetNetworks"
+      ],
+      "keys": [
+         {
+            "const": "subnet"
+         },
+         {
+            "path": [
+               "NetworkId"
+            ]
+         }
+      ],
+      "operation": "DescribeClientVpnEndpoints",
+      "target": {
+         "operation": "DescribeSubnets",
+         "params": {
+            "SubnetId": [
+               "NetworkId"
+            ]
+         }
+      }
+   },
+   {
+      "at": [
+         "ClientVpnEndpoints",
+         "SecurityGroupIds"
+      ],
+      "keys": [
+         {
+            "const": "security groups"
+         },
+         {
+            "path": [ ]
+         }
+      ],
+      "operation": "DescribeClientVpnEndpoints",
+      "target": {
+         "operation": "DescribeSecurityGroups",
+         "params": {
+            "GroupId": [ ]
+         }
+      }
+   },
+   {
+      "at": [
+         "ClientVpnEndpoints"
+      ],
+      "keys": [
+         {
+            "const": "transit gateway attachment"
+         },
+         {
+            "path": [
+               "ClientVpnEndpointId"
+            ]
+         }
+      ],
+      "operation": "DescribeClientVpnEndpoints",
+      "target": {
+         "operation": "DescribeTransitGatewayAttachments",
+         "params": {
+            "TransitGatewayAttachmentId": [
+               "TransitGatewayConfiguration",
+               "TransitGatewayAttachmentId"
+            ]
+         }
+      }
+   },
+   {
+      "at": [
+         "ClientVpnEndpoints"
+      ],
+      "keys": [
+         {
+            "const": "transit gateway"
+         },
+         {
+            "path": [
+               "ClientVpnEndpointId"
+            ]
+         }
+      ],
+      "operation": "DescribeClientVpnEndpoints",
+      "target": {
+         "operation": "DescribeTransitGateways",
+         "params": {
+            "TransitGatewayId": [
+               "TransitGatewayConfiguration",
+               "TransitGatewayId"
+            ]
+         }
+      }
+   },
+   {
+      "at": [
+         "ClientVpnEndpoints"
+      ],
+      "keys": [
+         {
+            "const": "vpc"
+         },
+         {
+            "path": [
+               "ClientVpnEndpointId"
+            ]
+         }
+      ],
+      "operation": "DescribeClientVpnEndpoints",
+      "target": {
+         "operation": "DescribeVpcs",
+         "params": {
+            "VpcId": [
+               "VpcId"
+            ]
+         }
+      }
+   },
+   {
+      "at": [
+         "Routes"
+      ],
+      "keys": [
+         {
+            "const": "subnet"
+         },
+         {
+            "path": [
+               "TargetSubnet"
+            ]
+         }
+      ],
+      "operation": "DescribeClientVpnRoutes",
+      "target": {
+         "operation": "DescribeSubnets",
+         "params": {
+            "SubnetId": [
+               "TargetSubnet"
+            ]
+         }
+      }
+   },
+   {
+      "at": [
+         "Routes"
+      ],
+      "keys": [
+         {
+            "const": "transit gateway attachment"
+         },
+         {
+            "path": [
+               "TransitGatewayAttachmentId"
+            ]
+         }
+      ],
+      "operation": "DescribeClientVpnRoutes",
+      "target": {
+         "operation": "DescribeTransitGatewayAttachments",
+         "params": {
+            "TransitGatewayAttachmentId": [
+               "TransitGatewayAttachmentId"
+            ]
+         }
+      }
+   },
+   {
+      "at": [
+         "ClientVpnTargetNetworks"
+      ],
+      "keys": [
+         {
+            "const": "vpc"
+         },
+         {
+            "path": [
+               "AssociationId"
+            ]
+         }
+      ],
+      "operation": "DescribeClientVpnTargetNetworks",
+      "target": {
+         "operation": "DescribeVpcs",
+         "params": {
+            "VpcId": [
+               "VpcId"
+            ]
+         }
+      }
+   },
+   {
+      "at": [
+         "ClientVpnTargetNetworks"
+      ],
+      "keys": [
+         {
+            "const": "target subnet"
+         },
+         {
+            "path": [
+               "AssociationId"
+            ]
+         }
+      ],
+      "operation": "DescribeClientVpnTargetNetworks",
+      "target": {
+         "operation": "DescribeSubnets",
+         "params": {
+            "SubnetId": [
+               "TargetNetworkId"
+            ]
+         }
+      }
+   },
+   {
+      "at": [
+         "ClientVpnTargetNetworks",
+         "SecurityGroups"
+      ],
+      "keys": [
+         {
+            "const": "security group"
+         },
+         {
+            "path": [ ]
+         }
+      ],
+      "operation": "DescribeClientVpnTargetNetworks",
+      "target": {
+         "operation": "DescribeSecurityGroups",
+         "params": {
+            "GroupId": [ ]
+         }
+      }
+   },
+   {
+      "at": [
+         "EgressOnlyInternetGateways",
+         "Attachments"
+      ],
+      "keys": [
+         {
+            "const": "vpc"
+         },
+         {
+            "path": [
+               "VpcId"
+            ]
+         }
+      ],
+      "operation": "DescribeEgressOnlyInternetGateways",
+      "target": {
+         "operation": "DescribeVpcs",
+         "params": {
+            "VpcId": [
+               "VpcId"
+            ]
+         }
+      }
+   },
+   {
+      "at": [
+         "Reservations",
+         "Instances",
+         "BlockDeviceMappings"
+      ],
+      "keys": [
+         {
+            "const": "volumes"
+         },
+         {
+            "path": [
+               "DeviceName"
+            ]
+         }
+      ],
+      "operation": "DescribeInstances",
+      "target": {
+         "operation": "DescribeVolumes",
+         "params": {
+            "VolumeId": [
+               "Ebs",
+               "VolumeId"
+            ]
+         }
+      }
+   },
+   {
+      "at": [
+         "Reservations",
+         "Instances",
+         "NetworkInterfaces"
+      ],
+      "keys": [
+         {
+            "const": "network interfaces"
+         },
+         {
+            "path": [
+               "NetworkInterfaceId"
+            ]
+         }
+      ],
+      "operation": "DescribeInstances",
+      "target": {
+         "operation": "DescribeNetworkInterfaces",
+         "params": {
+            "NetworkInterfaceId": [
+               "NetworkInterfaceId"
+            ]
+         }
+      }
+   },
+   {
+      "at": [
+         "Reservations",
+         "Instances",
+         "NetworkInterfaces",
+         "Groups"
+      ],
+      "keys": [
+         {
+            "const": "network interface security groups"
+         },
+         {
+            "path": [
+               "GroupId"
+            ]
+         }
+      ],
+      "operation": "DescribeInstances",
+      "target": {
+         "operation": "DescribeSecurityGroups",
+         "params": {
+            "GroupId": [
+               "GroupId"
+            ]
+         }
+      }
+   },
+   {
+      "at": [
+         "Reservations",
+         "Instances",
+         "NetworkInterfaces"
+      ],
+      "keys": [
+         {
+            "const": "network interface subnets"
+         },
+         {
+            "path": [
+               "NetworkInterfaceId"
+            ]
+         }
+      ],
+      "operation": "DescribeInstances",
+      "target": {
+         "operation": "DescribeSubnets",
+         "params": {
+            "SubnetId": [
+               "SubnetId"
+            ]
+         }
+      }
+   },
+   {
+      "at": [
+         "Reservations",
+         "Instances",
+         "NetworkInterfaces"
+      ],
+      "keys": [
+         {
+            "const": "network interface VPCs"
+         },
+         {
+            "path": [
+               "NetworkInterfaceId"
+            ]
+         }
+      ],
+      "operation": "DescribeInstances",
+      "target": {
+         "operation": "DescribeVpcs",
+         "params": {
+            "VpcId": [
+               "VpcId"
+            ]
+         }
+      }
+   },
+   {
+      "at": [
+         "Reservations",
+         "Instances",
+         "SecurityGroups"
+      ],
+      "keys": [
+         {
+            "const": "security groups"
+         },
+         {
+            "path": [
+               "GroupId"
+            ]
+         }
+      ],
+      "operation": "DescribeInstances",
+      "target": {
+         "operation": "DescribeSecurityGroups",
+         "params": {
+            "GroupId": [
+               "GroupId"
+            ]
+         }
+      }
+   },
+   {
+      "at": [
+         "Reservations",
+         "Instances"
+      ],
+      "keys": [
+         {
+            "const": "subnet"
+         },
+         {
+            "path": [
+               "InstanceId"
+            ]
+         }
+      ],
+      "operation": "DescribeInstances",
+      "target": {
+         "operation": "DescribeSubnets",
+         "params": {
+            "SubnetId": [
+               "SubnetId"
+            ]
+         }
+      }
+   },
+   {
+      "at": [
+         "Reservations",
+         "Instances"
+      ],
+      "keys": [
+         {
+            "const": "VPC"
+         },
+         {
+            "path": [
+               "InstanceId"
+            ]
+         }
+      ],
+      "operation": "DescribeInstances",
+      "target": {
+         "operation": "DescribeVpcs",
+         "params": {
+            "VpcId": [
+               "VpcId"
+            ]
+         }
+      }
+   },
+   {
+      "at": [
+         "InternetGateways",
+         "Attachments"
+      ],
+      "keys": [
+         {
+            "const": "vpc"
+         },
+         {
+            "path": [
+               "VpcId"
+            ]
+         }
+      ],
+      "operation": "DescribeInternetGateways",
+      "target": {
+         "operation": "DescribeVpcs",
+         "params": {
+            "VpcId": [
+               "VpcId"
+            ]
+         }
+      }
+   },
+   {
+      "at": [
+         "NatGateways",
+         "NatGatewayAddresses"
+      ],
+      "keys": [
+         {
+            "const": "elastic IP"
+         },
+         {
+            "path": [
+               "AllocationId"
+            ]
+         }
+      ],
+      "operation": "DescribeNatGateways",
+      "target": {
+         "operation": "DescribeAddresses",
+         "params": {
+            "AllocationId": [
+               "AllocationId"
+            ]
+         }
+      }
+   },
+   {
+      "at": [
+         "NatGateways",
+         "NatGatewayAddresses"
+      ],
+      "keys": [
+         {
+            "const": "network interface"
+         },
+         {
+            "path": [
+               "NetworkInterfaceId"
+            ]
+         }
+      ],
+      "operation": "DescribeNatGateways",
+      "target": {
+         "operation": "DescribeNetworkInterfaces",
+         "params": {
+            "NetworkInterfaceId": [
+               "NetworkInterfaceId"
+            ]
+         }
+      }
+   },
+   {
+      "at": [
+         "NatGateways"
+      ],
+      "keys": [
+         {
+            "const": "route table"
+         },
+         {
+            "path": [
+               "NatGatewayId"
+            ]
+         }
+      ],
+      "operation": "DescribeNatGateways",
+      "target": {
+         "operation": "DescribeRouteTables",
+         "params": {
+            "RouteTableId": [
+               "RouteTableId"
+            ]
+         }
+      }
+   },
+   {
+      "at": [
+         "NatGateways"
+      ],
+      "keys": [
+         {
+            "const": "subnet"
+         },
+         {
+            "path": [
+               "NatGatewayId"
+            ]
+         }
+      ],
+      "operation": "DescribeNatGateways",
+      "target": {
+         "operation": "DescribeSubnets",
+         "params": {
+            "SubnetId": [
+               "SubnetId"
+            ]
+         }
+      }
+   },
+   {
+      "at": [
+         "NatGateways"
+      ],
+      "keys": [
+         {
+            "const": "VPC"
+         },
+         {
+            "path": [
+               "NatGatewayId"
+            ]
+         }
+      ],
+      "operation": "DescribeNatGateways",
+      "target": {
+         "operation": "DescribeVpcs",
+         "params": {
+            "VpcId": [
+               "VpcId"
+            ]
+         }
+      }
+   },
+   {
+      "at": [
+         "NatGateways",
+         "AttachedAppliances"
+      ],
+      "keys": [
+         {
+            "const": "VPC endpoint"
+         },
+         {
+            "path": [
+               "VpcEndpointId"
+            ]
+         }
+      ],
+      "operation": "DescribeNatGateways",
+      "target": {
+         "operation": "DescribeVpcEndpoints",
+         "params": {
+            "VpcEndpointId": [
+               "VpcEndpointId"
+            ]
+         }
+      }
+   },
+   {
+      "at": [
+         "NetworkAcls"
+      ],
+      "keys": [
+         {
+            "const": "vpc"
+         },
+         {
+            "path": [
+               "NetworkAclId"
+            ]
+         }
+      ],
+      "operation": "DescribeNetworkAcls",
+      "target": {
+         "operation": "DescribeVpcs",
+         "params": {
+            "VpcId": [
+               "VpcId"
+            ]
+         }
+      }
+   },
+   {
+      "at": [
+         "NetworkAcls",
+         "Associations"
+      ],
+      "keys": [
+         {
+            "const": "subnet"
+         },
+         {
+            "path": [
+               "NetworkAclAssociationId"
+            ]
+         }
+      ],
+      "operation": "DescribeNetworkAcls",
+      "target": {
+         "operation": "DescribeSubnets",
+         "params": {
+            "SubnetId": [
+               "SubnetId"
+            ]
+         }
+      }
+   },
+   {
+      "at": [
+         "NetworkInterfaces",
+         "Association"
+      ],
+      "keys": [
+         {
+            "const": "elastic IP"
+         },
+         {
+            "path": [
+               "AllocationId"
+            ]
+         }
+      ],
+      "operation": "DescribeNetworkInterfaces",
+      "target": {
+         "operation": "DescribeAddresses",
+         "params": {
+            "AllocationId": [
+               "AllocationId"
+            ]
+         }
+      }
+   },
+   {
+      "at": [
+         "NetworkInterfaces",
+         "Attachment"
+      ],
+      "keys": [
+         {
+            "const": "instance"
+         },
+         {
+            "path": [
+               "InstanceId"
+            ]
+         }
+      ],
+      "operation": "DescribeNetworkInterfaces",
+      "target": {
+         "operation": "DescribeInstances",
+         "params": {
+            "InstanceId": [
+               "InstanceId"
+            ]
+         }
+      }
+   },
+   {
+      "at": [
+         "NetworkInterfaces",
+         "Groups"
+      ],
+      "keys": [
+         {
+            "const": "security group"
+         },
+         {
+            "path": [
+               "GroupId"
+            ]
+         }
+      ],
+      "operation": "DescribeNetworkInterfaces",
+      "target": {
+         "operation": "DescribeSecurityGroups",
+         "params": {
+            "GroupId": [
+               "GroupId"
+            ]
+         }
+      }
+   },
+   {
+      "at": [
+         "NetworkInterfaces",
+         "AssociatedSubnets"
+      ],
+      "keys": [
+         {
+            "const": "associated subnet"
+         },
+         {
+            "path": [ ]
+         }
+      ],
+      "operation": "DescribeNetworkInterfaces",
+      "target": {
+         "operation": "DescribeSubnets",
+         "params": {
+            "SubnetId": [ ]
+         }
+      }
+   },
+   {
+      "at": [
+         "NetworkInterfaces"
+      ],
+      "keys": [
+         {
+            "const": "subnet"
+         },
+         {
+            "path": [
+               "SubnetId"
+            ]
+         }
+      ],
+      "operation": "DescribeNetworkInterfaces",
+      "target": {
+         "operation": "DescribeSubnets",
+         "params": {
+            "SubnetId": [
+               "SubnetId"
+            ]
+         }
+      }
+   },
+   {
+      "at": [
+         "NetworkInterfaces"
+      ],
+      "keys": [
+         {
+            "const": "VPC"
+         },
+         {
+            "path": [
+               "VpcId"
+            ]
+         }
+      ],
+      "operation": "DescribeNetworkInterfaces",
+      "target": {
+         "operation": "DescribeVpcs",
+         "params": {
+            "VpcId": [
+               "VpcId"
+            ]
+         }
+      }
+   },
+   {
+      "at": [
+         "NetworkInterfaces",
+         "PrivateIpAddresses",
+         "Association"
+      ],
+      "keys": [
+         {
+            "const": "elastic IP"
+         },
+         {
+            "path": [
+               "AllocationId"
+            ]
+         }
+      ],
+      "operation": "DescribeNetworkInterfaces",
+      "target": {
+         "operation": "DescribeAddresses",
+         "params": {
+            "AllocationId": [
+               "AllocationId"
+            ]
+         }
+      }
+   },
+   {
+      "at": [
+         "RouteTables"
+      ],
+      "keys": [
+         {
+            "const": "vpc"
+         },
+         {
+            "path": [
+               "RouteTableId"
+            ]
+         }
+      ],
+      "operation": "DescribeRouteTables",
+      "target": {
+         "operation": "DescribeVpcs",
+         "params": {
+            "VpcId": [
+               "VpcId"
+            ]
+         }
+      }
+   },
+   {
+      "at": [
+         "RouteTables",
+         "Associations"
+      ],
+      "keys": [
+         {
+            "const": "subnet"
+         },
+         {
+            "path": [
+               "RouteTableAssociationId"
+            ]
+         }
+      ],
+      "operation": "DescribeRouteTables",
+      "target": {
+         "operation": "DescribeSubnets",
+         "params": {
+            "SubnetId": [
+               "SubnetId"
+            ]
+         }
+      }
+   },
+   {
+      "at": [
+         "RouteTables",
+         "PropagatingVgws"
+      ],
+      "keys": [
+         {
+            "const": "VPN gateway"
+         },
+         {
+            "path": [
+               "GatewayId"
+            ]
+         }
+      ],
+      "operation": "DescribeRouteTables",
+      "target": {
+         "operation": "DescribeVpnGateways",
+         "params": {
+            "VpnGatewayId": [
+               "GatewayId"
+            ]
+         }
+      }
+   },
+   {
+      "at": [
+         "RouteTables",
+         "Routes"
+      ],
+      "keys": [
+         {
+            "const": "egress-only internet gateway"
+         },
+         {
+            "path": [
+               "DestinationCidrBlock"
+            ]
+         }
+      ],
+      "operation": "DescribeRouteTables",
+      "target": {
+         "operation": "DescribeEgressOnlyInternetGateways",
+         "params": {
+            "EgressOnlyInternetGatewayId": [
+               "EgressOnlyInternetGatewayId"
+            ]
+         }
+      }
+   },
+   {
+      "at": [
+         "RouteTables",
+         "Routes"
+      ],
+      "keys": [
+         {
+            "const": "instance"
+         },
+         {
+            "path": [
+               "DestinationCidrBlock"
+            ]
+         }
+      ],
+      "operation": "DescribeRouteTables",
+      "target": {
+         "operation": "DescribeInstances",
+         "params": {
+            "InstanceId": [
+               "InstanceId"
+            ]
+         }
+      }
+   },
+   {
+      "at": [
+         "RouteTables",
+         "Routes"
+      ],
+      "keys": [
+         {
+            "const": "NAT gateway"
+         },
+         {
+            "path": [
+               "DestinationCidrBlock"
+            ]
+         }
+      ],
+      "operation": "DescribeRouteTables",
+      "target": {
+         "operation": "DescribeNatGateways",
+         "params": {
+            "NatGatewayId": [
+               "NatGatewayId"
+            ]
+         }
+      }
+   },
+   {
+      "at": [
+         "RouteTables",
+         "Routes"
+      ],
+      "keys": [
+         {
+            "const": "network interface"
+         },
+         {
+            "path": [
+               "DestinationCidrBlock"
+            ]
+         }
+      ],
+      "operation": "DescribeRouteTables",
+      "target": {
+         "operation": "DescribeNetworkInterfaces",
+         "params": {
+            "NetworkInterfaceId": [
+               "NetworkInterfaceId"
+            ]
+         }
+      }
+   },
+   {
+      "at": [
+         "RouteTables",
+         "Routes"
+      ],
+      "keys": [
+         {
+            "const": "transit gateway"
+         },
+         {
+            "path": [
+               "DestinationCidrBlock"
+            ]
+         }
+      ],
+      "operation": "DescribeRouteTables",
+      "target": {
+         "operation": "DescribeTransitGateways",
+         "params": {
+            "TransitGatewayId": [
+               "TransitGatewayId"
+            ]
+         }
+      }
+   },
+   {
+      "at": [
+         "RouteTables",
+         "Routes"
+      ],
+      "keys": [
+         {
+            "const": "VPC peering connection"
+         },
+         {
+            "path": [
+               "DestinationCidrBlock"
+            ]
+         }
+      ],
+      "operation": "DescribeRouteTables",
+      "target": {
+         "operation": "DescribeVpcPeeringConnections",
+         "params": {
+            "VpcPeeringConnectionId": [
+               "VpcPeeringConnectionId"
+            ]
+         }
+      }
+   },
+   {
+      "at": [
+         "SecurityGroupReferenceSet"
+      ],
+      "keys": [
+         {
+            "const": "vpc"
+         },
+         {
+            "path": [
+               "ReferencingVpcId"
+            ]
+         }
+      ],
+      "operation": "DescribeSecurityGroupReferences",
+      "target": {
+         "operation": "DescribeVpcs",
+         "params": {
+            "VpcId": [
+               "ReferencingVpcId"
+            ]
+         }
+      }
+   },
+   {
+      "at": [
+         "SecurityGroupReferenceSet"
+      ],
+      "keys": [
+         {
+            "const": "transit gateway"
+         },
+         {
+            "path": [
+               "TransitGatewayId"
+            ]
+         }
+      ],
+      "operation": "DescribeSecurityGroupReferences",
+      "target": {
+         "operation": "DescribeTransitGateways",
+         "params": {
+            "TransitGatewayId": [
+               "TransitGatewayId"
+            ]
+         }
+      }
+   },
+   {
+      "at": [
+         "SecurityGroupReferenceSet"
+      ],
+      "keys": [
+         {
+            "const": "VPC peering connection"
+         },
+         {
+            "path": [
+               "VpcPeeringConnectionId"
+            ]
+         }
+      ],
+      "operation": "DescribeSecurityGroupReferences",
+      "target": {
+         "operation": "DescribeVpcPeeringConnections",
+         "params": {
+            "VpcPeeringConnectionId": [
+               "VpcPeeringConnectionId"
+            ]
+         }
+      }
+   },
+   {
+      "at": [
+         "SecurityGroups"
+      ],
+      "keys": [
+         {
+            "const": "vpc"
+         },
+         {
+            "path": [
+               "GroupId"
+            ]
+         }
+      ],
+      "operation": "DescribeSecurityGroups",
+      "target": {
+         "operation": "DescribeVpcs",
+         "params": {
+            "VpcId": [
+               "VpcId"
+            ]
+         }
+      }
+   },
+   {
+      "at": [
+         "SecurityGroups",
+         "IpPermissions",
+         "UserIdGroupPairs"
+      ],
+      "keys": [
+         {
+            "const": "referenced security group"
+         },
+         {
+            "path": [
+               "GroupId"
+            ]
+         }
+      ],
+      "operation": "DescribeSecurityGroups",
+      "target": {
+         "operation": "DescribeSecurityGroups",
+         "params": {
+            "GroupId": [
+               "GroupId"
+            ]
+         }
+      }
+   },
+   {
+      "at": [
+         "SecurityGroups",
+         "IpPermissions",
+         "UserIdGroupPairs"
+      ],
+      "keys": [
+         {
+            "const": "vpc"
+         },
+         {
+            "path": [
+               "GroupId"
+            ]
+         }
+      ],
+      "operation": "DescribeSecurityGroups",
+      "target": {
+         "operation": "DescribeVpcs",
+         "params": {
+            "VpcId": [
+               "VpcId"
+            ]
+         }
+      }
+   },
+   {
+      "at": [
+         "SecurityGroups",
+         "IpPermissions",
+         "UserIdGroupPairs"
+      ],
+      "keys": [
+         {
+            "const": "VPC peering connection"
+         },
+         {
+            "path": [
+               "GroupId"
+            ]
+         }
+      ],
+      "operation": "DescribeSecurityGroups",
+      "target": {
+         "operation": "DescribeVpcPeeringConnections",
+         "params": {
+            "VpcPeeringConnectionId": [
+               "VpcPeeringConnectionId"
+            ]
+         }
+      }
+   },
+   {
+      "at": [
+         "SecurityGroups",
+         "IpPermissionsEgress",
+         "UserIdGroupPairs"
+      ],
+      "keys": [
+         {
+            "const": "referenced security group (egress)"
+         },
+         {
+            "path": [
+               "GroupId"
+            ]
+         }
+      ],
+      "operation": "DescribeSecurityGroups",
+      "target": {
+         "operation": "DescribeSecurityGroups",
+         "params": {
+            "GroupId": [
+               "GroupId"
+            ]
+         }
+      }
+   },
+   {
+      "at": [
+         "SecurityGroups",
+         "IpPermissionsEgress",
+         "UserIdGroupPairs"
+      ],
+      "keys": [
+         {
+            "const": "vpc (egress)"
+         },
+         {
+            "path": [
+               "GroupId"
+            ]
+         }
+      ],
+      "operation": "DescribeSecurityGroups",
+      "target": {
+         "operation": "DescribeVpcs",
+         "params": {
+            "VpcId": [
+               "VpcId"
+            ]
+         }
+      }
+   },
+   {
+      "at": [
+         "SecurityGroups",
+         "IpPermissionsEgress",
+         "UserIdGroupPairs"
+      ],
+      "keys": [
+         {
+            "const": "VPC peering connection (egress)"
+         },
+         {
+            "path": [
+               "GroupId"
+            ]
+         }
+      ],
+      "operation": "DescribeSecurityGroups",
+      "target": {
+         "operation": "DescribeVpcPeeringConnections",
+         "params": {
+            "VpcPeeringConnectionId": [
+               "VpcPeeringConnectionId"
+            ]
+         }
+      }
+   },
+   {
+      "at": [
+         "StaleSecurityGroupSet",
+         "StaleIpPermissions",
+         "UserIdGroupPairs"
+      ],
+      "keys": [
+         {
+            "const": "security group"
+         },
+         {
+            "path": [
+               "GroupId"
+            ]
+         }
+      ],
+      "operation": "DescribeStaleSecurityGroups",
+      "target": {
+         "operation": "DescribeSecurityGroups",
+         "params": {
+            "GroupId": [
+               "GroupId"
+            ]
+         }
+      }
+   },
+   {
+      "at": [
+         "StaleSecurityGroupSet",
+         "StaleIpPermissions",
+         "UserIdGroupPairs"
+      ],
+      "keys": [
+         {
+            "const": "VPC peering connection"
+         },
+         {
+            "path": [
+               "VpcPeeringConnectionId"
+            ]
+         }
+      ],
+      "operation": "DescribeStaleSecurityGroups",
+      "target": {
+         "operation": "DescribeVpcPeeringConnections",
+         "params": {
+            "VpcPeeringConnectionId": [
+               "VpcPeeringConnectionId"
+            ]
+         }
+      }
+   },
+   {
+      "at": [
+         "StaleSecurityGroupSet",
+         "StaleIpPermissionsEgress",
+         "UserIdGroupPairs"
+      ],
+      "keys": [
+         {
+            "const": "security group"
+         },
+         {
+            "path": [
+               "GroupId"
+            ]
+         }
+      ],
+      "operation": "DescribeStaleSecurityGroups",
+      "target": {
+         "operation": "DescribeSecurityGroups",
+         "params": {
+            "GroupId": [
+               "GroupId"
+            ]
+         }
+      }
+   },
+   {
+      "at": [
+         "StaleSecurityGroupSet",
+         "StaleIpPermissionsEgress",
+         "UserIdGroupPairs"
+      ],
+      "keys": [
+         {
+            "const": "VPC peering connection"
+         },
+         {
+            "path": [
+               "VpcPeeringConnectionId"
+            ]
+         }
+      ],
+      "operation": "DescribeStaleSecurityGroups",
+      "target": {
+         "operation": "DescribeVpcPeeringConnections",
+         "params": {
+            "VpcPeeringConnectionId": [
+               "VpcPeeringConnectionId"
+            ]
+         }
+      }
+   },
+   {
+      "at": [
+         "Subnets"
+      ],
+      "keys": [
+         {
+            "const": "vpc"
+         },
+         {
+            "path": [
+               "SubnetId"
+            ]
+         }
+      ],
+      "operation": "DescribeSubnets",
+      "target": {
+         "operation": "DescribeVpcs",
+         "params": {
+            "VpcId": [
+               "VpcId"
+            ]
+         }
+      }
+   },
+   {
+      "at": [
+         "TransitGatewayAttachments"
+      ],
+      "keys": [
+         {
+            "const": "transit gateway"
+         },
+         {
+            "path": [
+               "TransitGatewayAttachmentId"
+            ]
+         }
+      ],
+      "operation": "DescribeTransitGatewayAttachments",
+      "target": {
+         "operation": "DescribeTransitGateways",
+         "params": {
+            "TransitGatewayId": [
+               "TransitGatewayId"
+            ]
+         }
+      }
+   },
+   {
+      "at": [
+         "Volumes",
+         "Attachments"
+      ],
+      "keys": [
+         {
+            "const": "attached instance"
+         },
+         {
+            "path": [
+               "VolumeId"
+            ]
+         },
+         {
+            "path": [
+               "InstanceId"
+            ]
+         }
+      ],
+      "operation": "DescribeVolumes",
+      "target": {
+         "operation": "DescribeInstances",
+         "params": {
+            "InstanceId": [
+               "InstanceId"
+            ]
+         }
+      }
+   },
+   {
+      "at": [
+         "VpcEndpoints"
+      ],
+      "keys": [
+         {
+            "const": "vpc"
+         },
+         {
+            "path": [
+               "VpcEndpointId"
+            ]
+         }
+      ],
+      "operation": "DescribeVpcEndpoints",
+      "target": {
+         "operation": "DescribeVpcs",
+         "params": {
+            "VpcId": [
+               "VpcId"
+            ]
+         }
+      }
+   },
+   {
+      "at": [
+         "VpcEndpoints",
+         "Groups"
+      ],
+      "keys": [
+         {
+            "const": "security groups"
+         },
+         {
+            "path": [
+               "GroupId"
+            ]
+         }
+      ],
+      "operation": "DescribeVpcEndpoints",
+      "target": {
+         "operation": "DescribeSecurityGroups",
+         "params": {
+            "GroupId": [
+               "GroupId"
+            ]
+         }
+      }
+   },
+   {
+      "at": [
+         "VpcEndpoints",
+         "Ipv4Prefixes"
+      ],
+      "keys": [
+         {
+            "const": "subnets"
+         },
+         {
+            "path": [
+               "SubnetId"
+            ]
+         }
+      ],
+      "operation": "DescribeVpcEndpoints",
+      "target": {
+         "operation": "DescribeSubnets",
+         "params": {
+            "SubnetId": [
+               "SubnetId"
+            ]
+         }
+      }
+   },
+   {
+      "at": [
+         "VpcEndpoints",
+         "Ipv6Prefixes"
+      ],
+      "keys": [
+         {
+            "const": "subnets"
+         },
+         {
+            "path": [
+               "SubnetId"
+            ]
+         }
+      ],
+      "operation": "DescribeVpcEndpoints",
+      "target": {
+         "operation": "DescribeSubnets",
+         "params": {
+            "SubnetId": [
+               "SubnetId"
+            ]
+         }
+      }
+   },
+   {
+      "at": [
+         "VpcEndpoints",
+         "NetworkInterfaceIds"
+      ],
+      "keys": [
+         {
+            "const": "network interfaces"
+         },
+         {
+            "path": [ ]
+         }
+      ],
+      "operation": "DescribeVpcEndpoints",
+      "target": {
+         "operation": "DescribeNetworkInterfaces",
+         "params": {
+            "NetworkInterfaceId": [ ]
+         }
+      }
+   },
+   {
+      "at": [
+         "VpcEndpoints",
+         "RouteTableIds"
+      ],
+      "keys": [
+         {
+            "const": "route tables"
+         },
+         {
+            "path": [ ]
+         }
+      ],
+      "operation": "DescribeVpcEndpoints",
+      "target": {
+         "operation": "DescribeRouteTables",
+         "params": {
+            "RouteTableId": [ ]
+         }
+      }
+   },
+   {
+      "at": [
+         "VpcEndpoints",
+         "SubnetIds"
+      ],
+      "keys": [
+         {
+            "const": "subnets"
+         },
+         {
+            "path": [ ]
+         }
+      ],
+      "operation": "DescribeVpcEndpoints",
+      "target": {
+         "operation": "DescribeSubnets",
+         "params": {
+            "SubnetId": [ ]
+         }
+      }
+   },
+   {
+      "at": [
+         "VpcPeeringConnections"
+      ],
+      "keys": [
+         {
+            "const": "requester vpc"
+         },
+         {
+            "path": [
+               "VpcPeeringConnectionId"
+            ]
+         },
+         {
+            "path": [
+               "RequesterVpcInfo",
+               "VpcId"
+            ]
+         }
+      ],
+      "operation": "DescribeVpcPeeringConnections",
+      "target": {
+         "operation": "DescribeVpcs",
+         "params": {
+            "VpcId": [
+               "RequesterVpcInfo",
+               "VpcId"
+            ]
+         }
+      }
+   },
+   {
+      "at": [
+         "VpcPeeringConnections"
+      ],
+      "keys": [
+         {
+            "const": "accepter vpc"
+         },
+         {
+            "path": [
+               "VpcPeeringConnectionId"
+            ]
+         },
+         {
+            "path": [
+               "AccepterVpcInfo",
+               "VpcId"
+            ]
+         }
+      ],
+      "operation": "DescribeVpcPeeringConnections",
+      "target": {
+         "operation": "DescribeVpcs",
+         "params": {
+            "VpcId": [
+               "AccepterVpcInfo",
+               "VpcId"
+            ]
+         }
+      }
+   },
+   {
+      "at": [
+         "Vpcs"
+      ],
+      "keys": [
+         {
+            "const": "dhcp options"
+         },
+         {
+            "path": [
+               "VpcId"
+            ]
+         }
+      ],
+      "operation": "DescribeVpcs",
+      "target": {
+         "operation": "DescribeDhcpOptions",
+         "params": {
+            "DhcpOptionsId": [
+               "DhcpOptionsId"
+            ]
+         }
+      }
+   },
+   {
+      "at": [
+         "VpnConnections"
+      ],
+      "keys": [
+         {
+            "const": "customer gateway"
+         },
+         {
+            "path": [
+               "VpnConnectionId"
+            ]
+         }
+      ],
+      "operation": "DescribeVpnConnections",
+      "target": {
+         "operation": "DescribeCustomerGateways",
+         "params": {
+            "CustomerGatewayId": [
+               "CustomerGatewayId"
+            ]
+         }
+      }
+   },
+   {
+      "at": [
+         "VpnConnections"
+      ],
+      "keys": [
+         {
+            "const": "transit gateway"
+         },
+         {
+            "path": [
+               "VpnConnectionId"
+            ]
+         }
+      ],
+      "operation": "DescribeVpnConnections",
+      "target": {
+         "operation": "DescribeTransitGateways",
+         "params": {
+            "TransitGatewayId": [
+               "TransitGatewayId"
+            ]
+         }
+      }
+   },
+   {
+      "at": [
+         "VpnConnections"
+      ],
+      "keys": [
+         {
+            "const": "VPN gateway"
+         },
+         {
+            "path": [
+               "VpnConnectionId"
+            ]
+         }
+      ],
+      "operation": "DescribeVpnConnections",
+      "target": {
+         "operation": "DescribeVpnGateways",
+         "params": {
+            "VpnGatewayId": [
+               "VpnGatewayId"
+            ]
+         }
+      }
+   },
+   {
+      "at": [
+         "VpnConnections"
+      ],
+      "keys": [
+         {
+            "const": "transit gateway attachment"
+         },
+         {
+            "path": [
+               "VpnConnectionId"
+            ]
+         }
+      ],
+      "operation": "DescribeVpnConnections",
+      "target": {
+         "operation": "DescribeTransitGatewayAttachments",
+         "params": {
+            "TransitGatewayAttachmentId": [
+               "Options",
+               "TransportTransitGatewayAttachmentId"
+            ]
+         }
+      }
+   },
+   {
+      "at": [
+         "VpnGateways",
+         "VpcAttachments"
+      ],
+      "keys": [
+         {
+            "const": "vpc"
+         },
+         {
+            "path": [
+               "VpcId"
+            ]
+         }
+      ],
+      "operation": "DescribeVpnGateways",
+      "target": {
+         "operation": "DescribeVpcs",
+         "params": {
+            "VpcId": [
+               "VpcId"
+            ]
+         }
+      }
+   },
+   {
+      "at": [
+         "LaunchTemplateData"
+      ],
+      "keys": [
+         {
+            "const": "key pair"
+         },
+         {
+            "path": [
+               "KeyName"
+            ]
+         }
+      ],
+      "operation": "GetLaunchTemplateData",
+      "target": {
+         "operation": "DescribeKeyPairs",
+         "params": {
+            "KeyName": [
+               "KeyName"
+            ]
+         }
+      }
+   },
+   {
+      "at": [
+         "LaunchTemplateData",
+         "SecurityGroupIds"
+      ],
+      "keys": [
+         {
+            "const": "security groups"
+         },
+         {
+            "path": [ ]
+         }
+      ],
+      "operation": "GetLaunchTemplateData",
+      "target": {
+         "operation": "DescribeSecurityGroups",
+         "params": {
+            "GroupId": [ ]
+         }
+      }
+   }
+]
