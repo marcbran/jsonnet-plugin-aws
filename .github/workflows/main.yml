@@ -56,6 +56,9 @@ jobs:
       - uses: jaxxstorm/action-install-gh-release@25e24d2d23ae098373794ef1d6faecb48ee52da8 # v3.0.0
         with:
           repo: marcbran/jpoet
+      - run: |
+          git config --global user.name "jsonnet-publisher[bot]"
+          git config --global user.email "350881344+jsonnet-publisher[bot]@users.noreply.github.com"
       - run: just push
         env:
           GITHUB_TOKEN: ${{ steps.token.outputs.token }}
