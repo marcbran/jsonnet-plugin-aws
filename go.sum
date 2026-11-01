@@ -84,8 +84,8 @@ github.com/lufia/plan9stats v0.0.0-20260330125221-c963978e514e h1:Q6MvJtQK/iRcRt
 github.com/lufia/plan9stats v0.0.0-20260330125221-c963978e514e/go.mod h1:autxFIvghDt3jPTLoqZ9OZ7s9qTGNAWmYCjVFWPX/zg=
 github.com/magiconair/properties v1.8.10 h1:s31yESBquKXCV9a/ScB3ESkOjUYYv+X0rg8SYxI99mE=
 github.com/magiconair/properties v1.8.10/go.mod h1:Dhd985XPs7jluiymwWYZ0G4Z61jb3vdS329zhj2hYo0=
-github.com/marcbran/jpoet v0.26.0 h1:cFxROjkzuOnNR+7tB6hLdzZG7yihCMzRjYqt940xA6w=
-github.com/marcbran/jpoet v0.26.0/go.mod h1:VnlY2zGAzUgcGJFmdfNCY3+GkSlmYj/1UiWGdjk2IWQ=
+github.com/marcbran/jpoet v0.27.0 h1:MGxTAFGdO/cVtmYPJRbNhsfwPJpX21fCGYgcWhbCXoA=
+github.com/marcbran/jpoet v0.27.0/go.mod h1:VnlY2zGAzUgcGJFmdfNCY3+GkSlmYj/1UiWGdjk2IWQ=
 github.com/marcbran/jsonnet-plugin-jsonnet v0.4.0 h1:Xzveh7lPmj17AeuYGKbRermHJKbtVBEUx96zuOn2Suw=
 github.com/marcbran/jsonnet-plugin-jsonnet v0.4.0/go.mod h1:NW7wesnakgGCAgf0VYSHV5SBhMIbioHsG5IdubkyJe0=
 github.com/mattn/go-colorable v0.1.9/go.mod h1:u6P/XSegPjTcexA+o6vUJrdnUu04hMope9wVRipJSqc=

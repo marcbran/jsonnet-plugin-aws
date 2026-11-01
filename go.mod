@@ -7,7 +7,7 @@ require (
 	github.com/aws/aws-sdk-go-v2/credentials v1.20.13
 	github.com/aws/aws-sdk-go-v2/service/ecr v1.67.2
 	github.com/google/go-jsonnet v0.22.0
-	github.com/marcbran/jpoet v0.26.0
+	github.com/marcbran/jpoet v0.27.0
 	github.com/marcbran/jsonnet-plugin-jsonnet v0.4.0
 	github.com/spf13/cobra v1.10.2
 	github.com/stretchr/testify v1.12.1
