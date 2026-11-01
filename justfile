@@ -1,27 +1,34 @@
+tool := "go tool -modfile=tools/go.mod"
+
 models_ref := "1b9ff13fe6c28ea9774a527e53cda6a3b91369dc"
 
 test-go:
     go test -v -cover -timeout=120s -parallel=10 ./...
 
 test-jsonnet:
-    jpoet test .
+    {{tool}} jpoet test .
 
 test: test-go test-jsonnet
 
 lint-go:
-    golangci-lint run ./...
+    {{tool}} golangci-lint run ./...
 
 lint: lint-go
 
+vuln-go:
+    {{tool}} govulncheck ./...
+
+vuln: vuln-go
+
 build:
-    jpoet pkg build
-    rm -rf arcourse/build && jpoet pkg build arcourse
-    for dir in services/*/arcourse/; do rm -rf "$dir/build" && jpoet pkg build "$dir" || exit 1; done
+    {{tool}} jpoet pkg build
+    rm -rf arcourse/build && {{tool}} jpoet pkg build arcourse
+    for dir in services/*/arcourse/; do rm -rf "$dir/build" && {{tool}} jpoet pkg build "$dir" || exit 1; done
 
 push: build
-    jpoet pkg push
-    jpoet pkg push arcourse
-    for dir in services/*/arcourse/; do jpoet pkg push "$dir" || exit 1; done
+    {{tool}} jpoet pkg push
+    {{tool}} jpoet pkg push arcourse
+    for dir in services/*/arcourse/; do {{tool}} jpoet pkg push "$dir" || exit 1; done
 
 update-models:
     #!/usr/bin/env bash
@@ -35,7 +42,7 @@ update-models:
 test-e2e:
     go test -v -tags e2e ./tests/...
 
-ci: lint test build test-e2e
+ci: lint vuln test build test-e2e
 
 arcourse-gen service:
     go run ./cmd/jsonnet-aws gen "{{service}}" --inputs "services/{{service}}/inference" --out "services/{{service}}/arcourse"
