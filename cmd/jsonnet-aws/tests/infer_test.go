@@ -76,6 +76,7 @@ func TestLinksInferWithCachedInference(t *testing.T) {
 	given.
 		the_service("ecr").and().
 		the_resource_overrides("ecr/resources.json").and().
+		a_cached_result("links-inference", "DescribeRepositories", `{"operation":"DescribeRepositories","links":[{"at":["repositories"],"keys":[{"const":"itself","path":null}],"target":"DescribeRepositories","vars":[{"param":"repositoryName","path":["repositoryName"]}],"confidence":"high","reason":"Self-link, covered by the row link."}]}`).and().
 		a_cached_result("links-inference", "GetRepositoryPolicy", `{"operation":"GetRepositoryPolicy","links":[{"at":[],"keys":[{"const":"repository","path":null}],"target":"DescribeRepositories","vars":[{"param":"repositoryName","path":["repositoryName"]}],"confidence":"high","reason":"Ancestor, covered by breadcrumbs."}]}`).and().
 		a_cached_result("links-inference", "DescribePullThroughCacheRules", `{"operation":"DescribePullThroughCacheRules","links":[{"at":["pullThroughCacheRules"],"keys":[{"const":"upstream repository","path":null},{"const":null,"path":["upstreamRepositoryPrefix"]}],"target":"DescribeRepositories","vars":[{"param":"repositoryName","path":["upstreamRepositoryPrefix"]}],"confidence":"low","reason":"Example."}]}`)
 
@@ -84,6 +85,6 @@ func TestLinksInferWithCachedInference(t *testing.T) {
 
 	then.
 		there_is_no_error().and().
-		codex_was_not_called_for("DescribePullThroughCacheRules", "GetRepositoryPolicy").and().
+		codex_was_not_called_for("DescribePullThroughCacheRules", "GetRepositoryPolicy", "DescribeRepositories").and().
 		the_output_matches("ecr/links.json")
 }

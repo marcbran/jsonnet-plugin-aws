@@ -1,0 +1,1 @@
+{"links":[{"at":["Volumes","Attachments"],"confidence":"high","keys":[{"const":"attached instance","path":null},{"const":null,"path":["VolumeId"]},{"const":null,"path":["InstanceId"]}],"reason":"Each attachment’s InstanceId identifies an EC2 instance.","target":"DescribeInstances","vars":[{"param":"InstanceId","path":["InstanceId"]}]}],"operation":"DescribeVolumes"}

@@ -1,5 +1,13 @@
 local shapes = import 'shapes.libsonnet';
 
+local clean(path) = if path == null then null else [segment for segment in path if segment != '[]'];
+
+local normalized(link) = link {
+  at: clean(link.at),
+  keys: [seg { path: clean(seg.path) } for seg in link.keys],
+  vars: [v { path: clean(v.path) } for v in link.vars],
+};
+
 local linkProblems(input, link) =
   local anchor = shapes.at(input.responseSchema, link.at);
   local matches = [t for t in input.targets if t.operation == link.target];
@@ -30,7 +38,7 @@ local linkProblems(input, link) =
 function(input, output)
   local checked = [
     { link: link, problems: linkProblems(input, link) }
-    for link in output.links
+    for link in [normalized(l) for l in output.links]
   ];
   {
     valid: output {

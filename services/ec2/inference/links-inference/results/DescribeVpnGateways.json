@@ -1,0 +1,1 @@
+{"links":[{"at":["VpnGateways","VpcAttachments"],"confidence":"high","keys":[{"const":"vpc","path":null},{"const":null,"path":["VpcId"]}],"reason":"Each VpcAttachments entry contains a VpcId referencing a VPC.","target":"DescribeVpcs","vars":[{"param":"VpcId","path":["VpcId"]}]}],"operation":"DescribeVpnGateways"}

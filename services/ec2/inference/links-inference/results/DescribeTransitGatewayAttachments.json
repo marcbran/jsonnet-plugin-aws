@@ -1,0 +1,1 @@
+{"links":[{"at":["TransitGatewayAttachments"],"confidence":"high","keys":[{"const":"transit gateway","path":null},{"const":null,"path":["TransitGatewayAttachmentId"]}],"reason":"TransitGatewayId identifies a transit gateway.","target":"DescribeTransitGateways","vars":[{"param":"TransitGatewayId","path":["TransitGatewayId"]}]}],"operation":"DescribeTransitGatewayAttachments"}

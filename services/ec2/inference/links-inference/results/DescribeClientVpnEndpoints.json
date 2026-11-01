@@ -1,0 +1,145 @@
+{
+  "links": [
+    {
+      "at": [
+        "ClientVpnEndpoints",
+        "AssociatedTargetNetworks"
+      ],
+      "confidence": "medium",
+      "keys": [
+        {
+          "const": "subnet",
+          "path": null
+        },
+        {
+          "const": null,
+          "path": [
+            "NetworkId"
+          ]
+        }
+      ],
+      "reason": "Corrected by hand: AssociatedTargetNetwork.NetworkId is the subnet ID, not a VPC.",
+      "target": "DescribeSubnets",
+      "vars": [
+        {
+          "param": "SubnetId",
+          "path": [
+            "NetworkId"
+          ]
+        }
+      ]
+    },
+    {
+      "at": [
+        "ClientVpnEndpoints",
+        "SecurityGroupIds"
+      ],
+      "confidence": "high",
+      "keys": [
+        {
+          "const": "security groups",
+          "path": null
+        },
+        {
+          "const": null,
+          "path": []
+        }
+      ],
+      "reason": "Each SecurityGroupIds element is a security group identifier.",
+      "target": "DescribeSecurityGroups",
+      "vars": [
+        {
+          "param": "GroupId",
+          "path": []
+        }
+      ]
+    },
+    {
+      "at": [
+        "ClientVpnEndpoints"
+      ],
+      "confidence": "high",
+      "keys": [
+        {
+          "const": "transit gateway attachment",
+          "path": null
+        },
+        {
+          "const": null,
+          "path": [
+            "ClientVpnEndpointId"
+          ]
+        }
+      ],
+      "reason": "TransitGatewayAttachmentId identifies a transit gateway attachment.",
+      "target": "DescribeTransitGatewayAttachments",
+      "vars": [
+        {
+          "param": "TransitGatewayAttachmentId",
+          "path": [
+            "TransitGatewayConfiguration",
+            "TransitGatewayAttachmentId"
+          ]
+        }
+      ]
+    },
+    {
+      "at": [
+        "ClientVpnEndpoints"
+      ],
+      "confidence": "high",
+      "keys": [
+        {
+          "const": "transit gateway",
+          "path": null
+        },
+        {
+          "const": null,
+          "path": [
+            "ClientVpnEndpointId"
+          ]
+        }
+      ],
+      "reason": "TransitGatewayId identifies a transit gateway.",
+      "target": "DescribeTransitGateways",
+      "vars": [
+        {
+          "param": "TransitGatewayId",
+          "path": [
+            "TransitGatewayConfiguration",
+            "TransitGatewayId"
+          ]
+        }
+      ]
+    },
+    {
+      "at": [
+        "ClientVpnEndpoints"
+      ],
+      "confidence": "high",
+      "keys": [
+        {
+          "const": "vpc",
+          "path": null
+        },
+        {
+          "const": null,
+          "path": [
+            "ClientVpnEndpointId"
+          ]
+        }
+      ],
+      "reason": "VpcId identifies the VPC associated with the client VPN endpoint.",
+      "target": "DescribeVpcs",
+      "vars": [
+        {
+          "param": "VpcId",
+          "path": [
+            "VpcId"
+          ]
+        }
+      ]
+    }
+  ],
+  "operation": "DescribeClientVpnEndpoints"
+}

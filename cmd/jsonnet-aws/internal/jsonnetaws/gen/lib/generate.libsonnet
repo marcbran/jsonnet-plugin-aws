@@ -168,9 +168,19 @@ local paramValue(name) =
     if node == null then j.Array([pathExpr(path)])
     else j.Array([pathExpr(path), node]),
 
+  local columnExpr(col) =
+    if std.objectHas(col, 'tag') then
+      j.Object([
+        objectField('label', literal(col.label)),
+        hiddenField('value', j.Apply(mixin('tag'), [j.String(col.tag)])),
+      ])
+    else literal(col),
+
   local collectionNode(c, scope, links) =
     local paginated = c.paginated != null;
-    local bases = [view('table'), mixin('regional')] + (if paginated then [mixin('paginated')] else []);
+    local flatten = std.get(c, 'itemsFlatten', false);
+    local at = if flatten then ['items'] else c.itemsPath;
+    local bases = [view('table'), mixin('regional')] + (if paginated then [mixin('paginated')] else []) + (if flatten then [mixin('flattened')] else []);
     local pagination =
       if !paginated then []
       else [
@@ -180,16 +190,21 @@ local paramValue(name) =
       ];
     local rowLink =
       if !hasPages(c) then []
-      else [{ at: c.itemsPath, keys: [{ path: c.id.path }], value: links + [{ param: c.id.param, path: c.id.path }] }];
-    local linkSpecs = linkSpecsField(rowLink + inferredLinks(c.name, []));
+      else [{ at: at, keys: [{ path: c.id.path }], value: links + [{ param: c.id.param, path: c.id.path }] }];
+    local itemLinks =
+      if flatten then [l { at: ['items'] + l.at } for l in inferredLinks(c.name, c.itemsPath)]
+      else inferredLinks(c.name, []);
+    local linkSpecs = linkSpecsField(rowLink + itemLinks);
     adds(bases + [prettyObject(
       pagination +
       [
         hiddenField('response', callExpr(c.name, inputExpr(scope, c.params, {}, paginated))),
-        hiddenField('data', selfMember('response')),
+      ] +
+      (if flatten then [hiddenField('itemsPath', literal(c.itemsPath))] else [hiddenField('data', selfMember('response'))]) +
+      [
         hiddenField('table', prettyObject([
-          objectField('at', literal(c.itemsPath)),
-          objectField('columns', prettyArray([literal(col) for col in c.columns], 4)),
+          objectField('at', literal(at)),
+          objectField('columns', prettyArray([columnExpr(col) for col in c.columns], 4)),
         ], 2)),
       ] +
       linkSpecs +

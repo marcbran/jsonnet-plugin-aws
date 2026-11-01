@@ -1,7 +1,9 @@
-local walk(value, path) =
-  if std.length(path) == 0 || value == null then value
-  else if std.type(value) != 'object' then null
-  else walk(std.get(value, path[0], null), path[1:]);
+local collect(value, path) =
+  if value == null then []
+  else if std.type(value) == 'array' then std.flatMap(function(v) collect(v, path), value)
+  else if std.length(path) == 0 then [value]
+  else if std.type(value) != 'object' then []
+  else collect(std.get(value, path[0], null), path[1:]);
 
 local regional = {
   ctx:: { account: $.account, region: $.region },
@@ -34,12 +36,24 @@ local single = {
   itemsPath:: [],
   response:: error 'single requires a response',
   data:
-    local items = walk($.response, $.itemsPath);
-    if std.type(items) == 'array' && std.length(items) > 0 then items[0] else $.response,
+    local items = collect(std.get($.response, $.itemsPath[0], null), $.itemsPath[1:]);
+    if std.objectHas($.response, $.itemsPath[0]) && std.length(items) > 0 then items[0] else $.response,
 };
+
+local flattened = {
+  itemsPath:: error 'flattened requires an itemsPath',
+  response:: error 'flattened requires a response',
+  data:: { items: collect(std.get($.response, $.itemsPath[0], null), $.itemsPath[1:]) },
+};
+
+local tag(key) = function(item)
+  local matches = [t.Value for t in std.get(item, 'Tags', []) if std.get(t, 'Key', null) == key];
+  if std.length(matches) == 0 then null else matches[0];
 
 {
   regional: regional,
   paginated: paginated,
   single: single,
+  flattened: flattened,
+  tag: tag,
 }

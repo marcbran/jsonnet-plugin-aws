@@ -72,10 +72,35 @@ local maxColumns = 6;
 
   local walkItems(id, path) =
     if std.length(path) == 0 then id
+    else if shapeType(id) == 'list' then walkItems(shapes[id].member.target, path)
     else
       local members = membersOf(id);
       if !std.objectHas(members, path[0]) then null
       else walkItems(members[path[0]].target, path[1:]),
+
+  local crossesList(id, path) =
+    if std.length(path) <= 1 then false
+    else
+      local next = std.get(membersOf(id), path[0], null);
+      if next == null then false
+      else if shapeType(next.target) == 'list' then true
+      else crossesList(next.target, path[1:]),
+
+  local itemShape(listId) =
+    if listId != null && shapeType(listId) == 'list' then shapes[listId].member.target else null,
+
+  local nounList(outputId, path, noun) =
+    if path == null then null
+    else
+      local item = itemShape(walkItems(outputId, path));
+      local nested = if item == null then null else std.get(membersOf(item), noun, null);
+      if item != null && shapeType(item) == 'structure' && localName(item) != namingLib.singular(noun) && nested != null && shapeType(nested.target) == 'list' then path + [noun]
+      else path,
+
+  local tagsField(fields) =
+    local tags = std.get(fields, 'Tags', null);
+    local tag = if tags == null || shapeType(tags.target) != 'list' then null else membersOf(shapes[tags.target].member.target);
+    tag != null && std.objectHas(tag, 'Key') && std.objectHas(tag, 'Value'),
 
   local serviceId = [k for k in std.objectFields(shapes) if shapes[k].type == 'service'][0],
 
@@ -123,8 +148,9 @@ local maxColumns = 6;
       else if paginated != null && std.length(nestedLists) == 1 then nestedLists[0]
       else if std.length(listOutputs) == 1 && std.member(['List', 'Describe'], namingLib.verb(name)) then listOutputs
       else null;
-    local listId = if itemsPath == null then null else walkItems(outputId, itemsPath);
-    local itemId = if listId != null && shapeType(listId) == 'list' then shapes[listId].member.target else null;
+    local resolvedItems = if std.objectHas(override, 'items') then itemsPath else nounList(outputId, itemsPath, namingLib.noun(name));
+    local listId = if resolvedItems == null then null else walkItems(outputId, resolvedItems);
+    local itemId = itemShape(listId);
     {
       name: name,
       outputId: outputId,
@@ -142,7 +168,8 @@ local maxColumns = 6;
         outputToken: std.get(paginated, 'outputToken', null),
         pageSize: std.get(paginated, 'pageSize', null),
       },
-      itemsPath: if itemId == null then null else itemsPath,
+      itemsPath: if itemId == null then null else resolvedItems,
+      itemsFlatten: itemId != null && crossesList(outputId, resolvedItems),
       ambiguousItems: if itemsPath == null && paginated != null && !std.objectHas(paginated, 'items') && std.length(nestedLists) > 1 then nestedLists else null,
       itemId: itemId,
       collection: itemId != null,
@@ -185,9 +212,13 @@ local maxColumns = 6;
       local ranked = std.sort(scalars, function(f) '%d|%s' % [f.rank, f.name]);
       [{ label: namingLib.label(f.name), path: [f.name] } for f in ranked[:std.min(maxColumns, std.length(ranked))]],
 
+  local nameColumn = { label: 'Name', tag: 'Name' },
+
   local columnsFor(c, id) =
     local explicit = [entry.columns for entry in t.columns if entry.operation == c.name && std.length(entry.columns) > 0];
-    if std.length(explicit) > 0 then explicit[0] else defaultColumns(c, id),
+    local columns = if std.length(explicit) > 0 then explicit[0] else defaultColumns(c, id);
+    local hasTag = std.length([col for col in columns if std.objectHas(col, 'tag')]) > 0;
+    if tagsField(itemFields(c)) && !hasTag then [nameColumn] + columns else columns,
 
   local itemFields(c) = if c.itemId == null || isScalar(c.itemId) then {} else membersOf(c.itemId),
 
@@ -282,7 +313,20 @@ local maxColumns = 6;
         for c in node.collections
       ]),
 
-  local root = place([], null, [], 0),
+  local include = std.get(t.overrides, 'include', null),
+
+  local fullRoot = place([], null, [], 0),
+
+  local root =
+    if include == null then fullRoot
+    else fullRoot {
+      collections: [c for c in fullRoot.collections if std.member(include, c.name)],
+      singletons: [s for s in fullRoot.singletons if std.member(include, s.name)],
+    },
+
+  local kept = std.set(placedNames(root)),
+
+  local relevant(name) = include == null || std.member(kept, name) || std.member(include, name),
 
   service: {
     id: serviceId,
@@ -290,12 +334,12 @@ local maxColumns = 6;
     sdkId: std.get(std.get(traitsOf(shapes[serviceId]), 'aws.api#service', {}), 'sdkId', localName(serviceId)),
   },
   root: root,
-  unplaced: std.setDiff(std.set([op.name for op in operations]), std.set(placedNames(root))),
+  unplaced: std.setDiff(std.set([op.name for op in operations if include == null || std.member(include, op.name)]), std.set(placedNames(fullRoot))),
   allOperations:: operations,
   ambiguousItems:: [
     { operation: op.name, candidates: op.ambiguousItems }
     for op in operations
-    if op.ambiguousItems != null
+    if op.ambiguousItems != null && relevant(op.name)
   ],
   superseded: std.setDiff(std.set([op.name for op in candidates]), std.set([op.name for op in operations])),
 }
