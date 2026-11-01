@@ -1,0 +1,1 @@
+{"array":["pullTimeUpdateExclusions"],"columns":[{"key":"exclusion","kind":"text","label":"Exclusion","path":[],"priority":"primary","reason":"Each list item is a string, so display the item itself."}],"confidence":"high","operation":"ListPullTimeUpdateExclusions","reason":"The item schema is a scalar string."}

@@ -1,0 +1,449 @@
+[
+   {
+      "array": [
+         "replicationStatuses"
+      ],
+      "columns": [
+         {
+            "key": "region",
+            "kind": "name",
+            "label": "Region",
+            "path": [
+               "region"
+            ],
+            "priority": "primary"
+         },
+         {
+            "key": "status",
+            "kind": "status",
+            "label": "Status",
+            "path": [
+               "status"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "failureCode",
+            "kind": "text",
+            "label": "Failure code",
+            "path": [
+               "failureCode"
+            ],
+            "priority": "tertiary"
+         }
+      ],
+      "operation": "DescribeImageReplicationStatus"
+   },
+   {
+      "array": [
+         "signingStatuses"
+      ],
+      "columns": [
+         {
+            "key": "status",
+            "kind": "status",
+            "label": "Status",
+            "path": [
+               "status"
+            ],
+            "priority": "primary"
+         },
+         {
+            "key": "failureCode",
+            "kind": "text",
+            "label": "Failure code",
+            "path": [
+               "failureCode"
+            ],
+            "priority": "secondary"
+         }
+      ],
+      "operation": "DescribeImageSigningStatus"
+   },
+   {
+      "array": [
+         "imageDetails"
+      ],
+      "columns": [
+         {
+            "key": "imageDigest",
+            "kind": "identifier",
+            "label": "Image digest",
+            "path": [
+               "imageDigest"
+            ],
+            "priority": "primary"
+         },
+         {
+            "key": "imagePushedAt",
+            "kind": "timestamp",
+            "label": "Pushed",
+            "path": [
+               "imagePushedAt"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "imageStatus",
+            "kind": "status",
+            "label": "Image status",
+            "path": [
+               "imageStatus"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "scanStatus",
+            "kind": "status",
+            "label": "Scan status",
+            "path": [
+               "imageScanStatus",
+               "status"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "imageSizeInBytes",
+            "kind": "number",
+            "label": "Size",
+            "path": [
+               "imageSizeInBytes"
+            ],
+            "priority": "tertiary"
+         }
+      ],
+      "operation": "DescribeImages"
+   },
+   {
+      "array": [
+         "pullThroughCacheRules"
+      ],
+      "columns": [
+         {
+            "key": "ecrRepositoryPrefix",
+            "kind": "name",
+            "label": "Repository prefix",
+            "path": [
+               "ecrRepositoryPrefix"
+            ],
+            "priority": "primary"
+         },
+         {
+            "key": "upstreamRegistry",
+            "kind": "text",
+            "label": "Upstream registry",
+            "path": [
+               "upstreamRegistry"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "upstreamRepositoryPrefix",
+            "kind": "text",
+            "label": "Upstream prefix",
+            "path": [
+               "upstreamRepositoryPrefix"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "updatedAt",
+            "kind": "timestamp",
+            "label": "Updated",
+            "path": [
+               "updatedAt"
+            ],
+            "priority": "tertiary"
+         }
+      ],
+      "operation": "DescribePullThroughCacheRules"
+   },
+   {
+      "array": [
+         "results"
+      ],
+      "columns": [
+         {
+            "key": "repositoryName",
+            "kind": "name",
+            "label": "Repository",
+            "path": [
+               "repositoryName"
+            ],
+            "priority": "primary"
+         },
+         {
+            "key": "imageTag",
+            "kind": "name",
+            "label": "Image tag",
+            "path": [
+               "imageId",
+               "imageTag"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "status",
+            "kind": "status",
+            "label": "Status",
+            "path": [
+               "status"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "failureCode",
+            "kind": "text",
+            "label": "Failure code",
+            "path": [
+               "failureCode"
+            ],
+            "priority": "tertiary"
+         }
+      ],
+      "operation": "DescribeReplicationBackfillResults"
+   },
+   {
+      "array": [
+         "repositories"
+      ],
+      "columns": [
+         {
+            "key": "repositoryName",
+            "kind": "name",
+            "label": "Repository",
+            "path": [
+               "repositoryName"
+            ],
+            "priority": "primary"
+         },
+         {
+            "key": "createdAt",
+            "kind": "timestamp",
+            "label": "Created",
+            "path": [
+               "createdAt"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "scanOnPush",
+            "kind": "boolean",
+            "label": "Scan on push",
+            "path": [
+               "imageScanningConfiguration",
+               "scanOnPush"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "imageTagMutability",
+            "kind": "status",
+            "label": "Tag mutability",
+            "path": [
+               "imageTagMutability"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "encryptionType",
+            "kind": "status",
+            "label": "Encryption",
+            "path": [
+               "encryptionConfiguration",
+               "encryptionType"
+            ],
+            "priority": "tertiary"
+         }
+      ],
+      "operation": "DescribeRepositories"
+   },
+   {
+      "array": [
+         "repositoryCreationTemplates"
+      ],
+      "columns": [
+         {
+            "key": "prefix",
+            "kind": "name",
+            "label": "Prefix",
+            "path": [
+               "prefix"
+            ],
+            "priority": "primary"
+         },
+         {
+            "key": "imageTagMutability",
+            "kind": "status",
+            "label": "Tag Mutability",
+            "path": [
+               "imageTagMutability"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "encryptionType",
+            "kind": "text",
+            "label": "Encryption",
+            "path": [
+               "encryptionConfiguration",
+               "encryptionType"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "updatedAt",
+            "kind": "timestamp",
+            "label": "Updated",
+            "path": [
+               "updatedAt"
+            ],
+            "priority": "tertiary"
+         }
+      ],
+      "operation": "DescribeRepositoryCreationTemplates"
+   },
+   {
+      "array": [
+         "previewResults"
+      ],
+      "columns": [
+         {
+            "key": "imageDigest",
+            "kind": "identifier",
+            "label": "Image digest",
+            "path": [
+               "imageDigest"
+            ],
+            "priority": "primary"
+         },
+         {
+            "key": "imagePushedAt",
+            "kind": "timestamp",
+            "label": "Pushed at",
+            "path": [
+               "imagePushedAt"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "actionType",
+            "kind": "status",
+            "label": "Action",
+            "path": [
+               "action",
+               "type"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "storageClass",
+            "kind": "text",
+            "label": "Storage class",
+            "path": [
+               "storageClass"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "appliedRulePriority",
+            "kind": "number",
+            "label": "Rule priority",
+            "path": [
+               "appliedRulePriority"
+            ],
+            "priority": "tertiary"
+         },
+         {
+            "key": "targetStorageClass",
+            "kind": "text",
+            "label": "Target class",
+            "path": [
+               "action",
+               "targetStorageClass"
+            ],
+            "priority": "tertiary"
+         }
+      ],
+      "operation": "GetLifecyclePolicyPreview"
+   },
+   {
+      "array": [
+         "pullTimeUpdateExclusions"
+      ],
+      "columns": [
+         {
+            "key": "exclusion",
+            "kind": "text",
+            "label": "Exclusion",
+            "path": [ ],
+            "priority": "primary"
+         }
+      ],
+      "operation": "ListPullTimeUpdateExclusions"
+   },
+   {
+      "array": [
+         "backfills"
+      ],
+      "columns": [
+         {
+            "key": "replicationBackfillId",
+            "kind": "identifier",
+            "label": "Backfill ID",
+            "path": [
+               "replicationBackfillId"
+            ],
+            "priority": "primary"
+         },
+         {
+            "key": "status",
+            "kind": "status",
+            "label": "Status",
+            "path": [
+               "status"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "destinationRegion",
+            "kind": "text",
+            "label": "Region",
+            "path": [
+               "destination",
+               "region"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "startedAt",
+            "kind": "timestamp",
+            "label": "Started",
+            "path": [
+               "startedAt"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "endedAt",
+            "kind": "timestamp",
+            "label": "Ended",
+            "path": [
+               "endedAt"
+            ],
+            "priority": "tertiary"
+         },
+         {
+            "key": "totalReplicationCount",
+            "kind": "count",
+            "label": "Total Replications",
+            "path": [
+               "progress",
+               "totalReplicationCount"
+            ],
+            "priority": "tertiary"
+         }
+      ],
+      "operation": "ListReplicationBackfills"
+   }
+]

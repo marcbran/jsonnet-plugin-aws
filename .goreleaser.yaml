@@ -1,0 +1,107 @@
+version: 2
+
+before:
+  hooks:
+    - go mod tidy
+    - go generate ./...
+
+builds:
+  - id: jsonnet-plugin-aws
+    binary: jsonnet-plugin-aws
+    main: .
+    env:
+      - CGO_ENABLED=0
+    goos:
+      - linux
+      - windows
+      - darwin
+  - id: jsonnet-aws
+    binary: jsonnet-aws
+    main: ./cmd/jsonnet-aws
+    env:
+      - CGO_ENABLED=0
+    goos:
+      - linux
+      - windows
+      - darwin
+
+archives:
+  - id: jsonnet-plugin-aws
+    ids:
+      - jsonnet-plugin-aws
+    formats: [tar.gz]
+    name_template: >-
+      {{ .Binary }}_
+      {{- title .Os }}_
+      {{- if eq .Arch "amd64" }}x86_64
+      {{- else if eq .Arch "386" }}i386
+      {{- else }}{{ .Arch }}{{ end }}
+      {{- if .Arm }}v{{ .Arm }}{{ end }}
+    format_overrides:
+      - goos: windows
+        formats: [zip]
+  - id: jsonnet-aws
+    ids:
+      - jsonnet-aws
+    formats: [tar.gz]
+    name_template: >-
+      {{ .Binary }}_
+      {{- title .Os }}_
+      {{- if eq .Arch "amd64" }}x86_64
+      {{- else if eq .Arch "386" }}i386
+      {{- else }}{{ .Arch }}{{ end }}
+      {{- if .Arm }}v{{ .Arm }}{{ end }}
+    format_overrides:
+      - goos: windows
+        formats: [zip]
+
+checksum:
+  name_template: "checksums.txt"
+
+dockers:
+  - ids:
+      - jsonnet-aws
+    dockerfile: cmd/jsonnet-aws/Dockerfile
+    goos: linux
+    goarch: amd64
+    image_templates:
+      - "ghcr.io/marcbran/jsonnet-aws:v{{ .Major }}"
+      - "ghcr.io/marcbran/jsonnet-aws:v{{ .Major }}.{{ .Minor }}"
+      - "ghcr.io/marcbran/jsonnet-aws:{{ .Tag }}"
+      - "ghcr.io/marcbran/jsonnet-aws:latest"
+
+docker_digest:
+  name_template: "digests.txt"
+
+source:
+  enabled: true
+
+sboms:
+  - artifacts: archive
+  - id: source
+    artifacts: source
+
+signs:
+  - cmd: cosign
+    signature: "${artifact}.sigstore.json"
+    args:
+      - sign-blob
+      - "--bundle=${signature}"
+      - "${artifact}"
+      - "--yes"
+    artifacts: checksum
+    output: true
+
+changelog:
+  sort: asc
+  filters:
+    exclude:
+      - "^docs:"
+      - "^test:"
+
+release:
+  footer: >-
+
+    ---
+
+    Released by [GoReleaser](https://github.com/goreleaser/goreleaser).

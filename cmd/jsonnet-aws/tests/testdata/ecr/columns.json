@@ -1,0 +1,171 @@
+[
+   {
+      "array": [
+         "replicationStatuses"
+      ],
+      "columns": [
+         {
+            "key": "failureCode",
+            "kind": "text",
+            "label": "First",
+            "path": [
+               "failureCode"
+            ],
+            "priority": "primary"
+         }
+      ],
+      "operation": "DescribeImageReplicationStatus"
+   },
+   {
+      "array": [
+         "signingStatuses"
+      ],
+      "columns": [
+         {
+            "key": "failureCode",
+            "kind": "text",
+            "label": "First",
+            "path": [
+               "failureCode"
+            ],
+            "priority": "primary"
+         }
+      ],
+      "operation": "DescribeImageSigningStatus"
+   },
+   {
+      "array": [
+         "imageDetails"
+      ],
+      "columns": [
+         {
+            "key": "artifactMediaType",
+            "kind": "text",
+            "label": "First",
+            "path": [
+               "artifactMediaType"
+            ],
+            "priority": "primary"
+         }
+      ],
+      "operation": "DescribeImages"
+   },
+   {
+      "array": [
+         "pullThroughCacheRules"
+      ],
+      "columns": [
+         {
+            "key": "createdAt",
+            "kind": "text",
+            "label": "First",
+            "path": [
+               "createdAt"
+            ],
+            "priority": "primary"
+         }
+      ],
+      "operation": "DescribePullThroughCacheRules"
+   },
+   {
+      "array": [
+         "results"
+      ],
+      "columns": [
+         {
+            "key": "failureCode",
+            "kind": "text",
+            "label": "First",
+            "path": [
+               "failureCode"
+            ],
+            "priority": "primary"
+         }
+      ],
+      "operation": "DescribeReplicationBackfillResults"
+   },
+   {
+      "array": [
+         "repositories"
+      ],
+      "columns": [
+         {
+            "key": "repositoryName",
+            "kind": "name",
+            "label": "Name",
+            "path": [
+               "repositoryName"
+            ],
+            "priority": "primary"
+         },
+         {
+            "key": "imageTagMutability",
+            "kind": "status",
+            "label": "Tags",
+            "path": [
+               "imageTagMutability"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "createdAt",
+            "kind": "timestamp",
+            "label": "Created",
+            "path": [
+               "createdAt"
+            ],
+            "priority": "tertiary"
+         }
+      ],
+      "operation": "DescribeRepositories"
+   },
+   {
+      "array": [
+         "previewResults"
+      ],
+      "columns": [
+         {
+            "key": "action",
+            "kind": "text",
+            "label": "First",
+            "path": [
+               "action"
+            ],
+            "priority": "primary"
+         }
+      ],
+      "operation": "GetLifecyclePolicyPreview"
+   },
+   {
+      "array": [
+         "pullTimeUpdateExclusions"
+      ],
+      "columns": [
+         {
+            "key": "item",
+            "kind": "text",
+            "label": "First",
+            "path": [],
+            "priority": "primary"
+         }
+      ],
+      "operation": "ListPullTimeUpdateExclusions"
+   },
+   {
+      "array": [
+         "backfills"
+      ],
+      "columns": [
+         {
+            "key": "destination",
+            "kind": "text",
+            "label": "First",
+            "path": [
+               "destination"
+            ],
+            "priority": "primary"
+         }
+      ],
+      "operation": "ListReplicationBackfills"
+   }
+]

@@ -1,0 +1,45 @@
+{
+   "hiddenParams": [
+      "registryId"
+   ],
+   "operations": {
+      "DescribeImageScanFindings": {
+         "items": [
+            "imageScanFindings",
+            "findings"
+         ]
+      },
+      "DescribeImages": {
+         "id": {
+            "filter": "imageIds",
+            "filterValue": [
+               {
+                  "imageDigest": {
+                     "param": "imageDigest"
+                  }
+               }
+            ],
+            "input": {
+               "imageId": {
+                  "imageDigest": {
+                     "param": "imageDigest"
+                  }
+               }
+            },
+            "param": "imageDigest",
+            "path": [
+               "imageDigest"
+            ]
+         }
+      },
+      "GetAccountSetting": {
+         "skip": true
+      },
+      "ListImageReferrers": {
+         "skip": true
+      },
+      "ListTagsForResource": {
+         "skip": true
+      }
+   }
+}
