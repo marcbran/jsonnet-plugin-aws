@@ -1,0 +1,50 @@
+{
+   "include": [
+      "GetAccountSummary",
+      "ListAccountAliases",
+      "ListGroups",
+      "ListInstanceProfiles",
+      "ListOpenIDConnectProviders",
+      "ListPolicies",
+      "ListRoles",
+      "ListSAMLProviders",
+      "ListUsers"
+   ],
+   "operations": {
+      "GetGroup": {
+         "name": "users"
+      },
+      "ListEntitiesForPolicy": {
+         "items": null,
+         "name": "entities"
+      },
+      "ListPolicies": {
+         "id": {
+            "detail": "GetPolicy",
+            "input": {
+               "PolicyArn": {
+                  "param": "PolicyArn"
+               }
+            },
+            "param": "PolicyArn",
+            "path": [
+               "Arn"
+            ]
+         }
+      },
+      "ListUsers": {
+         "id": {
+            "detail": "GetUser",
+            "input": {
+               "UserName": {
+                  "param": "UserName"
+               }
+            },
+            "param": "UserName",
+            "path": [
+               "UserName"
+            ]
+         }
+      }
+   }
+}

@@ -1,0 +1,1 @@
+{"confidence":"low","decision":"list","items":["PolicyGroups"],"operation":"ListEntitiesForPolicy","reason":"Pagination covers groups, roles, and users without identifying a primary list. PolicyGroups is selected as the first equally valid candidate."}

@@ -1,0 +1,415 @@
+[
+   {
+      "at": [
+         "DBClusterSnapshots"
+      ],
+      "keys": [
+         {
+            "const": "cluster"
+         },
+         {
+            "path": [
+               "DBClusterSnapshotIdentifier"
+            ]
+         }
+      ],
+      "operation": "DescribeDBClusterSnapshots",
+      "target": {
+         "operation": "DescribeDBClusters",
+         "params": {
+            "DBClusterIdentifier": [
+               "DBClusterIdentifier"
+            ]
+         }
+      }
+   },
+   {
+      "at": [
+         "DBClusters"
+      ],
+      "keys": [
+         {
+            "const": "parameter group"
+         },
+         {
+            "path": [
+               "DBClusterIdentifier"
+            ]
+         }
+      ],
+      "operation": "DescribeDBClusters",
+      "target": {
+         "operation": "DescribeDBClusterParameterGroups",
+         "params": {
+            "DBClusterParameterGroupName": [
+               "DBClusterParameterGroup"
+            ]
+         }
+      }
+   },
+   {
+      "at": [
+         "DBClusters"
+      ],
+      "keys": [
+         {
+            "const": "subnet group"
+         },
+         {
+            "path": [
+               "DBClusterIdentifier"
+            ]
+         }
+      ],
+      "operation": "DescribeDBClusters",
+      "target": {
+         "operation": "DescribeDBSubnetGroups",
+         "params": {
+            "DBSubnetGroupName": [
+               "DBSubnetGroup"
+            ]
+         }
+      }
+   },
+   {
+      "at": [
+         "DBClusters",
+         "DBClusterMembers"
+      ],
+      "keys": [
+         {
+            "const": "DB instance"
+         },
+         {
+            "path": [
+               "DBInstanceIdentifier"
+            ]
+         }
+      ],
+      "operation": "DescribeDBClusters",
+      "target": {
+         "operation": "DescribeDBInstances",
+         "params": {
+            "DBInstanceIdentifier": [
+               "DBInstanceIdentifier"
+            ]
+         }
+      }
+   },
+   {
+      "at": [
+         "DBClusters",
+         "DBClusterOptionGroupMemberships"
+      ],
+      "keys": [
+         {
+            "const": "option group"
+         },
+         {
+            "path": [
+               "DBClusterOptionGroupName"
+            ]
+         }
+      ],
+      "operation": "DescribeDBClusters",
+      "target": {
+         "operation": "DescribeOptionGroups",
+         "params": {
+            "OptionGroupName": [
+               "DBClusterOptionGroupName"
+            ]
+         }
+      }
+   },
+   {
+      "at": [
+         "DBClusters",
+         "ReadReplicaIdentifiers"
+      ],
+      "keys": [
+         {
+            "const": "read replica"
+         },
+         {
+            "path": [ ]
+         }
+      ],
+      "operation": "DescribeDBClusters",
+      "target": {
+         "operation": "DescribeDBClusters",
+         "params": {
+            "DBClusterIdentifier": [ ]
+         }
+      }
+   },
+   {
+      "at": [
+         "DBClusters"
+      ],
+      "keys": [
+         {
+            "const": "source cluster"
+         },
+         {
+            "path": [
+               "DBClusterIdentifier"
+            ]
+         }
+      ],
+      "operation": "DescribeDBClusters",
+      "target": {
+         "operation": "DescribeDBClusters",
+         "params": {
+            "DBClusterIdentifier": [
+               "ReplicationSourceIdentifier"
+            ]
+         }
+      }
+   },
+   {
+      "at": [
+         "DBInstances",
+         "DBParameterGroups"
+      ],
+      "keys": [
+         {
+            "const": "parameter group"
+         },
+         {
+            "path": [
+               "DBParameterGroupName"
+            ]
+         }
+      ],
+      "operation": "DescribeDBInstances",
+      "target": {
+         "operation": "DescribeDBParameterGroups",
+         "params": {
+            "DBParameterGroupName": [
+               "DBParameterGroupName"
+            ]
+         }
+      }
+   },
+   {
+      "at": [
+         "DBInstances"
+      ],
+      "keys": [
+         {
+            "const": "subnet group"
+         }
+      ],
+      "operation": "DescribeDBInstances",
+      "target": {
+         "operation": "DescribeDBSubnetGroups",
+         "params": {
+            "DBSubnetGroupName": [
+               "DBSubnetGroup",
+               "DBSubnetGroupName"
+            ]
+         }
+      }
+   },
+   {
+      "at": [
+         "DBInstances",
+         "OptionGroupMemberships"
+      ],
+      "keys": [
+         {
+            "const": "option group"
+         },
+         {
+            "path": [
+               "OptionGroupName"
+            ]
+         }
+      ],
+      "operation": "DescribeDBInstances",
+      "target": {
+         "operation": "DescribeOptionGroups",
+         "params": {
+            "OptionGroupName": [
+               "OptionGroupName"
+            ]
+         }
+      }
+   },
+   {
+      "at": [
+         "DBInstances"
+      ],
+      "keys": [
+         {
+            "const": "read replica source cluster"
+         }
+      ],
+      "operation": "DescribeDBInstances",
+      "target": {
+         "operation": "DescribeDBClusters",
+         "params": {
+            "DBClusterIdentifier": [
+               "ReadReplicaSourceDBClusterIdentifier"
+            ]
+         }
+      }
+   },
+   {
+      "at": [
+         "DBInstances"
+      ],
+      "keys": [
+         {
+            "const": "read replica source instance"
+         }
+      ],
+      "operation": "DescribeDBInstances",
+      "target": {
+         "operation": "DescribeDBInstances",
+         "params": {
+            "DBInstanceIdentifier": [
+               "ReadReplicaSourceDBInstanceIdentifier"
+            ]
+         }
+      }
+   },
+   {
+      "at": [
+         "DBInstances",
+         "ReadReplicaDBClusterIdentifiers"
+      ],
+      "keys": [
+         {
+            "const": "read replica cluster"
+         },
+         {
+            "path": [ ]
+         }
+      ],
+      "operation": "DescribeDBInstances",
+      "target": {
+         "operation": "DescribeDBClusters",
+         "params": {
+            "DBClusterIdentifier": [ ]
+         }
+      }
+   },
+   {
+      "at": [
+         "DBInstances",
+         "ReadReplicaDBInstanceIdentifiers"
+      ],
+      "keys": [
+         {
+            "const": "read replica instance"
+         },
+         {
+            "path": [ ]
+         }
+      ],
+      "operation": "DescribeDBInstances",
+      "target": {
+         "operation": "DescribeDBInstances",
+         "params": {
+            "DBInstanceIdentifier": [ ]
+         }
+      }
+   },
+   {
+      "at": [
+         "DBSnapshots"
+      ],
+      "keys": [
+         {
+            "const": "DB instance"
+         },
+         {
+            "path": [
+               "DBSnapshotIdentifier"
+            ]
+         }
+      ],
+      "operation": "DescribeDBSnapshots",
+      "target": {
+         "operation": "DescribeDBInstances",
+         "params": {
+            "DBInstanceIdentifier": [
+               "DBInstanceIdentifier"
+            ]
+         }
+      }
+   },
+   {
+      "at": [
+         "DBSnapshots"
+      ],
+      "keys": [
+         {
+            "const": "option group"
+         },
+         {
+            "path": [
+               "DBSnapshotIdentifier"
+            ]
+         }
+      ],
+      "operation": "DescribeDBSnapshots",
+      "target": {
+         "operation": "DescribeOptionGroups",
+         "params": {
+            "OptionGroupName": [
+               "OptionGroupName"
+            ]
+         }
+      }
+   },
+   {
+      "at": [
+         "DBSnapshots"
+      ],
+      "keys": [
+         {
+            "const": "source snapshot"
+         },
+         {
+            "path": [
+               "DBSnapshotIdentifier"
+            ]
+         }
+      ],
+      "operation": "DescribeDBSnapshots",
+      "target": {
+         "operation": "DescribeDBSnapshots",
+         "params": {
+            "DBSnapshotIdentifier": [
+               "SourceDBSnapshotIdentifier"
+            ]
+         }
+      }
+   },
+   {
+      "at": [
+         "OptionGroupsList"
+      ],
+      "keys": [
+         {
+            "const": "source option group"
+         },
+         {
+            "path": [
+               "OptionGroupName"
+            ]
+         }
+      ],
+      "operation": "DescribeOptionGroups",
+      "target": {
+         "operation": "DescribeOptionGroups",
+         "params": {
+            "OptionGroupName": [
+               "SourceOptionGroup"
+            ]
+         }
+      }
+   }
+]

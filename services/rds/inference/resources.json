@@ -1,0 +1,18 @@
+{
+   "include": [
+      "DescribeDBClusterParameterGroups",
+      "DescribeDBClusterSnapshots",
+      "DescribeDBClusters",
+      "DescribeDBInstances",
+      "DescribeDBParameterGroups",
+      "DescribeDBSnapshots",
+      "DescribeDBSubnetGroups",
+      "DescribeOptionGroups"
+   ],
+   "operations": {
+      "DescribeValidDBInstanceModifications": {
+         "items": null,
+         "name": "validModifications"
+      }
+   }
+}

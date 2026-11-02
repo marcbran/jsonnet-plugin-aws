@@ -48,11 +48,15 @@ func (p awsJSON) decodeError(resp response) apiError {
 	if code == "" {
 		code = firstString(body, "__type", "code")
 	}
+	code = sanitizeErrorCode(code)
+	if queryCode, _, _ := strings.Cut(resp.Header.Get("X-Amzn-Query-Error"), ";"); queryCode != "" {
+		code = queryCode
+	}
 	msg := firstString(body, "message", "Message", "errorMessage")
 	if msg == "" {
 		msg = strings.TrimSpace(string(resp.Body))
 	}
-	return apiError{Code: sanitizeErrorCode(code), Message: msg}
+	return apiError{Code: code, Message: msg}
 }
 
 func firstString(m map[string]any, keys ...string) string {

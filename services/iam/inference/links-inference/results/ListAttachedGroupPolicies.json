@@ -1,0 +1,1 @@
+{"links":[{"at":["AttachedPolicies"],"confidence":"high","keys":[{"const":"policy","path":null},{"const":null,"path":["PolicyArn"]}],"reason":"Each attached policy exposes its managed-policy ARN, which identifies the policy resource.","target":"ListPolicies","vars":[{"param":"PolicyArn","path":["PolicyArn"]}]}],"operation":"ListAttachedGroupPolicies"}

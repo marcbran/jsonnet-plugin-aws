@@ -9,6 +9,10 @@ local regional = {
   ctx:: { account: $.account, region: $.region },
 };
 
+local global = {
+  ctx:: { account: $.account },
+};
+
 local paginated = {
   inputToken:: 'nextToken',
   outputToken:: 'nextToken',
@@ -52,6 +56,7 @@ local tag(key) = function(item)
 
 {
   regional: regional,
+  global: global,
   paginated: paginated,
   single: single,
   flattened: flattened,

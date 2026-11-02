@@ -124,7 +124,7 @@ func runCall(ctx context.Context, cfg *Config, ci CallInput) any {
 	signer := v4.NewSigner(func(o *v4.SignerOptions) {
 		o.DisableURIPathEscaping = s3
 	})
-	err = signer.SignHTTP(ctx, creds, httpReq, payloadHash, svc.SigningName, ci.Region, time.Now())
+	err = signer.SignHTTP(ctx, creds, httpReq, payloadHash, svc.SigningName, svc.SigningRegion(ci.Region), time.Now())
 	if err != nil {
 		return failureStatus(http.StatusInternalServerError, "", err.Error())
 	}

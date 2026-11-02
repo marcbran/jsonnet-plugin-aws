@@ -1,0 +1,1 @@
+{"links":[{"at":["User","PermissionsBoundary"],"confidence":"high","keys":[{"const":"permissions boundary","path":null}],"reason":"The permissions boundary ARN identifies a managed policy.","target":"ListPolicies","vars":[{"param":"PolicyArn","path":["PermissionsBoundaryArn"]}]}],"operation":"GetUser"}

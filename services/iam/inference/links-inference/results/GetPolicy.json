@@ -1,0 +1,1 @@
+{"links":[{"at":["Policy"],"confidence":"high","keys":[{"const":"default version","path":null}],"reason":"DefaultVersionId identifies a version of this policy.","target":"ListPolicyVersions","vars":[{"param":"PolicyArn","path":["Arn"]},{"param":"VersionId","path":["DefaultVersionId"]}]}],"operation":"GetPolicy"}
