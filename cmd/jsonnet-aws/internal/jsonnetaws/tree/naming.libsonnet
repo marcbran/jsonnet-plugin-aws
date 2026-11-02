@@ -1,4 +1,4 @@
-local verbs = ['BatchGet', 'Describe', 'List', 'Get'];
+local verbs = ['BatchGet', 'Describe', 'List', 'Get', 'Head'];
 
 local lowerFirst(s) = if s == '' then s else std.asciiLower(s[0]) + s[1:];
 
@@ -25,7 +25,11 @@ local isAcronym(word) = std.length(word) > 1 && std.asciiUpper(word) == word;
 
   noun(operation)::
     local verb = self.verb(operation);
-    if verb == null then operation else operation[std.length(verb):],
+    local noun = if verb == null then operation else operation[std.length(verb):];
+    local chars = std.stringChars(noun);
+    local trailing = std.foldr(function(c, acc) if acc.done then acc else if c >= '0' && c <= '9' then acc { n: acc.n + 1 } else acc { done: true }, chars, { n: 0, done: false }).n;
+    local v = std.length(noun) - trailing - 1;
+    if trailing > 0 && v > 0 && noun[v] == 'V' then noun[:v] else noun,
 
   singular(s)::
     if endsWith(s, 'ies') then s[:std.length(s) - 3] + 'y'

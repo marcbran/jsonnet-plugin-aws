@@ -10,6 +10,7 @@ import (
 
 	"github.com/aws/aws-sdk-go-v2/service/ec2"
 	"github.com/aws/aws-sdk-go-v2/service/ecr"
+	"github.com/aws/aws-sdk-go-v2/service/s3"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
@@ -24,6 +25,7 @@ type Stage struct {
 	otherAccount string
 	ecr          map[string]*ecr.Client
 	ec2          map[string]*ec2.Client
+	s3           map[string]*s3.Client
 	vpcs         map[string]string
 
 	LastOutput string
@@ -43,6 +45,7 @@ func scenario(t *testing.T) (*Stage, *Stage, *Stage) {
 		otherAccount: otherAccount,
 		ecr:          map[string]*ecr.Client{},
 		ec2:          map[string]*ec2.Client{},
+		s3:           map[string]*s3.Client{},
 		vpcs:         map[string]string{},
 	}
 	t.Cleanup(s.close)

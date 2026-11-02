@@ -116,7 +116,15 @@ func runCall(ctx context.Context, cfg *Config, ci CallInput) any {
 		httpReq.Header[k] = vs
 	}
 	hash := sha256.Sum256(req.Body)
-	err = v4.NewSigner().SignHTTP(ctx, creds, httpReq, hex.EncodeToString(hash[:]), svc.SigningName, ci.Region, time.Now())
+	payloadHash := hex.EncodeToString(hash[:])
+	s3 := svc.SigningName == "s3"
+	if s3 {
+		httpReq.Header.Set("X-Amz-Content-Sha256", payloadHash)
+	}
+	signer := v4.NewSigner(func(o *v4.SignerOptions) {
+		o.DisableURIPathEscaping = s3
+	})
+	err = signer.SignHTTP(ctx, creds, httpReq, payloadHash, svc.SigningName, ci.Region, time.Now())
 	if err != nil {
 		return failureStatus(http.StatusInternalServerError, "", err.Error())
 	}

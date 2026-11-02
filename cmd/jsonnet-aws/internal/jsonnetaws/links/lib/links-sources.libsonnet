@@ -23,8 +23,17 @@ local segments(path) = std.split(path, '/');
   targets(index, source):: [
     { operation: c.operation, path: c.detailPath, params: c.params }
     for c in index.collections
-    if c.detailPath != null && (c.operation == source.own || !self.isAncestor(c.detailPath, source.path))
+    if c.detailPath != null
   ],
+
+  isParentLink(targetPath, source, link)::
+    local pathParams = [seg[1:std.length(seg) - 1] for seg in segments(source.path) if std.startsWith(seg, '{')];
+    self.isAncestor(targetPath, source.path) &&
+    std.all([
+      local path = link.target.params[param];
+      std.member(pathParams, param) && std.length(path) > 0 && path[std.length(path) - 1] == param
+      for param in std.objectFields(link.target.params)
+    ]),
 
   isSelfLink(index, source, link)::
     local own = [c for c in index.collections if c.operation == source.own];

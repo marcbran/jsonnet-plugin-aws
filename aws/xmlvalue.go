@@ -12,6 +12,7 @@ import (
 type xmlNode struct {
 	Name     string
 	Text     string
+	Attrs    map[string]string
 	Children []*xmlNode
 }
 
@@ -48,7 +49,10 @@ func parseXML(body []byte) (*xmlNode, error) {
 		}
 		switch t := token.(type) {
 		case xml.StartElement:
-			node := &xmlNode{Name: t.Name.Local}
+			node := &xmlNode{Name: t.Name.Local, Attrs: map[string]string{}}
+			for _, attr := range t.Attr {
+				node.Attrs[attr.Name.Local] = attr.Value
+			}
 			if len(stack) > 0 {
 				parent := stack[len(stack)-1]
 				parent.Children = append(parent.Children, node)
@@ -70,11 +74,52 @@ func parseXML(body []byte) (*xmlNode, error) {
 	return root, nil
 }
 
+func (m *Model) decodeFlattened(mem *Member, nodes []*xmlNode) (any, bool) {
+	if len(nodes) == 0 {
+		return nil, false
+	}
+	s, err := m.shape(mem.Target)
+	if err != nil {
+		return nil, false
+	}
+	switch s.Type {
+	case "list", "set":
+		out := make([]any, 0, len(nodes))
+		for _, node := range nodes {
+			out = append(out, m.decodeXML(s.Member.Target, s.Member.Traits, node))
+		}
+		return out, true
+	case "map":
+		out := map[string]any{}
+		keyName := xmlMemberName("key", s.Key)
+		valueName := xmlMemberName("value", s.Value)
+		for _, entry := range nodes {
+			k := entry.child(keyName)
+			v := entry.child(valueName)
+			if k == nil || v == nil {
+				continue
+			}
+			out[strings.TrimSpace(k.Text)] = m.decodeXML(s.Value.Target, s.Value.Traits, v)
+		}
+		return out, true
+	default:
+		return m.decodeXML(mem.Target, mem.Traits, nodes[0]), true
+	}
+}
+
 func xmlMemberName(name string, member *Member) string {
 	if n := member.Traits.String("smithy.api#xmlName"); n != "" {
 		return n
 	}
 	return name
+}
+
+func xmlLocalName(name string) string {
+	_, local, ok := strings.Cut(name, ":")
+	if !ok {
+		return name
+	}
+	return local
 }
 
 func (m *Model) decodeXML(id string, memberTraits Traits, n *xmlNode) any {
@@ -90,7 +135,20 @@ func (m *Model) decodeXML(id string, memberTraits Traits, n *xmlNode) any {
 	case "structure", "union":
 		out := map[string]any{}
 		for name, mem := range s.Members {
-			c := n.child(xmlMemberName(name, mem))
+			elementName := xmlLocalName(xmlMemberName(name, mem))
+			if mem.Traits.Has("smithy.api#xmlAttribute") {
+				if v, ok := n.Attrs[elementName]; ok {
+					out[name] = m.decodeXML(mem.Target, mem.Traits, &xmlNode{Text: v})
+				}
+				continue
+			}
+			if mem.Traits.Has("smithy.api#xmlFlattened") {
+				if v, ok := m.decodeFlattened(mem, n.children(elementName)); ok {
+					out[name] = v
+				}
+				continue
+			}
+			c := n.child(elementName)
 			if c == nil {
 				continue
 			}

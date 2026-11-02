@@ -34,7 +34,7 @@ type Operation struct {
 var readPrefixes = []string{"Describe", "List", "Get", "Head", "BatchGet"}
 
 func (s *Service) Readable(op *Operation) bool {
-	return op.Readonly() && !slices.Contains(s.denied, op.Name)
+	return op.Readonly() && !slices.Contains(s.denied, op.Name) && !op.streamingOutput(s.Model)
 }
 
 func (o *Operation) Readonly() bool {

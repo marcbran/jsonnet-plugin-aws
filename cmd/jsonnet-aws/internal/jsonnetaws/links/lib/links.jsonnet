@@ -27,5 +27,5 @@ function(model, resources, linksInference)
     for link in rendered
     for source in [sources[link.operation]]
     if !linksSources.isSelfLink(index, source, link)
-    if link.target.operation == source.own || !linksSources.isAncestor(targetPaths[link.target.operation], source.path)
+    if !linksSources.isParentLink(targetPaths[link.target.operation], source, link)
   ]

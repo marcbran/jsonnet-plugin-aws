@@ -1,0 +1,1 @@
+{"confidence":"high","decision":"list","items":["Contents"],"operation":"ListObjectsV2","reason":"Contents holds the primary object records returned by ListObjectsV2; CommonPrefixes holds grouped prefixes."}
