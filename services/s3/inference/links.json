@@ -1,0 +1,21 @@
+[
+   {
+      "at": [
+         "LoggingEnabled"
+      ],
+      "keys": [
+         {
+            "const": "target bucket"
+         }
+      ],
+      "operation": "GetBucketLogging",
+      "target": {
+         "operation": "ListBuckets",
+         "params": {
+            "Bucket": [
+               "TargetBucket"
+            ]
+         }
+      }
+   }
+]

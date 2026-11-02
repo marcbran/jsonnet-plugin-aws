@@ -81,6 +81,11 @@ local paramValue(name) =
 
   local g = self,
 
+  local fromContext(op) = {
+    [k]: { param: std.get(op, 'contextInputs', {})[k] }
+    for k in std.objectFields(std.get(op, 'contextInputs', {}))
+  },
+
   local hasPages(c) =
     c.id != null && (
       std.objectHas(c.id, 'detail') ||
@@ -198,7 +203,7 @@ local paramValue(name) =
     adds(bases + [prettyObject(
       pagination +
       [
-        hiddenField('response', callExpr(c.name, inputExpr(scope, c.params, {}, paginated))),
+        hiddenField('response', callExpr(c.name, inputExpr(scope, c.params, fromContext(c), paginated))),
       ] +
       (if flatten then [hiddenField('itemsPath', literal(c.itemsPath))] else [hiddenField('data', selfMember('response'))]) +
       [
@@ -222,13 +227,13 @@ local paramValue(name) =
     else if std.objectHas(id, 'filter') then
       adds([view('resource'), mixin('regional'), mixin('single'), prettyObject([
         hiddenField('itemsPath', literal(c.itemsPath)),
-        hiddenField('response', callExpr(c.name, inputExpr(scope, [], { [id.filter]: std.get(id, 'filterValue', [{ param: id.param }]) }, false))),
+        hiddenField('response', callExpr(c.name, inputExpr(scope, [], fromContext(c) { [id.filter]: std.get(id, 'filterValue', [{ param: id.param }]) }, false))),
       ] + linkSpecsField(inferredLinks(c.name, c.itemsPath)), 0)])
     else null,
 
   local singletonNode(s, scope) =
     adds([view('resource'), mixin('regional'), prettyObject(
-      [objectField('data', callExpr(s.name, inputExpr(scope, s.params, {}, false)))] +
+      [objectField('data', callExpr(s.name, inputExpr(scope, s.params, fromContext(s), false)))] +
       linkSpecsField(inferredLinks(s.name, [])) +
       paramSpecsFields(s.params),
       0

@@ -1,0 +1,1 @@
+{"confidence":"high","decision":"list","items":["Uploads"],"operation":"ListMultipartUploads","reason":"The documentation explicitly identifies multipart uploads as the paginated records; Uploads contains those primary records."}

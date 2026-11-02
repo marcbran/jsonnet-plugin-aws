@@ -1,0 +1,29 @@
+{
+   "contextInputs": {
+      "BucketRegion": "region"
+   },
+   "hiddenParams": [
+      "ExpectedBucketOwner",
+      "RequestPayer"
+   ],
+   "include": [
+      "ListBuckets"
+   ],
+   "operations": {
+      "ListMultipartUploads": {
+         "items": [
+            "Uploads"
+         ]
+      },
+      "ListObjectVersions": {
+         "items": [
+            "Versions"
+         ]
+      },
+      "ListObjectsV2": {
+         "items": [
+            "Contents"
+         ]
+      }
+   }
+}

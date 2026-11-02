@@ -32,6 +32,16 @@ local model = {
           'ListOrphans',
           'DescribeWidgetHistory',
           'DescribeMachines',
+          'ListRacks',
+          'ListBooks',
+          'ListBooksV2',
+          'GetRackAcl',
+          'HeadRack',
+          'ListRackAlarms',
+          'ListRackSensors',
+          'GetRackAlarm',
+          'GetRackSensor',
+          'ListRackEvents',
         ]
       ],
     },
@@ -45,6 +55,29 @@ local model = {
       tags: member('demo#Names'),
     }),
     'demo#Tag': structure({ Key: member('demo#String'), Value: member('demo#String') }),
+    'demo#Rack': structure({ Name: member('demo#String'), Region: member('demo#String') }),
+    'demo#Racks': list('demo#Rack'),
+    'demo#ListRacks': operation('demo#ListRacksRequest', 'demo#ListRacksResponse'),
+    'demo#ListRacksRequest': structure({ RackRegion: member('demo#String'), Prefix: member('demo#String') }),
+    'demo#ListRacksResponse': structure({ Racks: member('demo#Racks') }),
+    'demo#Book': structure({ Title: member('demo#String') }),
+    'demo#Books': list('demo#Book'),
+    'demo#ListBooksResponse': structure({ Books: member('demo#Books') }),
+    'demo#ListBooks': operation('demo#RackRequest', 'demo#ListBooksResponse'),
+    'demo#ListBooksV2': operation('demo#RackRequest', 'demo#ListBooksResponse'),
+    'demo#GetRackAcl': operation('demo#RackRequest', 'demo#Rack'),
+    'demo#HeadRack': operation('demo#RackRequest', 'demo#Rack'),
+    'demo#RackRequest': structure({ Rack: member('demo#String', true) }),
+    'demo#Config': structure({ Id: member('demo#String') }),
+    'demo#Configs': list('demo#Config'),
+    'demo#ConfigsResponse': structure({ Configs: member('demo#Configs') }),
+    'demo#ListRackAlarms': operation('demo#RackRequest', 'demo#ConfigsResponse'),
+    'demo#ListRackSensors': operation('demo#RackRequest', 'demo#ConfigsResponse'),
+    'demo#GetRackAlarm': operation('demo#RackConfigRequest', 'demo#Config'),
+    'demo#GetRackSensor': operation('demo#RackConfigRequest', 'demo#Config'),
+    'demo#RackConfigRequest': structure({ Rack: member('demo#String', true), Id: member('demo#String', true) }),
+    'demo#ListRackEvents': operation('demo#RackRequest', 'demo#RackEventsResponse'),
+    'demo#RackEventsResponse': structure({ Events: member('demo#Configs'), Warnings: member('demo#Configs'), Marker: member('demo#String') }),
     'demo#Tags': list('demo#Tag'),
     'demo#Machine': structure({ MachineId: member('demo#String'), State: member('demo#String'), Tags: member('demo#Tags') }),
     'demo#Machines': list('demo#Machine'),
@@ -125,6 +158,18 @@ local outline(node) =
       expected: {
         outline: {
           machines: { operation: 'DescribeMachines', id: 'MachineId', detail: 'MachineIds', children: {} },
+          racks: {
+            operation: 'ListRacks',
+            id: 'Rack',
+            detail: 'HeadRack',
+            children: {
+              acl: 'GetRackAcl',
+              events: 'ListRackEvents',
+              alarms: { operation: 'ListRackAlarms', id: 'Id', detail: 'GetRackAlarm', children: {} },
+              books: { operation: 'ListBooksV2', id: null, detail: null, children: null },
+              sensors: { operation: 'ListRackSensors', id: 'Id', detail: 'GetRackSensor', children: {} },
+            },
+          },
           widgets: {
             operation: 'DescribeWidgets',
             id: 'widgetName',
@@ -137,7 +182,7 @@ local outline(node) =
           },
           settings: 'GetSettings',
         },
-        superseded: ['ListWidgets'],
+        superseded: ['ListBooks', 'ListWidgets'],
         unplaced: ['ListOrphans'],
       },
     },
@@ -169,6 +214,18 @@ local outline(node) =
       expected: {
         outline: {
           machines: { operation: 'DescribeMachines', id: 'MachineId', detail: 'MachineIds', children: {} },
+          racks: {
+            operation: 'ListRacks',
+            id: 'Rack',
+            detail: 'HeadRack',
+            children: {
+              acl: 'GetRackAcl',
+              events: 'ListRackEvents',
+              alarms: { operation: 'ListRackAlarms', id: 'Id', detail: 'GetRackAlarm', children: {} },
+              books: { operation: 'ListBooksV2', id: null, detail: null, children: null },
+              sensors: { operation: 'ListRackSensors', id: 'Id', detail: 'GetRackSensor', children: {} },
+            },
+          },
           widgets: {
             operation: 'DescribeWidgets',
             id: 'widgetName',
@@ -223,7 +280,7 @@ local outline(node) =
         local tree = treeOf() {
           model+:: { shapes+: { 'demo#History'+: { members+: { archived: member('demo#Entries') } } } },
         };
-        tree.ambiguousItems,
+        [a for a in tree.ambiguousItems if a.operation == 'DescribeWidgetHistory'],
       expected: [{ operation: 'DescribeWidgetHistory', candidates: [['history', 'archived'], ['history', 'entries']] }],
     },
     {
@@ -266,6 +323,46 @@ local outline(node) =
         local machines = [c for c in treeOf().root.collections if c.name == 'DescribeMachines'][0];
         machines.columns[0],
       expected: { label: 'Name', tag: 'Name' },
+    },
+    {
+      name: 'children taking the singular noun as input are fed by the item identifier',
+      input:: function()
+        local racks = [c for c in treeOf({ include: ['ListRacks'] }).root.collections if c.name == 'ListRacks'][0];
+        {
+          id: racks.id,
+          children: [c.name + ' ' + c.segment for c in racks.children.collections] + [s.name + ' ' + s.segment for s in racks.children.singletons],
+        },
+      expected: {
+        id: { param: 'Rack', path: ['Name'], input: { Rack: { param: 'Rack' } }, detail: 'HeadRack' },
+        children: ['ListBooksV2 books', 'ListRackAlarms alarms', 'ListRackSensors sensors', 'GetRackAcl acl', 'ListRackEvents events'],
+      },
+    },
+    {
+      name: 'detail operations of sibling collections are not placed as children',
+      input:: function()
+        local racks = [c for c in treeOf({ include: ['ListRacks'] }).root.collections if c.name == 'ListRacks'][0];
+        {
+          [c.segment]: { detail: c.id.detail, children: [s.name for s in c.children.singletons] }
+          for c in racks.children.collections
+          if c.id != null
+        },
+      expected: {
+        alarms: { detail: 'GetRackAlarm', children: [] },
+        sensors: { detail: 'GetRackSensor', children: [] },
+      },
+    },
+    {
+      name: 'context inputs are bound to the node context instead of params',
+      input:: function()
+        local racks = [c for c in treeOf({ include: ['ListRacks'], contextInputs: { RackRegion: 'region' } }).root.collections if c.name == 'ListRacks'][0];
+        { params: racks.params, contextInputs: racks.contextInputs },
+      expected: { params: [{ name: 'Prefix', type: 'string' }], contextInputs: { RackRegion: 'region' } },
+    },
+    {
+      name: 'list operations with several lists are ambiguous even without pagination',
+      input:: function()
+        [a for a in treeOf({ include: ['ListRacks'] }).ambiguousItems if a.operation == 'ListRackEvents'],
+      expected: [{ operation: 'ListRackEvents', candidates: [['Events'], ['Warnings']] }],
     },
     {
       name: 'items override wins over the inferred items path',

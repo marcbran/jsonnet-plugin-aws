@@ -26,7 +26,7 @@ local preludeTypes = {
 
 local scalarTypes = ['string', 'enum', 'boolean', 'byte', 'short', 'integer', 'intEnum', 'long', 'float', 'double', 'bigInteger', 'bigDecimal', 'timestamp'];
 
-local verbRank = { Describe: 0, List: 1, Get: 2 };
+local verbRank = { Describe: 0, List: 1, Get: 2, Head: 3 };
 
 local localName(id) =
   local parts = std.split(id, '#');
@@ -170,7 +170,7 @@ local maxColumns = 6;
       },
       itemsPath: if itemId == null then null else resolvedItems,
       itemsFlatten: itemId != null && crossesList(outputId, resolvedItems),
-      ambiguousItems: if itemsPath == null && paginated != null && !std.objectHas(paginated, 'items') && std.length(nestedLists) > 1 then nestedLists else null,
+      ambiguousItems: if itemsPath == null && ((paginated != null && !std.objectHas(paginated, 'items')) || std.member(['List', 'Describe'], namingLib.verb(name))) && std.length(nestedLists) > 1 then nestedLists else null,
       itemId: itemId,
       collection: itemId != null,
       documentation: std.get(traitsOf(shape), 'smithy.api#documentation', null),
@@ -185,7 +185,7 @@ local maxColumns = 6;
   ],
 
   local signature(op) = op.noun + '|' + std.join(',', op.required),
-  local preferred(group) = std.sort(group, function(op) std.get(verbRank, op.verb, 9))[0],
+  local preferred(group) = std.sort(group, function(op) '%d|%03d' % [std.get(verbRank, op.verb, 9), 999 - std.length(op.name)])[0],
   local operations = [
     preferred([op for op in candidates if signature(op) == s])
     for s in std.set([signature(op) for op in candidates])
@@ -193,10 +193,18 @@ local maxColumns = 6;
 
   local hiddenParams = std.get(t.overrides, 'hiddenParams', []),
 
+  local contextInputs = std.get(t.overrides, 'contextInputs', {}),
+
+  local contextInputsOf(op) = {
+    [m]: contextInputs[m]
+    for m in std.objectFields(op.inputs)
+    if std.objectHas(contextInputs, m)
+  },
+
   local scalarParams(op) = [
     { name: m, type: paramType(shapeType(op.inputs[m].target)) }
     for m in op.optional
-    if isScalar(op.inputs[m].target) && !std.member(hiddenParams, m)
+    if isScalar(op.inputs[m].target) && !std.member(hiddenParams, m) && !std.objectHas(contextInputs, m)
   ],
 
   local defaultColumns(c, id) =
@@ -225,6 +233,17 @@ local maxColumns = 6;
   local identity(c, scope) =
     local single = namingLib.singular(c.noun);
     local fields = itemFields(c);
+    local fallbackNames = [
+      namingLib.lowerFirst(single) + 'Name',
+      namingLib.lowerFirst(single) + 'Id',
+      single + 'Name',
+      single + 'Id',
+      'name',
+      'id',
+      'Name',
+      'Id',
+    ];
+    local fallbacks = [n for n in fallbackNames if std.objectHas(fields, n) && isScalar(fields[n].target)];
     local detailOps = [
       op
       for op in operations
@@ -240,6 +259,7 @@ local maxColumns = 6;
         local path =
           if c.itemId != null && isScalar(c.itemId) then []
           else if std.objectHas(fields, param) then [param]
+          else if param == single && std.length(fallbacks) > 0 then [fallbacks[0]]
           else null;
         if path == null then null
         else { param: param, path: path, input: { [param]: { param: param } }, detail: op.name };
@@ -253,19 +273,11 @@ local maxColumns = 6;
       else
         local f = filters[0];
         { param: f.field, path: [f.field], input: { [f.field]: { param: f.field } }, filter: f.member };
-    local fallbackNames = [
-      namingLib.lowerFirst(single) + 'Name',
-      namingLib.lowerFirst(single) + 'Id',
-      single + 'Name',
-      single + 'Id',
-      'name',
-      'id',
-      'Name',
-      'Id',
-    ];
-    local fallbacks = [n for n in fallbackNames if std.objectHas(fields, n) && isScalar(fields[n].target)];
+    local nounInput = [op for op in operations if op.required == std.setUnion(scope, [single])];
     local fromFallback =
       if std.length(fallbacks) == 0 then null
+      else if std.length(nounInput) > 0 && !std.objectHas(fields, single) then
+        { param: single, path: [fallbacks[0]], input: { [single]: { param: single } } }
       else { param: fallbacks[0], path: [fallbacks[0]], input: { [fallbacks[0]]: { param: fallbacks[0] } } };
     local override = std.get(c.override, 'id', null);
     if override != null then override
@@ -278,6 +290,13 @@ local maxColumns = 6;
 
   local place(scope, parentSingular, exclude, depth) =
     local here = [op for op in operations if op.required == scope && !std.member(exclude, op.name)];
+    local details = [
+      id.detail
+      for c in here
+      if c.collection
+      for id in [identity(c, scope)]
+      if id != null && std.objectHas(id, 'detail')
+    ];
     {
       collections: [
         local id = identity(c, scope);
@@ -287,8 +306,9 @@ local maxColumns = 6;
           id: id,
           children:
             if id == null || childScope == scope || depth > 8 then null
-            else place(childScope, namingLib.singular(c.noun), [std.get(id, 'detail', '')], depth + 1),
+            else place(childScope, namingLib.singular(c.noun), exclude + details, depth + 1),
           params: scalarParams(c),
+          contextInputs: contextInputsOf(c),
           columns: columnsFor(c, id),
         }
         for c in here
@@ -298,6 +318,7 @@ local maxColumns = 6;
         s {
           segment: segment(s, parentSingular),
           params: scalarParams(s),
+          contextInputs: contextInputsOf(s),
         }
         for s in here
         if !s.collection

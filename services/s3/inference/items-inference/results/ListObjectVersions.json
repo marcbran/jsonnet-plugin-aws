@@ -1,0 +1,1 @@
+{"confidence":"high","decision":"list","items":["Versions"],"operation":"ListObjectVersions","reason":"Versions contains the object-version metadata that the operation primarily returns and operators would browse as rows."}

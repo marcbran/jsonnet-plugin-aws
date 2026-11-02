@@ -1,0 +1,1 @@
+{"links":[{"at":["LoggingEnabled"],"confidence":"high","keys":[{"const":"target bucket","path":null}],"reason":"LoggingEnabled.TargetBucket names the bucket used to store access logs.","target":"ListBuckets","vars":[{"param":"Bucket","path":["TargetBucket"]}]}],"operation":"GetBucketLogging"}
