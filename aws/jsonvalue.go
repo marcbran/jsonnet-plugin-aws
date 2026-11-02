@@ -4,7 +4,7 @@ import (
 	"fmt"
 )
 
-func (m *Model) encodeJSON(id string, memberTraits Traits, v any) (any, error) {
+func (m *Model) encodeJSON(id string, memberTraits Traits, v any, useJSONName bool) (any, error) {
 	if v == nil {
 		return nil, nil
 	}
@@ -27,11 +27,11 @@ func (m *Model) encodeJSON(id string, memberTraits Traits, v any) (any, error) {
 			if !ok {
 				return nil, fmt.Errorf("%s has no member %s", localName(id), k)
 			}
-			ev, err := m.encodeJSON(mem.Target, mem.Traits, mv)
+			ev, err := m.encodeJSON(mem.Target, mem.Traits, mv, useJSONName)
 			if err != nil {
 				return nil, fmt.Errorf("%s: %w", k, err)
 			}
-			out[k] = ev
+			out[wireName(k, mem, useJSONName)] = ev
 		}
 		return out, nil
 	case "list", "set":
@@ -41,7 +41,7 @@ func (m *Model) encodeJSON(id string, memberTraits Traits, v any) (any, error) {
 		}
 		out := make([]any, 0, len(arr))
 		for i, e := range arr {
-			ev, err := m.encodeJSON(s.Member.Target, s.Member.Traits, e)
+			ev, err := m.encodeJSON(s.Member.Target, s.Member.Traits, e, useJSONName)
 			if err != nil {
 				return nil, fmt.Errorf("[%d]: %w", i, err)
 			}
@@ -55,7 +55,7 @@ func (m *Model) encodeJSON(id string, memberTraits Traits, v any) (any, error) {
 		}
 		out := make(map[string]any, len(obj))
 		for k, mv := range obj {
-			ev, err := m.encodeJSON(s.Value.Target, s.Value.Traits, mv)
+			ev, err := m.encodeJSON(s.Value.Target, s.Value.Traits, mv, useJSONName)
 			if err != nil {
 				return nil, fmt.Errorf("%s: %w", k, err)
 			}
@@ -73,7 +73,7 @@ func (m *Model) encodeJSON(id string, memberTraits Traits, v any) (any, error) {
 	}
 }
 
-func (m *Model) decodeJSON(id string, memberTraits Traits, v any) any {
+func (m *Model) decodeJSON(id string, memberTraits Traits, v any, useJSONName bool) any {
 	if v == nil {
 		return nil
 	}
@@ -90,14 +90,19 @@ func (m *Model) decodeJSON(id string, memberTraits Traits, v any) any {
 		if !ok {
 			return v
 		}
+		names := make(map[string]string, len(s.Members))
+		for name, mem := range s.Members {
+			names[wireName(name, mem, useJSONName)] = name
+		}
 		out := make(map[string]any, len(obj))
 		for k, mv := range obj {
-			mem, ok := s.Members[k]
+			name, ok := names[k]
 			if !ok {
 				out[k] = mv
 				continue
 			}
-			out[k] = m.decodeJSON(mem.Target, mem.Traits, mv)
+			mem := s.Members[name]
+			out[name] = m.decodeJSON(mem.Target, mem.Traits, mv, useJSONName)
 		}
 		return out
 	case "list", "set":
@@ -107,7 +112,7 @@ func (m *Model) decodeJSON(id string, memberTraits Traits, v any) any {
 		}
 		out := make([]any, 0, len(arr))
 		for _, e := range arr {
-			out = append(out, m.decodeJSON(s.Member.Target, s.Member.Traits, e))
+			out = append(out, m.decodeJSON(s.Member.Target, s.Member.Traits, e, useJSONName))
 		}
 		return out
 	case "map":
@@ -117,7 +122,7 @@ func (m *Model) decodeJSON(id string, memberTraits Traits, v any) any {
 		}
 		out := make(map[string]any, len(obj))
 		for k, mv := range obj {
-			out[k] = m.decodeJSON(s.Value.Target, s.Value.Traits, mv)
+			out[k] = m.decodeJSON(s.Value.Target, s.Value.Traits, mv, useJSONName)
 		}
 		return out
 	case "timestamp":
@@ -129,4 +134,13 @@ func (m *Model) decodeJSON(id string, memberTraits Traits, v any) any {
 	default:
 		return v
 	}
+}
+
+func wireName(name string, mem *Member, useJSONName bool) string {
+	if useJSONName {
+		if n := mem.Traits.String("smithy.api#jsonName"); n != "" {
+			return n
+		}
+	}
+	return name
 }

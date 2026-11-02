@@ -1,0 +1,1 @@
+{"confidence":"high","decision":"list","items":["ChangeProgressStatus","ChangeProgressStages"],"operation":"DescribeDomainChangeProgress","reason":"ChangeProgressStages contains the deployment progress records an operator would browse, with each stage's name, description, status, and update time. The other lists contain supporting properties, warnings, or validation failures."}

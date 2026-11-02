@@ -1,0 +1,685 @@
+[
+   {
+      "array": [
+         "AutoTunes"
+      ],
+      "columns": [
+         {
+            "key": "actionType",
+            "kind": "status",
+            "label": "Tune type",
+            "path": [
+               "AutoTuneDetails",
+               "ScheduledAutoTuneDetails",
+               "ActionType"
+            ],
+            "priority": "primary"
+         },
+         {
+            "key": "date",
+            "kind": "timestamp",
+            "label": "Date",
+            "path": [
+               "AutoTuneDetails",
+               "ScheduledAutoTuneDetails",
+               "Date"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "severity",
+            "kind": "status",
+            "label": "Severity",
+            "path": [
+               "AutoTuneDetails",
+               "ScheduledAutoTuneDetails",
+               "Severity"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "action",
+            "kind": "text",
+            "label": "Action",
+            "path": [
+               "AutoTuneDetails",
+               "ScheduledAutoTuneDetails",
+               "Action"
+            ],
+            "priority": "tertiary"
+         }
+      ],
+      "operation": "DescribeDomainAutoTunes"
+   },
+   {
+      "array": [
+         "ChangeProgressStatus",
+         "ChangeProgressStages"
+      ],
+      "columns": [
+         {
+            "key": "name",
+            "kind": "name",
+            "label": "Stage",
+            "path": [
+               "Name"
+            ],
+            "priority": "primary"
+         },
+         {
+            "key": "status",
+            "kind": "status",
+            "label": "Status",
+            "path": [
+               "Status"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "lastUpdated",
+            "kind": "timestamp",
+            "label": "Last updated",
+            "path": [
+               "LastUpdated"
+            ],
+            "priority": "secondary"
+         }
+      ],
+      "operation": "DescribeDomainChangeProgress"
+   },
+   {
+      "array": [
+         "DomainNodesStatusList"
+      ],
+      "columns": [
+         {
+            "key": "nodeId",
+            "kind": "identifier",
+            "label": "Node ID",
+            "path": [
+               "NodeId"
+            ],
+            "priority": "primary"
+         },
+         {
+            "key": "nodeStatus",
+            "kind": "status",
+            "label": "Status",
+            "path": [
+               "NodeStatus"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "nodeType",
+            "kind": "text",
+            "label": "Node Type",
+            "path": [
+               "NodeType"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "instanceType",
+            "kind": "text",
+            "label": "Instance Type",
+            "path": [
+               "InstanceType"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "availabilityZone",
+            "kind": "text",
+            "label": "Availability Zone",
+            "path": [
+               "AvailabilityZone"
+            ],
+            "priority": "tertiary"
+         },
+         {
+            "key": "storageSize",
+            "kind": "text",
+            "label": "Storage Size",
+            "path": [
+               "StorageSize"
+            ],
+            "priority": "tertiary"
+         }
+      ],
+      "operation": "DescribeDomainNodes"
+   },
+   {
+      "array": [
+         "Peers"
+      ],
+      "columns": [
+         {
+            "key": "peer_domain_arn",
+            "kind": "identifier",
+            "label": "Peer domain ARN",
+            "path": [
+               "PeerDomainArn"
+            ],
+            "priority": "primary"
+         },
+         {
+            "key": "status",
+            "kind": "status",
+            "label": "Status",
+            "path": [
+               "Status"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "peer_role",
+            "kind": "text",
+            "label": "Peer role",
+            "path": [
+               "PeerRole"
+            ],
+            "priority": "tertiary"
+         }
+      ],
+      "operation": "DescribeDomainReplication"
+   },
+   {
+      "array": [
+         "PackageDetailsList"
+      ],
+      "columns": [
+         {
+            "key": "packageName",
+            "kind": "name",
+            "label": "Package name",
+            "path": [
+               "PackageName"
+            ],
+            "priority": "primary"
+         },
+         {
+            "key": "packageId",
+            "kind": "identifier",
+            "label": "Package ID",
+            "path": [
+               "PackageID"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "packageStatus",
+            "kind": "status",
+            "label": "Status",
+            "path": [
+               "PackageStatus"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "packageType",
+            "kind": "text",
+            "label": "Type",
+            "path": [
+               "PackageType"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "availablePackageVersion",
+            "kind": "text",
+            "label": "Version",
+            "path": [
+               "AvailablePackageVersion"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "lastUpdatedAt",
+            "kind": "timestamp",
+            "label": "Last updated",
+            "path": [
+               "LastUpdatedAt"
+            ],
+            "priority": "tertiary"
+         }
+      ],
+      "operation": "DescribePackages"
+   },
+   {
+      "array": [
+         "UpgradeHistories"
+      ],
+      "columns": [
+         {
+            "key": "upgradeName",
+            "kind": "name",
+            "label": "Upgrade",
+            "path": [
+               "UpgradeName"
+            ],
+            "priority": "primary"
+         },
+         {
+            "key": "upgradeStatus",
+            "kind": "status",
+            "label": "Status",
+            "path": [
+               "UpgradeStatus"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "startTimestamp",
+            "kind": "timestamp",
+            "label": "Started",
+            "path": [
+               "StartTimestamp"
+            ],
+            "priority": "secondary"
+         }
+      ],
+      "operation": "GetUpgradeHistory"
+   },
+   {
+      "array": [
+         "ApplicationSummaries"
+      ],
+      "columns": [
+         {
+            "key": "name",
+            "kind": "name",
+            "label": "Name",
+            "path": [
+               "name"
+            ],
+            "priority": "primary"
+         },
+         {
+            "key": "status",
+            "kind": "status",
+            "label": "Status",
+            "path": [
+               "status"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "id",
+            "kind": "identifier",
+            "label": "ID",
+            "path": [
+               "id"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "lastUpdatedAt",
+            "kind": "timestamp",
+            "label": "Last updated",
+            "path": [
+               "lastUpdatedAt"
+            ],
+            "priority": "tertiary"
+         }
+      ],
+      "operation": "ListApplications"
+   },
+   {
+      "array": [
+         "attachments"
+      ],
+      "columns": [
+         {
+            "key": "attachmentId",
+            "kind": "identifier",
+            "label": "Attachment ID",
+            "path": [
+               "attachmentId"
+            ],
+            "priority": "primary"
+         },
+         {
+            "key": "status",
+            "kind": "status",
+            "label": "Status",
+            "path": [
+               "status"
+            ],
+            "priority": "secondary"
+         }
+      ],
+      "operation": "ListDataSourceAttachments"
+   },
+   {
+      "array": [
+         "DataSources"
+      ],
+      "columns": [
+         {
+            "key": "name",
+            "kind": "name",
+            "label": "Name",
+            "path": [
+               "Name"
+            ],
+            "priority": "primary"
+         },
+         {
+            "key": "status",
+            "kind": "status",
+            "label": "Status",
+            "path": [
+               "Status"
+            ],
+            "priority": "secondary"
+         }
+      ],
+      "operation": "ListDataSources"
+   },
+   {
+      "array": [
+         "DomainMaintenances"
+      ],
+      "columns": [
+         {
+            "key": "domainName",
+            "kind": "name",
+            "label": "Domain",
+            "path": [
+               "DomainName"
+            ],
+            "priority": "primary"
+         },
+         {
+            "key": "maintenanceId",
+            "kind": "identifier",
+            "label": "Maintenance ID",
+            "path": [
+               "MaintenanceId"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "status",
+            "kind": "status",
+            "label": "Status",
+            "path": [
+               "Status"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "action",
+            "kind": "text",
+            "label": "Action",
+            "path": [
+               "Action"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "updatedAt",
+            "kind": "timestamp",
+            "label": "Updated",
+            "path": [
+               "UpdatedAt"
+            ],
+            "priority": "tertiary"
+         }
+      ],
+      "operation": "ListDomainMaintenances"
+   },
+   {
+      "array": [
+         "DomainNames"
+      ],
+      "columns": [
+         {
+            "key": "domainName",
+            "kind": "name",
+            "label": "Domain name",
+            "path": [
+               "DomainName"
+            ],
+            "priority": "primary"
+         },
+         {
+            "key": "engineType",
+            "kind": "text",
+            "label": "Engine",
+            "path": [
+               "EngineType"
+            ],
+            "priority": "secondary"
+         }
+      ],
+      "operation": "ListDomainNames"
+   },
+   {
+      "array": [
+         "DomainPackageDetailsList"
+      ],
+      "columns": [
+         {
+            "key": "package_name",
+            "kind": "name",
+            "label": "Package",
+            "path": [
+               "PackageName"
+            ],
+            "priority": "primary"
+         },
+         {
+            "key": "package_id",
+            "kind": "identifier",
+            "label": "Package ID",
+            "path": [
+               "PackageID"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "package_version",
+            "kind": "text",
+            "label": "Version",
+            "path": [
+               "PackageVersion"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "status",
+            "kind": "status",
+            "label": "Status",
+            "path": [
+               "DomainPackageStatus"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "package_type",
+            "kind": "text",
+            "label": "Type",
+            "path": [
+               "PackageType"
+            ],
+            "priority": "tertiary"
+         },
+         {
+            "key": "last_updated",
+            "kind": "timestamp",
+            "label": "Last Updated",
+            "path": [
+               "LastUpdated"
+            ],
+            "priority": "tertiary"
+         }
+      ],
+      "operation": "ListPackagesForDomain"
+   },
+   {
+      "array": [
+         "ScheduledActions"
+      ],
+      "columns": [
+         {
+            "key": "id",
+            "kind": "identifier",
+            "label": "ID",
+            "path": [
+               "Id"
+            ],
+            "priority": "primary"
+         },
+         {
+            "key": "type",
+            "kind": "text",
+            "label": "Type",
+            "path": [
+               "Type"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "status",
+            "kind": "status",
+            "label": "Status",
+            "path": [
+               "Status"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "scheduled_time",
+            "kind": "timestamp",
+            "label": "Scheduled time",
+            "path": [
+               "ScheduledTime"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "severity",
+            "kind": "text",
+            "label": "Severity",
+            "path": [
+               "Severity"
+            ],
+            "priority": "tertiary"
+         }
+      ],
+      "operation": "ListScheduledActions"
+   },
+   {
+      "array": [
+         "Versions"
+      ],
+      "columns": [
+         {
+            "key": "version",
+            "kind": "text",
+            "label": "Version",
+            "path": [ ],
+            "priority": "primary"
+         }
+      ],
+      "operation": "ListVersions"
+   },
+   {
+      "array": [
+         "AuthorizedPrincipalList"
+      ],
+      "columns": [
+         {
+            "key": "principal",
+            "kind": "identifier",
+            "label": "Principal",
+            "path": [
+               "Principal"
+            ],
+            "priority": "primary"
+         },
+         {
+            "key": "principalType",
+            "kind": "status",
+            "label": "Principal type",
+            "path": [
+               "PrincipalType"
+            ],
+            "priority": "secondary"
+         }
+      ],
+      "operation": "ListVpcEndpointAccess"
+   },
+   {
+      "array": [
+         "VpcEndpointSummaryList"
+      ],
+      "columns": [
+         {
+            "key": "vpcEndpointId",
+            "kind": "identifier",
+            "label": "Endpoint ID",
+            "path": [
+               "VpcEndpointId"
+            ],
+            "priority": "primary"
+         },
+         {
+            "key": "status",
+            "kind": "status",
+            "label": "Status",
+            "path": [
+               "Status"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "owner",
+            "kind": "identifier",
+            "label": "Owner",
+            "path": [
+               "VpcEndpointOwner"
+            ],
+            "priority": "tertiary"
+         }
+      ],
+      "operation": "ListVpcEndpoints"
+   },
+   {
+      "array": [
+         "VpcEndpointSummaryList"
+      ],
+      "columns": [
+         {
+            "key": "vpcEndpointId",
+            "kind": "identifier",
+            "label": "VPC endpoint ID",
+            "path": [
+               "VpcEndpointId"
+            ],
+            "priority": "primary"
+         },
+         {
+            "key": "status",
+            "kind": "status",
+            "label": "Status",
+            "path": [
+               "Status"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "owner",
+            "kind": "identifier",
+            "label": "Owner",
+            "path": [
+               "VpcEndpointOwner"
+            ],
+            "priority": "tertiary"
+         }
+      ],
+      "operation": "ListVpcEndpointsForDomain"
+   }
+]

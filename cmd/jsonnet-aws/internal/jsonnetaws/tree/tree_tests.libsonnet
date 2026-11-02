@@ -42,6 +42,8 @@ local model = {
           'GetRackAlarm',
           'GetRackSensor',
           'ListRackEvents',
+          'ListCrateNames',
+          'DescribeCrate',
         ]
       ],
     },
@@ -78,6 +80,12 @@ local model = {
     'demo#RackConfigRequest': structure({ Rack: member('demo#String', true), Id: member('demo#String', true) }),
     'demo#ListRackEvents': operation('demo#RackRequest', 'demo#RackEventsResponse'),
     'demo#RackEventsResponse': structure({ Events: member('demo#Configs'), Warnings: member('demo#Configs'), Marker: member('demo#String') }),
+    'demo#CrateInfo': structure({ CrateName: member('demo#String'), Kind: member('demo#String') }),
+    'demo#CrateInfos': list('demo#CrateInfo'),
+    'demo#ListCrateNames': operation('smithy.api#Unit', 'demo#ListCrateNamesResponse'),
+    'demo#ListCrateNamesResponse': structure({ CrateNames: member('demo#CrateInfos') }),
+    'demo#DescribeCrate': operation('demo#CrateRequest', 'demo#CrateInfo'),
+    'demo#CrateRequest': structure({ CrateName: member('demo#String', true) }),
     'demo#Tags': list('demo#Tag'),
     'demo#Machine': structure({ MachineId: member('demo#String'), State: member('demo#String'), Tags: member('demo#Tags') }),
     'demo#Machines': list('demo#Machine'),
@@ -157,6 +165,7 @@ local outline(node) =
         },
       expected: {
         outline: {
+          crates: { operation: 'ListCrateNames', id: 'CrateName', detail: 'DescribeCrate', children: {} },
           machines: { operation: 'DescribeMachines', id: 'MachineId', detail: 'MachineIds', children: {} },
           racks: {
             operation: 'ListRacks',
@@ -213,6 +222,7 @@ local outline(node) =
         },
       expected: {
         outline: {
+          crates: { operation: 'ListCrateNames', id: 'CrateName', detail: 'DescribeCrate', children: {} },
           machines: { operation: 'DescribeMachines', id: 'MachineId', detail: 'MachineIds', children: {} },
           racks: {
             operation: 'ListRacks',
@@ -363,6 +373,14 @@ local outline(node) =
       input:: function()
         [a for a in treeOf({ include: ['ListRacks'] }).ambiguousItems if a.operation == 'ListRackEvents'],
       expected: [{ operation: 'ListRackEvents', candidates: [['Events'], ['Warnings']] }],
+    },
+    {
+      name: 'list operations of names are collections of the named resource',
+      input:: function()
+        outline(treeOf({ include: ['ListCrateNames'] }).root),
+      expected: {
+        crates: { operation: 'ListCrateNames', id: 'CrateName', detail: 'DescribeCrate', children: {} },
+      },
     },
     {
       name: 'items override wins over the inferred items path',

@@ -29,7 +29,8 @@ local isAcronym(word) = std.length(word) > 1 && std.asciiUpper(word) == word;
     local chars = std.stringChars(noun);
     local trailing = std.foldr(function(c, acc) if acc.done then acc else if c >= '0' && c <= '9' then acc { n: acc.n + 1 } else acc { done: true }, chars, { n: 0, done: false }).n;
     local v = std.length(noun) - trailing - 1;
-    if trailing > 0 && v > 0 && noun[v] == 'V' then noun[:v] else noun,
+    local unversioned = if trailing > 0 && v > 0 && noun[v] == 'V' then noun[:v] else noun;
+    if std.length(unversioned) > 5 && endsWith(unversioned, 'Names') then unversioned[:std.length(unversioned) - 5] + 's' else unversioned,
 
   singular(s)::
     if endsWith(s, 'ies') then s[:std.length(s) - 3] + 'y'

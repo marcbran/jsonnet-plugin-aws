@@ -1,0 +1,26 @@
+{
+   "include": [
+      "ListApplications",
+      "ListDomainNames",
+      "DescribePackages",
+      "ListVersions",
+      "ListVpcEndpoints"
+   ],
+   "operations": {
+      "DescribeDomainChangeProgress": {
+         "items": [
+            "ChangeProgressStatus",
+            "ChangeProgressStages"
+         ]
+      },
+      "DescribeDomainHealth": {
+         "items": null
+      },
+      "ListPackagesForDomain": {
+         "name": "packages"
+      },
+      "ListVpcEndpointsForDomain": {
+         "name": "vpcEndpoints"
+      }
+   }
+}

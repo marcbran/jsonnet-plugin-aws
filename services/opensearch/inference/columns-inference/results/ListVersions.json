@@ -1,0 +1,1 @@
+{"array":["Versions"],"columns":[{"key":"version","kind":"text","label":"Version","path":[],"priority":"primary","reason":"Each list item is a string value."}],"confidence":"high","operation":"ListVersions","reason":"The item schema is a scalar string, so show each item directly."}
