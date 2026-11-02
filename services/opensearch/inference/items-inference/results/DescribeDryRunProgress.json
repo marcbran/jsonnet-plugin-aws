@@ -1,0 +1,1 @@
+{"confidence":"high","decision":"none","items":null,"operation":"DescribeDryRunProgress","reason":"The operation describes a single dry run's progress and results. The candidate lists contain configuration changes, accepted warnings, and validation failures; none represents paged primary records."}

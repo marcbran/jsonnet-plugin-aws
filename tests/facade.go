@@ -11,6 +11,7 @@ import (
 	"github.com/marcbran/jsonnet-plugin-aws/aws"
 	"github.com/marcbran/jsonnet-plugin-aws/services/ec2"
 	"github.com/marcbran/jsonnet-plugin-aws/services/ecr"
+	"github.com/marcbran/jsonnet-plugin-aws/services/opensearch"
 	"github.com/marcbran/jsonnet-plugin-aws/services/s3"
 )
 
@@ -26,7 +27,7 @@ type JpoetFacade struct {
 
 func NewE2EFacade(endpoint string, imports map[string]string) Facade {
 	plugin := aws.Plugin(
-		aws.WithServices(ecr.Service, ec2.Service, s3.Service),
+		aws.WithServices(ecr.Service, ec2.Service, opensearch.Service, s3.Service),
 		aws.WithEndpointResolver(func(*aws.Service, string) (string, error) {
 			return endpoint, nil
 		}),

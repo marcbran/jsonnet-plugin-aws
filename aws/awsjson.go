@@ -12,7 +12,7 @@ type awsJSON struct {
 }
 
 func (p awsJSON) encode(svc *Service, op *Operation, input map[string]any) (request, error) {
-	body, err := svc.Model.encodeJSON(op.InputID(), nil, input)
+	body, err := svc.Model.encodeJSON(op.InputID(), nil, input, false)
 	if err != nil {
 		return request{}, err
 	}
@@ -38,7 +38,7 @@ func (p awsJSON) decode(svc *Service, op *Operation, resp response) (any, error)
 	if err != nil {
 		return nil, fmt.Errorf("decode response: %w", err)
 	}
-	return svc.Model.decodeJSON(op.OutputID(), nil, out), nil
+	return svc.Model.decodeJSON(op.OutputID(), nil, out, false), nil
 }
 
 func (p awsJSON) decodeError(resp response) apiError {

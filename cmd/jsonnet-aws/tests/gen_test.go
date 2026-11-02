@@ -5,7 +5,7 @@ package tests
 import "testing"
 
 func TestPublishedServicePackagesAreUpToDate(t *testing.T) {
-	for _, service := range []string{"ecr", "ec2", "s3"} {
+	for _, service := range []string{"ecr", "ec2", "opensearch", "s3"} {
 		t.Run(service, func(t *testing.T) {
 			given, when, then := scenario(t)
 
