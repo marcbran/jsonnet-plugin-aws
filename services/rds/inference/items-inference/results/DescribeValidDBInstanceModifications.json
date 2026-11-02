@@ -1,0 +1,1 @@
+{"confidence":"medium","decision":"list","items":["ValidDBInstanceModificationsMessage","Storage"],"operation":"DescribeValidDBInstanceModifications","reason":"Storage holds the primary valid modification options, organized by storage type; ValidProcessorFeatures is a secondary list of processor configuration constraints."}

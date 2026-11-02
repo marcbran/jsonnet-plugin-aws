@@ -1,0 +1,1 @@
+{"array":["AccountAliases"],"columns":[{"key":"alias","kind":"name","label":"Alias","path":[],"priority":"primary","reason":"Each list item is an account alias string."}],"confidence":"high","operation":"ListAccountAliases","reason":"The item schema is a scalar string, so the column displays the item itself."}

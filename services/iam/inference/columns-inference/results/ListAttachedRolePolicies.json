@@ -1,0 +1,1 @@
+{"array":["AttachedPolicies"],"columns":[{"key":"policyName","kind":"name","label":"Policy name","path":["PolicyName"],"priority":"primary","reason":"Identifies the attached policy by its readable name."}],"confidence":"high","operation":"ListAttachedRolePolicies","reason":"PolicyName is the useful operator-facing identifier; PolicyArn is an ARN, which the prompt says to avoid."}

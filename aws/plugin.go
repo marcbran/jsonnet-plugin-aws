@@ -68,6 +68,9 @@ func WithHook(hook jpoet.InvokeHook) Option {
 }
 
 func DefaultEndpoint(svc *Service, region string) (string, error) {
+	if svc.Global() {
+		return svc.GlobalEndpoint, nil
+	}
 	if region == "" {
 		return "", fmt.Errorf("%s requires a region", svc.Key)
 	}

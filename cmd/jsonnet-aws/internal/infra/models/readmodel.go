@@ -1,6 +1,7 @@
 package models
 
 import (
+	"encoding/json"
 	"strings"
 
 	"github.com/marcbran/jsonnet-plugin-aws/aws"
@@ -12,6 +13,8 @@ var droppedTraitPrefixes = []string{
 	"smithy.waiters#",
 	"smithy.api#examples",
 }
+
+const globalTrait = "jsonnetaws#global"
 
 func readModel(s *aws.Service) *aws.Model {
 	out := &aws.Model{Smithy: s.Model.Smithy, Shapes: map[string]*aws.Shape{}}
@@ -25,6 +28,12 @@ func readModel(s *aws.Service) *aws.Model {
 		}
 		slim.Operations = append(slim.Operations, ref)
 		collect(s.Model, ref.Target, out.Shapes)
+	}
+	if s.Global() {
+		if slim.Traits == nil {
+			slim.Traits = aws.Traits{}
+		}
+		slim.Traits[globalTrait] = json.RawMessage(`{}`)
 	}
 	out.Shapes[s.ID] = slim
 	return out

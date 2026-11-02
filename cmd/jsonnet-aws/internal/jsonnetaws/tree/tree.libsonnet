@@ -238,6 +238,7 @@ local maxColumns = 6;
       namingLib.lowerFirst(single) + 'Id',
       single + 'Name',
       single + 'Id',
+      single + 'Identifier',
       'name',
       'id',
       'Name',
@@ -273,6 +274,12 @@ local maxColumns = 6;
       else
         local f = filters[0];
         { param: f.field, path: [f.field], input: { [f.field]: { param: f.field } }, filter: f.member };
+    local selfFilters = [f for f in fallbacks if std.member(c.optional, f) && isScalar(c.inputs[f].target)];
+    local fromSelfFilter =
+      if std.length(selfFilters) == 0 then null
+      else
+        local f = selfFilters[0];
+        { param: f, path: [f], input: { [f]: { param: f } }, filter: f, filterValue: { param: f } };
     local nounInput = [op for op in operations if op.required == std.setUnion(scope, [single])];
     local fromFallback =
       if std.length(fallbacks) == 0 then null
@@ -283,6 +290,7 @@ local maxColumns = 6;
     if override != null then override
     else if fromDetail != null then fromDetail
     else if fromFilter != null then fromFilter
+    else if fromSelfFilter != null then fromSelfFilter
     else fromFallback,
 
   local segment(op, parentSingular) =

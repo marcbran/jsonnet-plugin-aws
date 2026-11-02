@@ -1,0 +1,1 @@
+{"array":["OpenIDConnectProviderList"],"columns":[{"key":"arn","kind":"identifier","label":"Provider ARN","path":["Arn"],"priority":"primary","reason":"The ARN is the only item property and identifies the provider."}],"confidence":"high","operation":"ListOpenIDConnectProviders","reason":"The item schema supports only the provider ARN, so a single column is appropriate."}

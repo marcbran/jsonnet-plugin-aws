@@ -7,7 +7,9 @@ require (
 	github.com/aws/aws-sdk-go-v2/credentials v1.20.13
 	github.com/aws/aws-sdk-go-v2/service/ec2 v1.343.0
 	github.com/aws/aws-sdk-go-v2/service/ecr v1.67.2
+	github.com/aws/aws-sdk-go-v2/service/iam v1.64.6
 	github.com/aws/aws-sdk-go-v2/service/opensearch v1.87.1
+	github.com/aws/aws-sdk-go-v2/service/rds v1.131.2
 	github.com/aws/aws-sdk-go-v2/service/s3 v1.114.6
 	github.com/google/go-jsonnet v0.22.0
 	github.com/marcbran/jpoet v0.27.0

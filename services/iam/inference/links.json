@@ -1,0 +1,411 @@
+[
+   {
+      "at": [
+         "Users"
+      ],
+      "keys": [
+         {
+            "const": "permissions boundary"
+         },
+         {
+            "path": [
+               "UserName"
+            ]
+         }
+      ],
+      "operation": "GetGroup",
+      "target": {
+         "operation": "ListPolicies",
+         "params": {
+            "PolicyArn": [
+               "PermissionsBoundary",
+               "PermissionsBoundaryArn"
+            ]
+         }
+      }
+   },
+   {
+      "at": [
+         "InstanceProfile",
+         "Roles"
+      ],
+      "keys": [
+         {
+            "const": "role"
+         },
+         {
+            "path": [
+               "RoleName"
+            ]
+         }
+      ],
+      "operation": "GetInstanceProfile",
+      "target": {
+         "operation": "ListRoles",
+         "params": {
+            "RoleName": [
+               "RoleName"
+            ]
+         }
+      }
+   },
+   {
+      "at": [
+         "InstanceProfile",
+         "Roles"
+      ],
+      "keys": [
+         {
+            "const": "permissions boundary"
+         },
+         {
+            "path": [
+               "RoleName"
+            ]
+         }
+      ],
+      "operation": "GetInstanceProfile",
+      "target": {
+         "operation": "ListPolicies",
+         "params": {
+            "PolicyArn": [
+               "PermissionsBoundary",
+               "PermissionsBoundaryArn"
+            ]
+         }
+      }
+   },
+   {
+      "at": [
+         "Policy"
+      ],
+      "keys": [
+         {
+            "const": "default version"
+         }
+      ],
+      "operation": "GetPolicy",
+      "target": {
+         "operation": "ListPolicyVersions",
+         "params": {
+            "PolicyArn": [
+               "Arn"
+            ],
+            "VersionId": [
+               "DefaultVersionId"
+            ]
+         }
+      }
+   },
+   {
+      "at": [
+         "Role"
+      ],
+      "keys": [
+         {
+            "const": "permissions boundary"
+         }
+      ],
+      "operation": "GetRole",
+      "target": {
+         "operation": "ListPolicies",
+         "params": {
+            "PolicyArn": [
+               "PermissionsBoundary",
+               "PermissionsBoundaryArn"
+            ]
+         }
+      }
+   },
+   {
+      "at": [
+         "User",
+         "PermissionsBoundary"
+      ],
+      "keys": [
+         {
+            "const": "permissions boundary"
+         }
+      ],
+      "operation": "GetUser",
+      "target": {
+         "operation": "ListPolicies",
+         "params": {
+            "PolicyArn": [
+               "PermissionsBoundaryArn"
+            ]
+         }
+      }
+   },
+   {
+      "at": [
+         "AttachedPolicies"
+      ],
+      "keys": [
+         {
+            "const": "policy"
+         },
+         {
+            "path": [
+               "PolicyArn"
+            ]
+         }
+      ],
+      "operation": "ListAttachedGroupPolicies",
+      "target": {
+         "operation": "ListPolicies",
+         "params": {
+            "PolicyArn": [
+               "PolicyArn"
+            ]
+         }
+      }
+   },
+   {
+      "at": [
+         "AttachedPolicies"
+      ],
+      "keys": [
+         {
+            "const": "policy"
+         },
+         {
+            "path": [
+               "PolicyArn"
+            ]
+         }
+      ],
+      "operation": "ListAttachedRolePolicies",
+      "target": {
+         "operation": "ListPolicies",
+         "params": {
+            "PolicyArn": [
+               "PolicyArn"
+            ]
+         }
+      }
+   },
+   {
+      "at": [
+         "AttachedPolicies"
+      ],
+      "keys": [
+         {
+            "const": "policy"
+         },
+         {
+            "path": [
+               "PolicyName"
+            ]
+         }
+      ],
+      "operation": "ListAttachedUserPolicies",
+      "target": {
+         "operation": "ListPolicies",
+         "params": {
+            "PolicyArn": [
+               "PolicyArn"
+            ]
+         }
+      }
+   },
+   {
+      "at": [
+         "PolicyGroups"
+      ],
+      "keys": [
+         {
+            "const": "group"
+         },
+         {
+            "path": [
+               "GroupName"
+            ]
+         }
+      ],
+      "operation": "ListEntitiesForPolicy",
+      "target": {
+         "operation": "ListGroups",
+         "params": {
+            "GroupName": [
+               "GroupName"
+            ]
+         }
+      }
+   },
+   {
+      "at": [
+         "PolicyRoles"
+      ],
+      "keys": [
+         {
+            "const": "role"
+         },
+         {
+            "path": [
+               "RoleName"
+            ]
+         }
+      ],
+      "operation": "ListEntitiesForPolicy",
+      "target": {
+         "operation": "ListRoles",
+         "params": {
+            "RoleName": [
+               "RoleName"
+            ]
+         }
+      }
+   },
+   {
+      "at": [
+         "PolicyUsers"
+      ],
+      "keys": [
+         {
+            "const": "user"
+         },
+         {
+            "path": [
+               "UserName"
+            ]
+         }
+      ],
+      "operation": "ListEntitiesForPolicy",
+      "target": {
+         "operation": "ListUsers",
+         "params": {
+            "UserName": [
+               "UserName"
+            ]
+         }
+      }
+   },
+   {
+      "at": [
+         "InstanceProfiles",
+         "Roles"
+      ],
+      "keys": [
+         {
+            "const": "role"
+         },
+         {
+            "path": [
+               "RoleName"
+            ]
+         }
+      ],
+      "operation": "ListInstanceProfiles",
+      "target": {
+         "operation": "ListRoles",
+         "params": {
+            "RoleName": [
+               "RoleName"
+            ]
+         }
+      }
+   },
+   {
+      "at": [
+         "InstanceProfiles",
+         "Roles",
+         "PermissionsBoundary"
+      ],
+      "keys": [
+         {
+            "const": "permissions boundary"
+         },
+         {
+            "path": [
+               "PermissionsBoundaryArn"
+            ]
+         }
+      ],
+      "operation": "ListInstanceProfiles",
+      "target": {
+         "operation": "ListPolicies",
+         "params": {
+            "PolicyArn": [
+               "PermissionsBoundaryArn"
+            ]
+         }
+      }
+   },
+   {
+      "at": [
+         "InstanceProfiles",
+         "Roles"
+      ],
+      "keys": [
+         {
+            "const": "permissions boundary"
+         },
+         {
+            "path": [
+               "RoleName"
+            ]
+         }
+      ],
+      "operation": "ListInstanceProfilesForRole",
+      "target": {
+         "operation": "ListPolicies",
+         "params": {
+            "PolicyArn": [
+               "PermissionsBoundary",
+               "PermissionsBoundaryArn"
+            ]
+         }
+      }
+   },
+   {
+      "at": [
+         "Roles"
+      ],
+      "keys": [
+         {
+            "const": "permissions boundary"
+         },
+         {
+            "path": [
+               "RoleName"
+            ]
+         }
+      ],
+      "operation": "ListRoles",
+      "target": {
+         "operation": "ListPolicies",
+         "params": {
+            "PolicyArn": [
+               "PermissionsBoundary",
+               "PermissionsBoundaryArn"
+            ]
+         }
+      }
+   },
+   {
+      "at": [
+         "Users"
+      ],
+      "keys": [
+         {
+            "const": "permissions boundary"
+         },
+         {
+            "path": [
+               "UserName"
+            ]
+         }
+      ],
+      "operation": "ListUsers",
+      "target": {
+         "operation": "ListPolicies",
+         "params": {
+            "PolicyArn": [
+               "PermissionsBoundary",
+               "PermissionsBoundaryArn"
+            ]
+         }
+      }
+   }
+]

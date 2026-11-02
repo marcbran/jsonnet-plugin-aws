@@ -1,6 +1,16 @@
 local verbs = ['BatchGet', 'Describe', 'List', 'Get', 'Head'];
 
-local lowerFirst(s) = if s == '' then s else std.asciiLower(s[0]) + s[1:];
+local upperRun(s) =
+  local chars = std.stringChars(s);
+  std.foldl(function(acc, c) if acc.done then acc else if c >= 'A' && c <= 'Z' then acc { n: acc.n + 1 } else acc { done: true }, chars, { n: 0, done: false }).n;
+
+local lowerFirst(s) =
+  local n = upperRun(s);
+  local rest = s[n:];
+  if s == '' then s
+  else if n <= 1 then std.asciiLower(s[0]) + s[1:]
+  else if rest == '' || rest == 's' then std.asciiLower(s[:n]) + rest
+  else std.asciiLower(s[:n - 1]) + s[n - 1:];
 
 local upperFirst(s) = if s == '' then s else std.asciiUpper(s[0]) + s[1:];
 

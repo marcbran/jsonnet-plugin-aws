@@ -1,0 +1,1 @@
+{"links":[{"at":["Roles"],"confidence":"high","keys":[{"const":"permissions boundary","path":null},{"const":null,"path":["RoleName"]}],"reason":"PermissionsBoundaryArn identifies the boundary policy by its ARN.","target":"ListPolicies","vars":[{"param":"PolicyArn","path":["PermissionsBoundary","PermissionsBoundaryArn"]}]}],"operation":"ListRoles"}

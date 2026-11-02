@@ -1,0 +1,1 @@
+{"array":["PolicyNames"],"columns":[{"key":"policyName","kind":"name","label":"Policy name","path":[],"priority":"primary","reason":"Each list item is a policy name."}],"confidence":"high","operation":"ListRolePolicies","reason":"The item schema is a scalar string, so the column displays each item directly."}

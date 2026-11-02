@@ -1,0 +1,666 @@
+[
+   {
+      "array": [
+         "Users"
+      ],
+      "columns": [
+         {
+            "key": "userName",
+            "kind": "name",
+            "label": "User name",
+            "path": [
+               "UserName"
+            ],
+            "priority": "primary"
+         },
+         {
+            "key": "userId",
+            "kind": "identifier",
+            "label": "User ID",
+            "path": [
+               "UserId"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "createDate",
+            "kind": "timestamp",
+            "label": "Created",
+            "path": [
+               "CreateDate"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "passwordLastUsed",
+            "kind": "timestamp",
+            "label": "Password last used",
+            "path": [
+               "PasswordLastUsed"
+            ],
+            "priority": "tertiary"
+         }
+      ],
+      "operation": "GetGroup"
+   },
+   {
+      "array": [
+         "AccountAliases"
+      ],
+      "columns": [
+         {
+            "key": "alias",
+            "kind": "name",
+            "label": "Alias",
+            "path": [ ],
+            "priority": "primary"
+         }
+      ],
+      "operation": "ListAccountAliases"
+   },
+   {
+      "array": [
+         "AttachedPolicies"
+      ],
+      "columns": [
+         {
+            "key": "policyName",
+            "kind": "name",
+            "label": "Policy name",
+            "path": [
+               "PolicyName"
+            ],
+            "priority": "primary"
+         },
+         {
+            "key": "policyArn",
+            "kind": "identifier",
+            "label": "Policy ARN",
+            "path": [
+               "PolicyArn"
+            ],
+            "priority": "secondary"
+         }
+      ],
+      "operation": "ListAttachedGroupPolicies"
+   },
+   {
+      "array": [
+         "AttachedPolicies"
+      ],
+      "columns": [
+         {
+            "key": "policyName",
+            "kind": "name",
+            "label": "Policy name",
+            "path": [
+               "PolicyName"
+            ],
+            "priority": "primary"
+         }
+      ],
+      "operation": "ListAttachedRolePolicies"
+   },
+   {
+      "array": [
+         "AttachedPolicies"
+      ],
+      "columns": [
+         {
+            "key": "PolicyName",
+            "kind": "name",
+            "label": "Policy name",
+            "path": [
+               "PolicyName"
+            ],
+            "priority": "primary"
+         },
+         {
+            "key": "PolicyArn",
+            "kind": "identifier",
+            "label": "Policy ARN",
+            "path": [
+               "PolicyArn"
+            ],
+            "priority": "secondary"
+         }
+      ],
+      "operation": "ListAttachedUserPolicies"
+   },
+   {
+      "array": [
+         "PolicyNames"
+      ],
+      "columns": [
+         {
+            "key": "policyName",
+            "kind": "name",
+            "label": "Policy Name",
+            "path": [ ],
+            "priority": "primary"
+         }
+      ],
+      "operation": "ListGroupPolicies"
+   },
+   {
+      "array": [
+         "Groups"
+      ],
+      "columns": [
+         {
+            "key": "groupName",
+            "kind": "name",
+            "label": "Group name",
+            "path": [
+               "GroupName"
+            ],
+            "priority": "primary"
+         },
+         {
+            "key": "groupId",
+            "kind": "identifier",
+            "label": "Group ID",
+            "path": [
+               "GroupId"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "createDate",
+            "kind": "timestamp",
+            "label": "Created",
+            "path": [
+               "CreateDate"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "path",
+            "kind": "text",
+            "label": "Path",
+            "path": [
+               "Path"
+            ],
+            "priority": "tertiary"
+         }
+      ],
+      "operation": "ListGroups"
+   },
+   {
+      "array": [
+         "Groups"
+      ],
+      "columns": [
+         {
+            "key": "groupName",
+            "kind": "name",
+            "label": "Group name",
+            "path": [
+               "GroupName"
+            ],
+            "priority": "primary"
+         },
+         {
+            "key": "groupId",
+            "kind": "identifier",
+            "label": "Group ID",
+            "path": [
+               "GroupId"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "path",
+            "kind": "text",
+            "label": "Path",
+            "path": [
+               "Path"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "createDate",
+            "kind": "timestamp",
+            "label": "Created",
+            "path": [
+               "CreateDate"
+            ],
+            "priority": "tertiary"
+         }
+      ],
+      "operation": "ListGroupsForUser"
+   },
+   {
+      "array": [
+         "Tags"
+      ],
+      "columns": [
+         {
+            "key": "key",
+            "kind": "name",
+            "label": "Key",
+            "path": [
+               "Key"
+            ],
+            "priority": "primary"
+         },
+         {
+            "key": "value",
+            "kind": "text",
+            "label": "Value",
+            "path": [
+               "Value"
+            ],
+            "priority": "secondary"
+         }
+      ],
+      "operation": "ListInstanceProfileTags"
+   },
+   {
+      "array": [
+         "InstanceProfiles"
+      ],
+      "columns": [
+         {
+            "key": "instanceProfileName",
+            "kind": "name",
+            "label": "Profile name",
+            "path": [
+               "InstanceProfileName"
+            ],
+            "priority": "primary"
+         },
+         {
+            "key": "createDate",
+            "kind": "timestamp",
+            "label": "Created",
+            "path": [
+               "CreateDate"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "path",
+            "kind": "text",
+            "label": "Path",
+            "path": [
+               "Path"
+            ],
+            "priority": "tertiary"
+         }
+      ],
+      "operation": "ListInstanceProfiles"
+   },
+   {
+      "array": [
+         "InstanceProfiles"
+      ],
+      "columns": [
+         {
+            "key": "name",
+            "kind": "name",
+            "label": "Profile name",
+            "path": [
+               "InstanceProfileName"
+            ],
+            "priority": "primary"
+         },
+         {
+            "key": "path",
+            "kind": "text",
+            "label": "Path",
+            "path": [
+               "Path"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "created",
+            "kind": "timestamp",
+            "label": "Created",
+            "path": [
+               "CreateDate"
+            ],
+            "priority": "secondary"
+         }
+      ],
+      "operation": "ListInstanceProfilesForRole"
+   },
+   {
+      "array": [
+         "OpenIDConnectProviderList"
+      ],
+      "columns": [
+         {
+            "key": "arn",
+            "kind": "identifier",
+            "label": "Provider ARN",
+            "path": [
+               "Arn"
+            ],
+            "priority": "primary"
+         }
+      ],
+      "operation": "ListOpenIDConnectProviders"
+   },
+   {
+      "array": [
+         "Policies"
+      ],
+      "columns": [
+         {
+            "key": "policyName",
+            "kind": "name",
+            "label": "Policy name",
+            "path": [
+               "PolicyName"
+            ],
+            "priority": "primary"
+         },
+         {
+            "key": "attachmentCount",
+            "kind": "count",
+            "label": "Attachments",
+            "path": [
+               "AttachmentCount"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "updateDate",
+            "kind": "timestamp",
+            "label": "Updated",
+            "path": [
+               "UpdateDate"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "isAttachable",
+            "kind": "boolean",
+            "label": "Attachable",
+            "path": [
+               "IsAttachable"
+            ],
+            "priority": "tertiary"
+         }
+      ],
+      "operation": "ListPolicies"
+   },
+   {
+      "array": [
+         "Tags"
+      ],
+      "columns": [
+         {
+            "key": "key",
+            "kind": "text",
+            "label": "Key",
+            "path": [
+               "Key"
+            ],
+            "priority": "primary"
+         },
+         {
+            "key": "value",
+            "kind": "text",
+            "label": "Value",
+            "path": [
+               "Value"
+            ],
+            "priority": "secondary"
+         }
+      ],
+      "operation": "ListPolicyTags"
+   },
+   {
+      "array": [
+         "Versions"
+      ],
+      "columns": [
+         {
+            "key": "versionId",
+            "kind": "identifier",
+            "label": "Version ID",
+            "path": [
+               "VersionId"
+            ],
+            "priority": "primary"
+         },
+         {
+            "key": "isDefaultVersion",
+            "kind": "boolean",
+            "label": "Default",
+            "path": [
+               "IsDefaultVersion"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "createDate",
+            "kind": "timestamp",
+            "label": "Created",
+            "path": [
+               "CreateDate"
+            ],
+            "priority": "secondary"
+         }
+      ],
+      "operation": "ListPolicyVersions"
+   },
+   {
+      "array": [
+         "PolicyNames"
+      ],
+      "columns": [
+         {
+            "key": "policyName",
+            "kind": "name",
+            "label": "Policy name",
+            "path": [ ],
+            "priority": "primary"
+         }
+      ],
+      "operation": "ListRolePolicies"
+   },
+   {
+      "array": [
+         "Tags"
+      ],
+      "columns": [
+         {
+            "key": "key",
+            "kind": "name",
+            "label": "Key",
+            "path": [
+               "Key"
+            ],
+            "priority": "primary"
+         },
+         {
+            "key": "value",
+            "kind": "text",
+            "label": "Value",
+            "path": [
+               "Value"
+            ],
+            "priority": "secondary"
+         }
+      ],
+      "operation": "ListRoleTags"
+   },
+   {
+      "array": [
+         "Roles"
+      ],
+      "columns": [
+         {
+            "key": "role_name",
+            "kind": "name",
+            "label": "Role name",
+            "path": [
+               "RoleName"
+            ],
+            "priority": "primary"
+         },
+         {
+            "key": "path",
+            "kind": "text",
+            "label": "Path",
+            "path": [
+               "Path"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "create_date",
+            "kind": "timestamp",
+            "label": "Created",
+            "path": [
+               "CreateDate"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "last_used",
+            "kind": "timestamp",
+            "label": "Last used",
+            "path": [
+               "RoleLastUsed",
+               "LastUsedDate"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "max_session_duration",
+            "kind": "number",
+            "label": "Max session (s)",
+            "path": [
+               "MaxSessionDuration"
+            ],
+            "priority": "tertiary"
+         }
+      ],
+      "operation": "ListRoles"
+   },
+   {
+      "array": [
+         "SAMLProviderList"
+      ],
+      "columns": [
+         {
+            "key": "arn",
+            "kind": "identifier",
+            "label": "ARN",
+            "path": [
+               "Arn"
+            ],
+            "priority": "primary"
+         },
+         {
+            "key": "createDate",
+            "kind": "timestamp",
+            "label": "Created",
+            "path": [
+               "CreateDate"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "validUntil",
+            "kind": "timestamp",
+            "label": "Valid Until",
+            "path": [
+               "ValidUntil"
+            ],
+            "priority": "secondary"
+         }
+      ],
+      "operation": "ListSAMLProviders"
+   },
+   {
+      "array": [
+         "PolicyNames"
+      ],
+      "columns": [
+         {
+            "key": "policyName",
+            "kind": "name",
+            "label": "Policy name",
+            "path": [ ],
+            "priority": "primary"
+         }
+      ],
+      "operation": "ListUserPolicies"
+   },
+   {
+      "array": [
+         "Tags"
+      ],
+      "columns": [
+         {
+            "key": "key",
+            "kind": "name",
+            "label": "Key",
+            "path": [
+               "Key"
+            ],
+            "priority": "primary"
+         },
+         {
+            "key": "value",
+            "kind": "text",
+            "label": "Value",
+            "path": [
+               "Value"
+            ],
+            "priority": "secondary"
+         }
+      ],
+      "operation": "ListUserTags"
+   },
+   {
+      "array": [
+         "Users"
+      ],
+      "columns": [
+         {
+            "key": "UserName",
+            "kind": "name",
+            "label": "User name",
+            "path": [
+               "UserName"
+            ],
+            "priority": "primary"
+         },
+         {
+            "key": "UserId",
+            "kind": "identifier",
+            "label": "User ID",
+            "path": [
+               "UserId"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "CreateDate",
+            "kind": "timestamp",
+            "label": "Created",
+            "path": [
+               "CreateDate"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "PasswordLastUsed",
+            "kind": "timestamp",
+            "label": "Password last used",
+            "path": [
+               "PasswordLastUsed"
+            ],
+            "priority": "tertiary"
+         }
+      ],
+      "operation": "ListUsers"
+   }
+]

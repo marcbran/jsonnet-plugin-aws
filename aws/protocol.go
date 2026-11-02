@@ -39,6 +39,7 @@ var protocolPreference = []struct {
 	{"aws.protocols#awsJson1_1", awsJSON{version: "1.1"}},
 	{"aws.protocols#restJson1", restJSON{}},
 	{"aws.protocols#restXml", restXML{}},
+	{"aws.protocols#awsQuery", awsQuery{}},
 	{"aws.protocols#ec2Query", ec2Query{}},
 }
 

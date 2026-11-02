@@ -76,10 +76,13 @@ local paramValue(name) =
   tree:: error 'generate requires a tree',
   links:: [],
   manifest:: true,
-  base:: ['aws', '$account', '$region'],
-  baseLinks:: [{ const: 'aws' }, { origin: 'account' }, { origin: 'region' }],
+  global:: false,
+  base:: if self.global then ['aws', '$account'] else ['aws', '$account', '$region'],
+  baseLinks:: [{ const: 'aws' }, { origin: 'account' }] + (if self.global then [] else [{ origin: 'region' }]),
 
   local g = self,
+
+  local locationMixin = mixin(if g.global then 'global' else 'regional'),
 
   local fromContext(op) = {
     [k]: { param: std.get(op, 'contextInputs', {})[k] }
@@ -185,7 +188,7 @@ local paramValue(name) =
     local paginated = c.paginated != null;
     local flatten = std.get(c, 'itemsFlatten', false);
     local at = if flatten then ['items'] else c.itemsPath;
-    local bases = [view('table'), mixin('regional')] + (if paginated then [mixin('paginated')] else []) + (if flatten then [mixin('flattened')] else []);
+    local bases = [view('table'), locationMixin] + (if paginated then [mixin('paginated')] else []) + (if flatten then [mixin('flattened')] else []);
     local pagination =
       if !paginated then []
       else [
@@ -221,18 +224,18 @@ local paramValue(name) =
     local id = c.id;
     local idInput = std.mergePatch(scope, id.input);
     if std.objectHas(id, 'detail') then
-      adds([view('resource'), mixin('regional'), prettyObject([
+      adds([view('resource'), locationMixin, prettyObject([
         objectField('data', callExpr(id.detail, inputExpr(idInput, [], {}, false))),
       ] + linkSpecsField(inferredLinks(id.detail, [])), 0)])
     else if std.objectHas(id, 'filter') then
-      adds([view('resource'), mixin('regional'), mixin('single'), prettyObject([
+      adds([view('resource'), locationMixin, mixin('single'), prettyObject([
         hiddenField('itemsPath', literal(c.itemsPath)),
         hiddenField('response', callExpr(c.name, inputExpr(scope, [], fromContext(c) { [id.filter]: std.get(id, 'filterValue', [{ param: id.param }]) }, false))),
       ] + linkSpecsField(inferredLinks(c.name, c.itemsPath)), 0)])
     else null,
 
   local singletonNode(s, scope) =
-    adds([view('resource'), mixin('regional'), prettyObject(
+    adds([view('resource'), locationMixin, prettyObject(
       [objectField('data', callExpr(s.name, inputExpr(scope, s.params, fromContext(s), false)))] +
       linkSpecsField(inferredLinks(s.name, [])) +
       paramSpecsFields(s.params),

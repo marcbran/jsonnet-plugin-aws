@@ -1,0 +1,1 @@
+{"links":[{"at":["Users"],"confidence":"high","keys":[{"const":"permissions boundary","path":null},{"const":null,"path":["UserName"]}],"reason":"Each returned user may name a managed policy as its permissions boundary.","target":"ListPolicies","vars":[{"param":"PolicyArn","path":["PermissionsBoundary","PermissionsBoundaryArn"]}]}],"operation":"GetGroup"}

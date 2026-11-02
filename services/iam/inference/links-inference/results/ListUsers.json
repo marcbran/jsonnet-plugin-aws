@@ -1,0 +1,1 @@
+{"links":[{"at":["Users"],"confidence":"high","keys":[{"const":"permissions boundary","path":null},{"const":null,"path":["UserName"]}],"reason":"Each user may specify a managed policy ARN as its permissions boundary.","target":"ListPolicies","vars":[{"param":"PolicyArn","path":["PermissionsBoundary","PermissionsBoundaryArn"]}]}],"operation":"ListUsers"}

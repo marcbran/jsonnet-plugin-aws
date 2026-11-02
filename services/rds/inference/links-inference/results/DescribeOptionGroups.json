@@ -1,0 +1,1 @@
+{"links":[{"at":["OptionGroupsList"],"confidence":"medium","keys":[{"const":"source option group","path":null},{"const":null,"path":["OptionGroupName"]}],"reason":"SourceOptionGroup identifies the option group this option group was copied from.","target":"DescribeOptionGroups","vars":[{"param":"OptionGroupName","path":["SourceOptionGroup"]}]}],"operation":"DescribeOptionGroups"}

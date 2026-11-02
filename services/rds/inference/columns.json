@@ -1,0 +1,548 @@
+[
+   {
+      "array": [
+         "DBClusterBacktracks"
+      ],
+      "columns": [
+         {
+            "key": "backtrackIdentifier",
+            "kind": "identifier",
+            "label": "Backtrack ID",
+            "path": [
+               "BacktrackIdentifier"
+            ],
+            "priority": "primary"
+         },
+         {
+            "key": "status",
+            "kind": "status",
+            "label": "Status",
+            "path": [
+               "Status"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "backtrackRequestCreationTime",
+            "kind": "timestamp",
+            "label": "Requested",
+            "path": [
+               "BacktrackRequestCreationTime"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "backtrackTo",
+            "kind": "timestamp",
+            "label": "Backtrack To",
+            "path": [
+               "BacktrackTo"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "dbClusterIdentifier",
+            "kind": "name",
+            "label": "DB Cluster",
+            "path": [
+               "DBClusterIdentifier"
+            ],
+            "priority": "tertiary"
+         }
+      ],
+      "operation": "DescribeDBClusterBacktracks"
+   },
+   {
+      "array": [
+         "DBClusterParameterGroups"
+      ],
+      "columns": [
+         {
+            "key": "DBClusterParameterGroupName",
+            "kind": "name",
+            "label": "Parameter group",
+            "path": [
+               "DBClusterParameterGroupName"
+            ],
+            "priority": "primary"
+         },
+         {
+            "key": "DBParameterGroupFamily",
+            "kind": "text",
+            "label": "Family",
+            "path": [
+               "DBParameterGroupFamily"
+            ],
+            "priority": "secondary"
+         }
+      ],
+      "operation": "DescribeDBClusterParameterGroups"
+   },
+   {
+      "array": [
+         "Parameters"
+      ],
+      "columns": [
+         {
+            "key": "parameterName",
+            "kind": "name",
+            "label": "Parameter name",
+            "path": [
+               "ParameterName"
+            ],
+            "priority": "primary"
+         },
+         {
+            "key": "parameterValue",
+            "kind": "text",
+            "label": "Value",
+            "path": [
+               "ParameterValue"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "applyMethod",
+            "kind": "status",
+            "label": "Apply method",
+            "path": [
+               "ApplyMethod"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "isModifiable",
+            "kind": "boolean",
+            "label": "Modifiable",
+            "path": [
+               "IsModifiable"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "dataType",
+            "kind": "text",
+            "label": "Data type",
+            "path": [
+               "DataType"
+            ],
+            "priority": "tertiary"
+         }
+      ],
+      "operation": "DescribeDBClusterParameters"
+   },
+   {
+      "array": [
+         "DBClusterSnapshots"
+      ],
+      "columns": [
+         {
+            "key": "snapshot",
+            "kind": "name",
+            "label": "Snapshot",
+            "path": [
+               "DBClusterSnapshotIdentifier"
+            ],
+            "priority": "primary"
+         },
+         {
+            "key": "cluster",
+            "kind": "name",
+            "label": "Cluster",
+            "path": [
+               "DBClusterIdentifier"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "status",
+            "kind": "status",
+            "label": "Status",
+            "path": [
+               "Status"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "created",
+            "kind": "timestamp",
+            "label": "Created",
+            "path": [
+               "SnapshotCreateTime"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "engine_version",
+            "kind": "text",
+            "label": "Engine version",
+            "path": [
+               "EngineVersion"
+            ],
+            "priority": "tertiary"
+         }
+      ],
+      "operation": "DescribeDBClusterSnapshots"
+   },
+   {
+      "array": [
+         "DBClusters"
+      ],
+      "columns": [
+         {
+            "key": "db_cluster_identifier",
+            "kind": "name",
+            "label": "Cluster",
+            "path": [
+               "DBClusterIdentifier"
+            ],
+            "priority": "primary"
+         },
+         {
+            "key": "status",
+            "kind": "status",
+            "label": "Status",
+            "path": [
+               "Status"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "engine",
+            "kind": "text",
+            "label": "Engine",
+            "path": [
+               "Engine"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "engine_version",
+            "kind": "text",
+            "label": "Engine version",
+            "path": [
+               "EngineVersion"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "created",
+            "kind": "timestamp",
+            "label": "Created",
+            "path": [
+               "ClusterCreateTime"
+            ],
+            "priority": "tertiary"
+         }
+      ],
+      "operation": "DescribeDBClusters"
+   },
+   {
+      "array": [
+         "DBInstances"
+      ],
+      "columns": [
+         {
+            "key": "dbInstanceIdentifier",
+            "kind": "name",
+            "label": "DB instance",
+            "path": [
+               "DBInstanceIdentifier"
+            ],
+            "priority": "primary"
+         },
+         {
+            "key": "status",
+            "kind": "status",
+            "label": "Status",
+            "path": [
+               "DBInstanceStatus"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "engine",
+            "kind": "text",
+            "label": "Engine",
+            "path": [
+               "Engine"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "instanceClass",
+            "kind": "text",
+            "label": "Class",
+            "path": [
+               "DBInstanceClass"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "availabilityZone",
+            "kind": "text",
+            "label": "Availability zone",
+            "path": [
+               "AvailabilityZone"
+            ],
+            "priority": "tertiary"
+         }
+      ],
+      "operation": "DescribeDBInstances"
+   },
+   {
+      "array": [
+         "DescribeDBLogFiles"
+      ],
+      "columns": [
+         {
+            "key": "LogFileName",
+            "kind": "name",
+            "label": "Log file",
+            "path": [
+               "LogFileName"
+            ],
+            "priority": "primary"
+         },
+         {
+            "key": "LastWritten",
+            "kind": "timestamp",
+            "label": "Last written",
+            "path": [
+               "LastWritten"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "Size",
+            "kind": "number",
+            "label": "Size",
+            "path": [
+               "Size"
+            ],
+            "priority": "secondary"
+         }
+      ],
+      "operation": "DescribeDBLogFiles"
+   },
+   {
+      "array": [
+         "DBParameterGroups"
+      ],
+      "columns": [
+         {
+            "key": "name",
+            "kind": "name",
+            "label": "Parameter group",
+            "path": [
+               "DBParameterGroupName"
+            ],
+            "priority": "primary"
+         },
+         {
+            "key": "family",
+            "kind": "text",
+            "label": "Family",
+            "path": [
+               "DBParameterGroupFamily"
+            ],
+            "priority": "secondary"
+         }
+      ],
+      "operation": "DescribeDBParameterGroups"
+   },
+   {
+      "array": [
+         "Parameters"
+      ],
+      "columns": [
+         {
+            "key": "parameter_name",
+            "kind": "name",
+            "label": "Parameter",
+            "path": [
+               "ParameterName"
+            ],
+            "priority": "primary"
+         },
+         {
+            "key": "parameter_value",
+            "kind": "text",
+            "label": "Value",
+            "path": [
+               "ParameterValue"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "apply_method",
+            "kind": "status",
+            "label": "Apply method",
+            "path": [
+               "ApplyMethod"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "is_modifiable",
+            "kind": "boolean",
+            "label": "Modifiable",
+            "path": [
+               "IsModifiable"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "data_type",
+            "kind": "text",
+            "label": "Data type",
+            "path": [
+               "DataType"
+            ],
+            "priority": "tertiary"
+         }
+      ],
+      "operation": "DescribeDBParameters"
+   },
+   {
+      "array": [
+         "DBSnapshots"
+      ],
+      "columns": [
+         {
+            "key": "snapshotId",
+            "kind": "name",
+            "label": "Snapshot ID",
+            "path": [
+               "DBSnapshotIdentifier"
+            ],
+            "priority": "primary"
+         },
+         {
+            "key": "status",
+            "kind": "status",
+            "label": "Status",
+            "path": [
+               "Status"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "dbInstance",
+            "kind": "name",
+            "label": "DB Instance",
+            "path": [
+               "DBInstanceIdentifier"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "engine",
+            "kind": "text",
+            "label": "Engine",
+            "path": [
+               "Engine"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "created",
+            "kind": "timestamp",
+            "label": "Created",
+            "path": [
+               "SnapshotCreateTime"
+            ],
+            "priority": "secondary"
+         }
+      ],
+      "operation": "DescribeDBSnapshots"
+   },
+   {
+      "array": [
+         "DBSubnetGroups"
+      ],
+      "columns": [
+         {
+            "key": "dbSubnetGroupName",
+            "kind": "name",
+            "label": "Subnet Group",
+            "path": [
+               "DBSubnetGroupName"
+            ],
+            "priority": "primary"
+         },
+         {
+            "key": "subnetGroupStatus",
+            "kind": "status",
+            "label": "Status",
+            "path": [
+               "SubnetGroupStatus"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "vpcId",
+            "kind": "identifier",
+            "label": "VPC ID",
+            "path": [
+               "VpcId"
+            ],
+            "priority": "secondary"
+         }
+      ],
+      "operation": "DescribeDBSubnetGroups"
+   },
+   {
+      "array": [
+         "OptionGroupsList"
+      ],
+      "columns": [
+         {
+            "key": "optionGroupName",
+            "kind": "name",
+            "label": "Option Group",
+            "path": [
+               "OptionGroupName"
+            ],
+            "priority": "primary"
+         },
+         {
+            "key": "engineName",
+            "kind": "text",
+            "label": "Engine",
+            "path": [
+               "EngineName"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "majorEngineVersion",
+            "kind": "text",
+            "label": "Engine Version",
+            "path": [
+               "MajorEngineVersion"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "vpcId",
+            "kind": "identifier",
+            "label": "VPC",
+            "path": [
+               "VpcId"
+            ],
+            "priority": "secondary"
+         },
+         {
+            "key": "copyTimestamp",
+            "kind": "timestamp",
+            "label": "Copied",
+            "path": [
+               "CopyTimestamp"
+            ],
+            "priority": "tertiary"
+         }
+      ],
+      "operation": "DescribeOptionGroups"
+   }
+]

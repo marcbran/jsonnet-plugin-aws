@@ -1,0 +1,1 @@
+{"links":[{"at":["Role"],"confidence":"high","keys":[{"const":"permissions boundary","path":null}],"reason":"PermissionsBoundaryArn identifies the policy used as the role’s permissions boundary.","target":"ListPolicies","vars":[{"param":"PolicyArn","path":["PermissionsBoundary","PermissionsBoundaryArn"]}]}],"operation":"GetRole"}

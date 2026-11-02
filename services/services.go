@@ -4,10 +4,12 @@ import (
 	"github.com/marcbran/jsonnet-plugin-aws/aws"
 	"github.com/marcbran/jsonnet-plugin-aws/services/ec2"
 	"github.com/marcbran/jsonnet-plugin-aws/services/ecr"
+	"github.com/marcbran/jsonnet-plugin-aws/services/iam"
 	"github.com/marcbran/jsonnet-plugin-aws/services/opensearch"
+	"github.com/marcbran/jsonnet-plugin-aws/services/rds"
 	"github.com/marcbran/jsonnet-plugin-aws/services/s3"
 )
 
 func All() []aws.Definition {
-	return []aws.Definition{ec2.Service, ecr.Service, opensearch.Service, s3.Service}
+	return []aws.Definition{ec2.Service, ecr.Service, iam.Service, opensearch.Service, rds.Service, s3.Service}
 }

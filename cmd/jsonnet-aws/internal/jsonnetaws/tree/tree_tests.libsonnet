@@ -44,6 +44,7 @@ local model = {
           'ListRackEvents',
           'ListCrateNames',
           'DescribeCrate',
+          'DescribeDBTanks',
         ]
       ],
     },
@@ -86,6 +87,11 @@ local model = {
     'demo#ListCrateNamesResponse': structure({ CrateNames: member('demo#CrateInfos') }),
     'demo#DescribeCrate': operation('demo#CrateRequest', 'demo#CrateInfo'),
     'demo#CrateRequest': structure({ CrateName: member('demo#String', true) }),
+    'demo#DBTank': structure({ DBTankIdentifier: member('demo#String'), Engine: member('demo#String') }),
+    'demo#DBTanks': list('demo#DBTank'),
+    'demo#DescribeDBTanks': operation('demo#DescribeDBTanksRequest', 'demo#DescribeDBTanksResponse'),
+    'demo#DescribeDBTanksRequest': structure({ DBTankIdentifier: member('demo#String') }),
+    'demo#DescribeDBTanksResponse': structure({ DBTanks: member('demo#DBTanks') }),
     'demo#Tags': list('demo#Tag'),
     'demo#Machine': structure({ MachineId: member('demo#String'), State: member('demo#String'), Tags: member('demo#Tags') }),
     'demo#Machines': list('demo#Machine'),
@@ -166,6 +172,7 @@ local outline(node) =
       expected: {
         outline: {
           crates: { operation: 'ListCrateNames', id: 'CrateName', detail: 'DescribeCrate', children: {} },
+          dbTanks: { operation: 'DescribeDBTanks', id: 'DBTankIdentifier', detail: 'DBTankIdentifier', children: {} },
           machines: { operation: 'DescribeMachines', id: 'MachineId', detail: 'MachineIds', children: {} },
           racks: {
             operation: 'ListRacks',
@@ -223,6 +230,7 @@ local outline(node) =
       expected: {
         outline: {
           crates: { operation: 'ListCrateNames', id: 'CrateName', detail: 'DescribeCrate', children: {} },
+          dbTanks: { operation: 'DescribeDBTanks', id: 'DBTankIdentifier', detail: 'DBTankIdentifier', children: {} },
           machines: { operation: 'DescribeMachines', id: 'MachineId', detail: 'MachineIds', children: {} },
           racks: {
             operation: 'ListRacks',
@@ -380,6 +388,22 @@ local outline(node) =
         outline(treeOf({ include: ['ListCrateNames'] }).root),
       expected: {
         crates: { operation: 'ListCrateNames', id: 'CrateName', detail: 'DescribeCrate', children: {} },
+      },
+    },
+    {
+      name: 'an optional scalar identifier input of the list operation filters it to the detail',
+      input:: function()
+        local tanks = [c for c in treeOf({ include: ['DescribeDBTanks'] }).root.collections if c.name == 'DescribeDBTanks'][0];
+        { segment: tanks.segment, id: tanks.id },
+      expected: {
+        segment: 'dbTanks',
+        id: {
+          param: 'DBTankIdentifier',
+          path: ['DBTankIdentifier'],
+          input: { DBTankIdentifier: { param: 'DBTankIdentifier' } },
+          filter: 'DBTankIdentifier',
+          filterValue: { param: 'DBTankIdentifier' },
+        },
       },
     },
     {

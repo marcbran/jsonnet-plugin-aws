@@ -115,44 +115,51 @@ func (m *Model) encodeEC2Query(id string, memberTraits Traits, key string, v any
 		return nil
 	case "map":
 		return fmt.Errorf("%s: maps are not supported in ec2Query requests", localName(id))
-	case "timestamp":
-		t, err := parseTimestamp(v)
+	default:
+		str, err := m.queryScalar(id, memberTraits, s, v)
 		if err != nil {
 			return err
 		}
-		out.Set(key, fmt.Sprint(formatTimestamp(t, timestampFormat(memberTraits, s.Traits, "date-time"))))
+		out.Set(key, str)
 		return nil
+	}
+}
+
+func (m *Model) queryScalar(id string, memberTraits Traits, s *Shape, v any) (string, error) {
+	switch s.Type {
+	case "timestamp":
+		t, err := parseTimestamp(v)
+		if err != nil {
+			return "", err
+		}
+		return fmt.Sprint(formatTimestamp(t, timestampFormat(memberTraits, s.Traits, "date-time"))), nil
 	case "boolean":
 		b, ok := v.(bool)
 		if !ok {
-			return fmt.Errorf("%s must be a boolean", localName(id))
+			return "", fmt.Errorf("%s must be a boolean", localName(id))
 		}
-		out.Set(key, strconv.FormatBool(b))
-		return nil
+		return strconv.FormatBool(b), nil
 	case "byte", "short", "integer", "intEnum", "long", "float", "double", "bigInteger", "bigDecimal":
 		f, ok := v.(float64)
 		if !ok {
-			return fmt.Errorf("%s must be a number", localName(id))
+			return "", fmt.Errorf("%s must be a number", localName(id))
 		}
-		out.Set(key, strconv.FormatFloat(f, 'f', -1, 64))
-		return nil
+		return strconv.FormatFloat(f, 'f', -1, 64), nil
 	case "blob":
 		str, ok := v.(string)
 		if !ok {
-			return fmt.Errorf("%s must be a base64 string", localName(id))
+			return "", fmt.Errorf("%s must be a base64 string", localName(id))
 		}
 		_, err := base64.StdEncoding.DecodeString(str)
 		if err != nil {
-			return fmt.Errorf("%s must be a base64 string", localName(id))
+			return "", fmt.Errorf("%s must be a base64 string", localName(id))
 		}
-		out.Set(key, str)
-		return nil
+		return str, nil
 	default:
 		str, ok := v.(string)
 		if !ok {
-			return fmt.Errorf("%s must be a string", localName(id))
+			return "", fmt.Errorf("%s must be a string", localName(id))
 		}
-		out.Set(key, str)
-		return nil
+		return str, nil
 	}
 }

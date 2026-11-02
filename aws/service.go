@@ -11,7 +11,10 @@ import (
 type Definition struct {
 	Model            []byte
 	DeniedOperations []string
+	GlobalEndpoint   string
 }
+
+const globalSigningRegion = "us-east-1"
 
 type Service struct {
 	ID             string
@@ -19,6 +22,7 @@ type Service struct {
 	Version        string
 	SigningName    string
 	EndpointPrefix string
+	GlobalEndpoint string
 	Model          *Model
 	protocol       protocol
 	operations     map[string]string
@@ -72,6 +76,17 @@ func (s *Service) Operation(name string) (*Operation, error) {
 	return &Operation{ID: id, Name: name, Shape: shape}, nil
 }
 
+func (s *Service) Global() bool {
+	return s.GlobalEndpoint != ""
+}
+
+func (s *Service) SigningRegion(region string) string {
+	if s.Global() {
+		return globalSigningRegion
+	}
+	return region
+}
+
 func (s *Service) Name() string {
 	return localName(s.ID)
 }
@@ -121,6 +136,7 @@ func LoadService(def Definition) (*Service, error) {
 		Version:        shape.Version,
 		SigningName:    sigv4.Name,
 		EndpointPrefix: meta.EndpointPrefix,
+		GlobalEndpoint: def.GlobalEndpoint,
 		Model:          &m,
 		protocol:       proto,
 		operations:     map[string]string{},

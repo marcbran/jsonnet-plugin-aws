@@ -1,0 +1,1 @@
+{"links":[{"at":["AttachedPolicies"],"confidence":"high","keys":[{"const":"policy","path":null},{"const":null,"path":["PolicyName"]}],"reason":"Each attached policy entry contains the ARN of a managed policy.","target":"ListPolicies","vars":[{"param":"PolicyArn","path":["PolicyArn"]}]}],"operation":"ListAttachedUserPolicies"}

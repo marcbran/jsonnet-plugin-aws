@@ -1,0 +1,1 @@
+{"links":[{"at":["DBClusterSnapshots"],"confidence":"high","keys":[{"const":"cluster","path":null},{"const":null,"path":["DBClusterSnapshotIdentifier"]}],"reason":"Each cluster snapshot may reference the DB cluster it was created from.","target":"DescribeDBClusters","vars":[{"param":"DBClusterIdentifier","path":["DBClusterIdentifier"]}]}],"operation":"DescribeDBClusterSnapshots"}
