@@ -85,7 +85,7 @@ func TestOpenSearchErrorsAreReturnedAsStatus(t *testing.T) {
 	when.
 		the_jsonnet_is_evaluated(opensearchPrelude + `
 			local out = call('DescribeDomain', { DomainName: 'missing' });
-			{ code: out.code, reason: out.reason }
+			{ code: out._failure.code, reason: out._failure.reason }
 		`)
 
 	then.

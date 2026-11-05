@@ -75,7 +75,7 @@ func TestIAMErrorsAreReturnedAsStatus(t *testing.T) {
 	when.
 		the_jsonnet_is_evaluated(iamPrelude + `
 			local out = call('GetUser', { UserName: 'missing' });
-			{ code: out.code, reason: out.reason }
+			{ code: out._failure.code, reason: out._failure.reason }
 		`)
 
 	then.

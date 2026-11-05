@@ -13,6 +13,7 @@ import (
 	v4 "github.com/aws/aws-sdk-go-v2/aws/signer/v4"
 	"github.com/google/go-jsonnet"
 	"github.com/google/go-jsonnet/ast"
+	"github.com/marcbran/jpoet/pkg/jpoet"
 )
 
 type CallInput struct {
@@ -30,9 +31,9 @@ func Call(cfg *Config) jsonnet.NativeFunction {
 		Func: func(args []any) (any, error) {
 			ci, err := parseCallInput(args)
 			if err != nil {
-				return failureStatus(http.StatusBadRequest, "", err.Error()), nil
+				return nil, jpoet.NewFailure(http.StatusBadRequest, err.Error())
 			}
-			return runCall(context.Background(), cfg, ci), nil
+			return runCall(context.Background(), cfg, ci)
 		},
 	}
 }
@@ -80,29 +81,29 @@ func parseCallInput(args []any) (CallInput, error) {
 	}, nil
 }
 
-func runCall(ctx context.Context, cfg *Config, ci CallInput) any {
+func runCall(ctx context.Context, cfg *Config, ci CallInput) (any, error) {
 	svc, err := cfg.registry.service(ci.Service)
 	if err != nil {
-		return failureStatus(http.StatusBadRequest, "", err.Error())
+		return nil, jpoet.NewFailure(http.StatusBadRequest, err.Error())
 	}
 	op, err := svc.Operation(ci.Operation)
 	if err != nil {
-		return failureStatus(http.StatusBadRequest, "", err.Error())
+		return nil, jpoet.NewFailure(http.StatusBadRequest, err.Error())
 	}
 	if !svc.Readable(op) {
-		return failureStatus(http.StatusForbidden, "", fmt.Sprintf("%s %s is not an allowed read operation", svc.Key, op.Name))
+		return nil, jpoet.NewFailure(http.StatusForbidden, fmt.Sprintf("%s %s is not an allowed read operation", svc.Key, op.Name))
 	}
 	endpoint, err := cfg.Endpoint(svc, ci.Region)
 	if err != nil {
-		return failureStatus(http.StatusBadRequest, "", err.Error())
+		return nil, jpoet.NewFailure(http.StatusBadRequest, err.Error())
 	}
 	req, err := svc.protocol.encode(svc, op, ci.Input)
 	if err != nil {
-		return failureStatus(http.StatusBadRequest, "", fmt.Sprintf("%s %s: %s", svc.Key, op.Name, err))
+		return nil, jpoet.NewFailure(http.StatusBadRequest, fmt.Sprintf("%s %s: %s", svc.Key, op.Name, err))
 	}
 	creds, err := cfg.Credentials(ctx, ci)
 	if err != nil {
-		return failureStatus(http.StatusUnauthorized, "", err.Error())
+		return nil, jpoet.NewFailure(http.StatusUnauthorized, err.Error())
 	}
 	url := endpoint + req.Path
 	if len(req.Query) > 0 {
@@ -110,7 +111,7 @@ func runCall(ctx context.Context, cfg *Config, ci CallInput) any {
 	}
 	httpReq, err := http.NewRequestWithContext(ctx, req.Method, url, bytes.NewReader(req.Body))
 	if err != nil {
-		return failureStatus(http.StatusBadRequest, "", err.Error())
+		return nil, jpoet.NewFailure(http.StatusBadRequest, err.Error())
 	}
 	for k, vs := range req.Header {
 		httpReq.Header[k] = vs
@@ -126,42 +127,28 @@ func runCall(ctx context.Context, cfg *Config, ci CallInput) any {
 	})
 	err = signer.SignHTTP(ctx, creds, httpReq, payloadHash, svc.SigningName, svc.SigningRegion(ci.Region), time.Now())
 	if err != nil {
-		return failureStatus(http.StatusInternalServerError, "", err.Error())
+		return nil, jpoet.NewFailure(http.StatusInternalServerError, err.Error())
 	}
 	httpResp, err := cfg.Client.Do(httpReq)
 	if err != nil {
-		return failureStatus(http.StatusBadGateway, "", err.Error())
+		return nil, jpoet.NewFailure(http.StatusBadGateway, err.Error())
 	}
 	body, err := io.ReadAll(httpResp.Body)
 	closeErr := httpResp.Body.Close()
 	if err != nil {
-		return failureStatus(http.StatusBadGateway, "", err.Error())
+		return nil, jpoet.NewFailure(http.StatusBadGateway, err.Error())
 	}
 	if closeErr != nil {
-		return failureStatus(http.StatusBadGateway, "", closeErr.Error())
+		return nil, jpoet.NewFailure(http.StatusBadGateway, closeErr.Error())
 	}
 	resp := response{Status: httpResp.StatusCode, Header: httpResp.Header, Body: body}
 	if resp.Status < 200 || resp.Status > 299 {
 		e := svc.protocol.decodeError(resp)
-		return failureStatus(resp.Status, e.Code, e.Message)
+		return nil, &jpoet.Failure{Code: resp.Status, Reason: e.Code, Message: e.Message}
 	}
 	out, err := svc.protocol.decode(svc, op, resp)
 	if err != nil {
-		return failureStatus(http.StatusBadGateway, "", err.Error())
+		return nil, jpoet.NewFailure(http.StatusBadGateway, err.Error())
 	}
-	return out
-}
-
-func failureStatus(code int, reason string, msg string) map[string]any {
-	if reason == "" {
-		reason = http.StatusText(code)
-	}
-	return map[string]any{
-		"apiVersion": "v1",
-		"kind":       "Status",
-		"status":     "Failure",
-		"code":       float64(code),
-		"message":    msg,
-		"reason":     reason,
-	}
+	return out, nil
 }

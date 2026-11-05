@@ -86,12 +86,12 @@ func TestServiceErrorIsReturnedAsStatus(t *testing.T) {
 	when.
 		the_jsonnet_is_evaluated(prelude + `
 			local out = aws.call(ctx, 'ecr', 'DescribeImages', { repositoryName: 'missing' });
-			{ kind: out.kind, code: out.code, reason: out.reason }
+			{ code: out._failure.code, reason: out._failure.reason }
 		`)
 
 	then.
 		there_is_no_error().and().
-		the_output_is(`{"kind": "Status", "code": 400, "reason": "RepositoryNotFoundException"}`)
+		the_output_is(`{"code": 400, "reason": "RepositoryNotFoundException"}`)
 }
 
 func TestRejectedCalls(t *testing.T) {
@@ -136,7 +136,7 @@ func TestRejectedCalls(t *testing.T) {
 			when.
 				the_jsonnet_is_evaluated(prelude + `
 					local out = aws.call(ctx, 'ecr', '` + tc.operation + `', ` + tc.input + `);
-					{ code: out.code, message: out.message }
+					{ code: out._failure.code, message: out._failure.message }
 				`)
 
 			then.

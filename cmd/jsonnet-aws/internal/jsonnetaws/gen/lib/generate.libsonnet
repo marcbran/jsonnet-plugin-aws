@@ -225,7 +225,8 @@ local paramValue(name) =
     local idInput = std.mergePatch(scope, id.input);
     if std.objectHas(id, 'detail') then
       adds([view('resource'), locationMixin, prettyObject([
-        objectField('data', callExpr(id.detail, inputExpr(idInput, [], {}, false))),
+        hiddenField('response', callExpr(id.detail, inputExpr(idInput, [], {}, false))),
+        objectField('data', selfMember('response')),
       ] + linkSpecsField(inferredLinks(id.detail, [])), 0)])
     else if std.objectHas(id, 'filter') then
       adds([view('resource'), locationMixin, mixin('single'), prettyObject([
@@ -236,7 +237,10 @@ local paramValue(name) =
 
   local singletonNode(s, scope) =
     adds([view('resource'), locationMixin, prettyObject(
-      [objectField('data', callExpr(s.name, inputExpr(scope, s.params, fromContext(s), false)))] +
+      [
+        hiddenField('response', callExpr(s.name, inputExpr(scope, s.params, fromContext(s), false))),
+        objectField('data', selfMember('response')),
+      ] +
       linkSpecsField(inferredLinks(s.name, [])) +
       paramSpecsFields(s.params),
       0

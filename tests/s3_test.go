@@ -112,7 +112,7 @@ func TestS3ErrorsAreReturnedAsStatus(t *testing.T) {
 
 	when.
 		the_jsonnet_is_evaluated(s3Prelude + `
-			local status(out) = { code: out.code, reason: out.reason };
+			local status(out) = { code: out._failure.code, reason: out._failure.reason };
 			{
 			  notConfigured: status(call('GetBucketPolicy', { Bucket: 'logs' })),
 			  missingBucket: status(call('ListObjectsV2', { Bucket: 'missing' })),
