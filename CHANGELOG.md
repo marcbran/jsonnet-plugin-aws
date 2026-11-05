@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.4.0](https://github.com/marcbran/jsonnet-plugin-aws/compare/v0.3.0...v0.4.0) (2026-11-05)
+
+
+### Features
+
+* return call failures as jpoet failures and keep call results in response ([#14](https://github.com/marcbran/jsonnet-plugin-aws/issues/14)) ([6f2dd23](https://github.com/marcbran/jsonnet-plugin-aws/commit/6f2dd235b93ed592634061adec0ff801c20f5f3d))
+
 ## [0.3.0](https://github.com/marcbran/jsonnet-plugin-aws/compare/v0.2.0...v0.3.0) (2026-11-02)
 
 
