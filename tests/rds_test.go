@@ -41,7 +41,7 @@ func TestRDSErrorsAreReturnedAsStatus(t *testing.T) {
 	when.
 		the_jsonnet_is_evaluated(rdsPrelude + `
 			local out = callIn('eu-west-1', 'DescribeDBInstances', { DBInstanceIdentifier: 'missing' });
-			{ code: out.code, reason: out.reason }
+			{ code: out._failure.code, reason: out._failure.reason }
 		`)
 
 	then.

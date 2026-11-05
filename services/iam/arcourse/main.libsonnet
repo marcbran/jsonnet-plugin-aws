@@ -118,7 +118,7 @@ local a = import 'arcourse-ui/main.libsonnet',
     ],
   }],
   [['aws', '$account', 'iam', 'groups', '$GroupName', 'policies', '$PolicyName'], a.resource.node + aws.global + {
-    data: call(
+    response:: call(
       self.ctx,
       'GetGroupPolicy',
       {
@@ -126,6 +126,7 @@ local a = import 'arcourse-ui/main.libsonnet',
         PolicyName: $.PolicyName,
       }
     ),
+    data: self.response,
   }],
   [['aws', '$account', 'iam', 'groups', '$GroupName', 'users'], a.table.node + aws.global + aws.paginated + {
     inputToken:: 'Marker',
@@ -200,13 +201,14 @@ local a = import 'arcourse-ui/main.libsonnet',
     ],
   }],
   [['aws', '$account', 'iam', 'instanceProfiles', '$InstanceProfileName'], a.resource.node + aws.global + {
-    data: call(
+    response:: call(
       self.ctx,
       'GetInstanceProfile',
       {
         InstanceProfileName: $.InstanceProfileName,
       }
     ),
+    data: self.response,
     linkSpecs:: [
       {
         at: ['InstanceProfile', 'Roles'],
@@ -294,13 +296,14 @@ local a = import 'arcourse-ui/main.libsonnet',
     ],
   }],
   [['aws', '$account', 'iam', 'policies', '$PolicyArn'], a.resource.node + aws.global + {
-    data: call(
+    response:: call(
       self.ctx,
       'GetPolicy',
       {
         PolicyArn: $.PolicyArn,
       }
     ),
+    data: self.response,
     linkSpecs:: [
       {
         at: ['Policy'],
@@ -358,7 +361,7 @@ local a = import 'arcourse-ui/main.libsonnet',
     ],
   }],
   [['aws', '$account', 'iam', 'policies', '$PolicyArn', 'versions', '$VersionId'], a.resource.node + aws.global + {
-    data: call(
+    response:: call(
       self.ctx,
       'GetPolicyVersion',
       {
@@ -366,9 +369,10 @@ local a = import 'arcourse-ui/main.libsonnet',
         VersionId: $.VersionId,
       }
     ),
+    data: self.response,
   }],
   [['aws', '$account', 'iam', 'policies', '$PolicyArn', 'entities'], a.resource.node + aws.global + {
-    data: call(
+    response:: call(
       self.ctx,
       'ListEntitiesForPolicy',
       {
@@ -378,6 +382,7 @@ local a = import 'arcourse-ui/main.libsonnet',
         PolicyUsageFilter: std.get($._params, 'PolicyUsageFilter', null),
       }
     ),
+    data: self.response,
     linkSpecs:: [
       {
         at: ['PolicyGroups'],
@@ -441,13 +446,14 @@ local a = import 'arcourse-ui/main.libsonnet',
     ],
   }],
   [['aws', '$account', 'iam', 'roles', '$RoleName'], a.resource.node + aws.global + {
-    data: call(
+    response:: call(
       self.ctx,
       'GetRole',
       {
         RoleName: $.RoleName,
       }
     ),
+    data: self.response,
     linkSpecs:: [
       {
         at: ['Role'],
@@ -542,7 +548,7 @@ local a = import 'arcourse-ui/main.libsonnet',
     ],
   }],
   [['aws', '$account', 'iam', 'roles', '$RoleName', 'policies', '$PolicyName'], a.resource.node + aws.global + {
-    data: call(
+    response:: call(
       self.ctx,
       'GetRolePolicy',
       {
@@ -550,6 +556,7 @@ local a = import 'arcourse-ui/main.libsonnet',
         RoleName: $.RoleName,
       }
     ),
+    data: self.response,
   }],
   [['aws', '$account', 'iam', 'roles', '$RoleName', 'tags'], a.table.node + aws.global + aws.paginated + {
     inputToken:: 'Marker',
@@ -626,13 +633,14 @@ local a = import 'arcourse-ui/main.libsonnet',
     ],
   }],
   [['aws', '$account', 'iam', 'users', '$UserName'], a.resource.node + aws.global + {
-    data: call(
+    response:: call(
       self.ctx,
       'GetUser',
       {
         UserName: $.UserName,
       }
     ),
+    data: self.response,
     linkSpecs:: [
       {
         at: ['User', 'PermissionsBoundary'],
@@ -721,7 +729,7 @@ local a = import 'arcourse-ui/main.libsonnet',
     ],
   }],
   [['aws', '$account', 'iam', 'users', '$UserName', 'policies', '$PolicyName'], a.resource.node + aws.global + {
-    data: call(
+    response:: call(
       self.ctx,
       'GetUserPolicy',
       {
@@ -729,6 +737,7 @@ local a = import 'arcourse-ui/main.libsonnet',
         UserName: $.UserName,
       }
     ),
+    data: self.response,
   }],
   [['aws', '$account', 'iam', 'users', '$UserName', 'tags'], a.table.node + aws.global + aws.paginated + {
     inputToken:: 'Marker',
@@ -751,10 +760,11 @@ local a = import 'arcourse-ui/main.libsonnet',
     },
   }],
   [['aws', '$account', 'iam', 'accountSummary'], a.resource.node + aws.global + {
-    data: call(
+    response:: call(
       self.ctx,
       'GetAccountSummary',
       {}
     ),
+    data: self.response,
   }],
 ]

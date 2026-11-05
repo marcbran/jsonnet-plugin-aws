@@ -82,12 +82,12 @@ func TestEC2ErrorIsReturnedAsStatus(t *testing.T) {
 	when.
 		the_jsonnet_is_evaluated(ec2Prelude + `
 			local out = call('DescribeVpcs', { VpcIds: ['vpc-0000000000000000f'] });
-			{ kind: out.kind, code: out.code, reason: out.reason }
+			{ code: out._failure.code, reason: out._failure.reason }
 		`)
 
 	then.
 		there_is_no_error().and().
-		the_output_is(`{"kind": "Status", "code": 400, "reason": "InvalidVpcID.NotFound"}`)
+		the_output_is(`{"code": 400, "reason": "InvalidVpcID.NotFound"}`)
 }
 
 func TestEC2DeniedOperation(t *testing.T) {
@@ -96,7 +96,7 @@ func TestEC2DeniedOperation(t *testing.T) {
 	when.
 		the_jsonnet_is_evaluated(ec2Prelude + `
 			local out = call('GetPasswordData', { InstanceId: 'i-0000000000000000f' });
-			{ code: out.code, message: out.message }
+			{ code: out._failure.code, message: out._failure.message }
 		`)
 
 	then.

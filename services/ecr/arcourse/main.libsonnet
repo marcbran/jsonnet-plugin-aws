@@ -308,22 +308,24 @@ local a = import 'arcourse-ui/main.libsonnet',
     },
   }],
   [['aws', '$account', '$region', 'ecr', 'repositories', '$repositoryName', 'lifecyclePolicy'], a.resource.node + aws.regional + {
-    data: call(
+    response:: call(
       self.ctx,
       'GetLifecyclePolicy',
       {
         repositoryName: $.repositoryName,
       }
     ),
+    data: self.response,
   }],
   [['aws', '$account', '$region', 'ecr', 'repositories', '$repositoryName', 'policy'], a.resource.node + aws.regional + {
-    data: call(
+    response:: call(
       self.ctx,
       'GetRepositoryPolicy',
       {
         repositoryName: $.repositoryName,
       }
     ),
+    data: self.response,
   }],
   [['aws', '$account', '$region', 'ecr', 'repositoryCreationTemplates'], a.table.node + aws.regional + aws.paginated + {
     inputToken:: 'nextToken',
@@ -363,31 +365,35 @@ local a = import 'arcourse-ui/main.libsonnet',
     ),
   }],
   [['aws', '$account', '$region', 'ecr', 'registryPolicy'], a.resource.node + aws.regional + {
-    data: call(
+    response:: call(
       self.ctx,
       'GetRegistryPolicy',
       {}
     ),
+    data: self.response,
   }],
   [['aws', '$account', '$region', 'ecr', 'registryScanningConfiguration'], a.resource.node + aws.regional + {
-    data: call(
+    response:: call(
       self.ctx,
       'GetRegistryScanningConfiguration',
       {}
     ),
+    data: self.response,
   }],
   [['aws', '$account', '$region', 'ecr', 'registry'], a.resource.node + aws.regional + {
-    data: call(
+    response:: call(
       self.ctx,
       'DescribeRegistry',
       {}
     ),
+    data: self.response,
   }],
   [['aws', '$account', '$region', 'ecr', 'signingConfiguration'], a.resource.node + aws.regional + {
-    data: call(
+    response:: call(
       self.ctx,
       'GetSigningConfiguration',
       {}
     ),
+    data: self.response,
   }],
 ]

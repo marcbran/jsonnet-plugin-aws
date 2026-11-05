@@ -38,13 +38,14 @@ local a = import 'arcourse-ui/main.libsonnet',
     ],
   }],
   [['aws', '$account', '$region', 'opensearch', 'applications', '$id'], a.resource.node + aws.regional + {
-    data: call(
+    response:: call(
       self.ctx,
       'GetApplication',
       {
         id: $.id,
       }
     ),
+    data: self.response,
   }],
   [['aws', '$account', '$region', 'opensearch', 'applications', '$id', 'dataSourceAttachments'], a.table.node + aws.regional + {
     response:: call(
@@ -77,7 +78,7 @@ local a = import 'arcourse-ui/main.libsonnet',
     ],
   }],
   [['aws', '$account', '$region', 'opensearch', 'applications', '$id', 'dataSourceAttachments', '$dataSourceArn'], a.resource.node + aws.regional + {
-    data: call(
+    response:: call(
       self.ctx,
       'DescribeDataSourceAttachment',
       {
@@ -85,6 +86,7 @@ local a = import 'arcourse-ui/main.libsonnet',
         id: $.id,
       }
     ),
+    data: self.response,
   }],
   [['aws', '$account', '$region', 'opensearch', 'domains'], a.table.node + aws.regional + {
     response:: call(
@@ -114,13 +116,14 @@ local a = import 'arcourse-ui/main.libsonnet',
     ],
   }],
   [['aws', '$account', '$region', 'opensearch', 'domains', '$DomainName'], a.resource.node + aws.regional + {
-    data: call(
+    response:: call(
       self.ctx,
       'DescribeDomain',
       {
         DomainName: $.DomainName,
       }
     ),
+    data: self.response,
   }],
   [['aws', '$account', '$region', 'opensearch', 'domains', '$DomainName', 'dataSources'], a.table.node + aws.regional + {
     response:: call(
@@ -147,7 +150,7 @@ local a = import 'arcourse-ui/main.libsonnet',
     ],
   }],
   [['aws', '$account', '$region', 'opensearch', 'domains', '$DomainName', 'dataSources', '$Name'], a.resource.node + aws.regional + {
-    data: call(
+    response:: call(
       self.ctx,
       'GetDataSource',
       {
@@ -155,6 +158,7 @@ local a = import 'arcourse-ui/main.libsonnet',
         Name: $.Name,
       }
     ),
+    data: self.response,
   }],
   [['aws', '$account', '$region', 'opensearch', 'domains', '$DomainName', 'autoTunes'], a.table.node + aws.regional + aws.paginated + {
     inputToken:: 'NextToken',
@@ -380,25 +384,27 @@ local a = import 'arcourse-ui/main.libsonnet',
     ],
   }],
   [['aws', '$account', '$region', 'opensearch', 'domains', '$DomainName', 'config'], a.resource.node + aws.regional + {
-    data: call(
+    response:: call(
       self.ctx,
       'DescribeDomainConfig',
       {
         DomainName: $.DomainName,
       }
     ),
+    data: self.response,
   }],
   [['aws', '$account', '$region', 'opensearch', 'domains', '$DomainName', 'health'], a.resource.node + aws.regional + {
-    data: call(
+    response:: call(
       self.ctx,
       'DescribeDomainHealth',
       {
         DomainName: $.DomainName,
       }
     ),
+    data: self.response,
   }],
   [['aws', '$account', '$region', 'opensearch', 'domains', '$DomainName', 'dryRunProgress'], a.resource.node + aws.regional + {
-    data: call(
+    response:: call(
       self.ctx,
       'DescribeDryRunProgress',
       {
@@ -407,19 +413,21 @@ local a = import 'arcourse-ui/main.libsonnet',
         LoadDryRunConfig: std.get($._params, 'LoadDryRunConfig', null),
       }
     ),
+    data: self.response,
     _paramSpecs+: [
       { default: null, name: 'DryRunId', type: 'string' },
       { default: null, name: 'LoadDryRunConfig', type: 'boolean' },
     ],
   }],
   [['aws', '$account', '$region', 'opensearch', 'domains', '$DomainName', 'upgradeStatus'], a.resource.node + aws.regional + {
-    data: call(
+    response:: call(
       self.ctx,
       'GetUpgradeStatus',
       {
         DomainName: $.DomainName,
       }
     ),
+    data: self.response,
   }],
   [['aws', '$account', '$region', 'opensearch', 'packages'], a.table.node + aws.regional + aws.paginated + {
     inputToken:: 'NextToken',
