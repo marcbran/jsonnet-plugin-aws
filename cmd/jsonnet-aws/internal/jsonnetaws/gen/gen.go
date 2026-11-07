@@ -72,7 +72,7 @@ func Exec(ctx context.Context, loader inference.ModelLoader, in Input) (Output, 
 		return Output{}, err
 	}
 	renderer := infrajsonnet.NewRenderer(sub, tree.FS()).WithPlugins(in.Plugins...)
-	rendered, err := renderer.RenderOutput("gen.jsonnet",
+	rendered, err := renderer.RenderOutput(ctx, "gen.jsonnet",
 		infrajsonnet.Binding{Name: "service", Value: string(service)},
 		infrajsonnet.Binding{Name: "model", Value: model},
 		infrajsonnet.Binding{Name: "resources", Value: resources},

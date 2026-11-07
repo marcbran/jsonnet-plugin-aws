@@ -49,35 +49,14 @@ func NewE2EFacade(endpoint string, imports map[string]string) Facade {
 }
 
 func (f *JpoetFacade) Evaluate(ctx context.Context, snippet string) (string, error) {
-	return runWithContext(ctx, func() (string, error) {
-		var out bytes.Buffer
-		err := f.env.Eval(
-			jpoet.EvalSnippetInput("main.jsonnet", snippet),
-			jpoet.EvalWriterOutput(&out),
-		)
-		return out.String(), err
-	})
+	var out bytes.Buffer
+	err := f.env.Eval(ctx,
+		jpoet.EvalSnippetInput("main.jsonnet", snippet),
+		jpoet.EvalWriterOutput(&out),
+	)
+	return out.String(), err
 }
 
 func (f *JpoetFacade) Close() error {
 	return f.env.Close()
-}
-
-func runWithContext[T any](ctx context.Context, fn func() (T, error)) (T, error) {
-	type result struct {
-		value T
-		err   error
-	}
-	done := make(chan result, 1)
-	go func() {
-		value, err := fn()
-		done <- result{value, err}
-	}()
-	select {
-	case r := <-done:
-		return r.value, r.err
-	case <-ctx.Done():
-		var zero T
-		return zero, ctx.Err()
-	}
 }

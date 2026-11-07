@@ -11,8 +11,6 @@ import (
 	"time"
 
 	v4 "github.com/aws/aws-sdk-go-v2/aws/signer/v4"
-	"github.com/google/go-jsonnet"
-	"github.com/google/go-jsonnet/ast"
 	"github.com/marcbran/jpoet/pkg/jpoet"
 )
 
@@ -24,16 +22,15 @@ type CallInput struct {
 	Input     map[string]any
 }
 
-func Call(cfg *Config) jsonnet.NativeFunction {
-	return jsonnet.NativeFunction{
-		Name:   "call",
-		Params: ast.Identifiers{"ctx", "service", "operation", "input"},
-		Func: func(args []any) (any, error) {
+func Call(cfg *Config) jpoet.Function {
+	return jpoet.Function{
+		Name: "call",
+		Func: func(ctx context.Context, args []any) (any, error) {
 			ci, err := parseCallInput(args)
 			if err != nil {
 				return nil, jpoet.NewFailure(http.StatusBadRequest, err.Error())
 			}
-			return runCall(context.Background(), cfg, ci)
+			return runCall(ctx, cfg, ci)
 		},
 	}
 }

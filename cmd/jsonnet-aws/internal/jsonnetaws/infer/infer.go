@@ -101,7 +101,7 @@ func Exec(ctx context.Context, loader inference.ModelLoader, kind Kind, in Input
 	for _, job := range templateJobs {
 		bindings = append(bindings, infrajsonnet.Binding{Name: jsonnetName(job.Name()), Value: results[job.Name()]})
 	}
-	rendered, err := renderer.RenderOutput(kind.OutputTemplate, bindings...)
+	rendered, err := renderer.RenderOutput(ctx, kind.OutputTemplate, bindings...)
 	if err != nil {
 		return Output{}, err
 	}
