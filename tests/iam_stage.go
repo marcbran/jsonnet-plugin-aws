@@ -21,15 +21,6 @@ func (s *Stage) a_user(path string, name string, tags map[string]string) *Stage 
 	return s
 }
 
-func (s *Stage) a_role(name string) *Stage {
-	_, err := s.iamClient().CreateRole(context.Background(), &iam.CreateRoleInput{
-		RoleName:                 sdkaws.String(name),
-		AssumeRolePolicyDocument: sdkaws.String(`{"Version":"2012-10-17","Statement":[]}`),
-	})
-	require.NoError(s.t, err)
-	return s
-}
-
 func (s *Stage) iamClient() *iam.Client {
 	if s.iam == nil {
 		s.iam = iam.NewFromConfig(flociConfig(s.account, "us-east-1"))
