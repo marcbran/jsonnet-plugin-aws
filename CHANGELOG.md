@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.5.0](https://github.com/marcbran/jsonnet-plugin-aws/compare/v0.4.0...v0.5.0) (2026-11-07)
+
+
+### Features
+
+* pass the evaluation context to plugin calls ([#16](https://github.com/marcbran/jsonnet-plugin-aws/issues/16)) ([9cd0511](https://github.com/marcbran/jsonnet-plugin-aws/commit/9cd0511c5734606f4f5c84627fbb7b5cf4c4ea1e))
+
 ## [0.4.0](https://github.com/marcbran/jsonnet-plugin-aws/compare/v0.3.0...v0.4.0) (2026-11-05)
 
 
