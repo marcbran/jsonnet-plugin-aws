@@ -11,8 +11,7 @@ require (
 	github.com/aws/aws-sdk-go-v2/service/opensearch v1.87.1
 	github.com/aws/aws-sdk-go-v2/service/rds v1.131.2
 	github.com/aws/aws-sdk-go-v2/service/s3 v1.114.6
-	github.com/google/go-jsonnet v0.22.0
-	github.com/marcbran/jpoet v0.28.0
+	github.com/marcbran/jpoet v0.29.0
 	github.com/marcbran/jsonnet-plugin-jsonnet v0.4.0
 	github.com/spf13/cobra v1.10.2
 	github.com/stretchr/testify v1.12.1
@@ -49,6 +48,7 @@ require (
 	github.com/go-logr/stdr v1.2.2 // indirect
 	github.com/go-ole/go-ole v1.3.0 // indirect
 	github.com/golang/protobuf v1.5.4 // indirect
+	github.com/google/go-jsonnet v0.22.0 // indirect
 	github.com/google/uuid v1.6.0 // indirect
 	github.com/hashicorp/go-hclog v1.6.3 // indirect
 	github.com/hashicorp/go-plugin v1.8.0 // indirect
@@ -87,6 +87,7 @@ require (
 	go.yaml.in/yaml/v3 v3.0.5 // indirect
 	golang.org/x/crypto v0.58.0 // indirect
 	golang.org/x/net v0.62.0 // indirect
+	golang.org/x/sync v0.24.0 // indirect
 	golang.org/x/sys v0.49.0 // indirect
 	golang.org/x/text v0.43.0 // indirect
 	google.golang.org/genproto/googleapis/rpc v0.0.0-20260817212433-ac3dfec99bb1 // indirect

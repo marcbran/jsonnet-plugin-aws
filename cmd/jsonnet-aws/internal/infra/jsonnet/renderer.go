@@ -2,6 +2,7 @@ package jsonnet
 
 import (
 	"bytes"
+	"context"
 	"encoding/json"
 	"fmt"
 	"io/fs"
@@ -32,7 +33,7 @@ func (r *Renderer) WithPlugins(plugins ...*jpoet.Plugin) *Renderer {
 	return &Renderer{imports: r.imports, plugins: append(r.plugins, plugins...)}
 }
 
-func (r *Renderer) RenderBundles(template string, doc inference.ModelDocument) ([]inference.Bundle, error) {
+func (r *Renderer) RenderBundles(ctx context.Context, template string, doc inference.ModelDocument) ([]inference.Bundle, error) {
 	dir, err := os.MkdirTemp("", "jsonnet-aws-inference-*")
 	if err != nil {
 		return nil, err
@@ -52,7 +53,7 @@ func (r *Renderer) RenderBundles(template string, doc inference.ModelDocument) (
 		opts = append(opts, jpoet.FSImport(imp))
 	}
 	opts = append(opts, input, jpoet.Serialize(false), jpoet.DirectoryOutput(dir))
-	err = jpoet.Eval(opts...)
+	err = jpoet.Eval(ctx, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -76,7 +77,7 @@ func (r *Renderer) RenderBundles(template string, doc inference.ModelDocument) (
 	return bundles, nil
 }
 
-func (r *Renderer) RenderOutput(template string, bindings ...Binding) ([]byte, error) {
+func (r *Renderer) RenderOutput(ctx context.Context, template string, bindings ...Binding) ([]byte, error) {
 	var locals bytes.Buffer
 	names := make([]string, 0, len(bindings))
 	for _, binding := range bindings {
@@ -96,15 +97,15 @@ func (r *Renderer) RenderOutput(template string, bindings ...Binding) ([]byte, e
 		jpoet.SnippetInput(template, fmt.Sprintf("%s(import %q)(%s)", locals.String(), template, strings.Join(names, ", "))),
 		jpoet.WriterOutput(&out),
 	)
-	err := jpoet.Eval(opts...)
+	err := jpoet.Eval(ctx, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out.Bytes(), nil
 }
 
-func (r *Renderer) RenderCheck(template string, input, output []byte) ([]byte, []string, error) {
-	rendered, err := r.RenderOutput(template,
+func (r *Renderer) RenderCheck(ctx context.Context, template string, input, output []byte) ([]byte, []string, error) {
+	rendered, err := r.RenderOutput(ctx, template,
 		Binding{Name: "input", Value: string(input)},
 		Binding{Name: "output", Value: string(output)},
 	)

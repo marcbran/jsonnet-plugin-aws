@@ -9,7 +9,7 @@ import (
 
 type Renderer interface {
 	inference.BundleRenderer
-	RenderCheck(template string, input, output []byte) ([]byte, []string, error)
+	RenderCheck(ctx context.Context, template string, input, output []byte) ([]byte, []string, error)
 }
 
 type TemplateJob struct {
@@ -30,12 +30,12 @@ func (j *TemplateJob) TransformOutput(task inference.Task, output []byte) ([]byt
 	return overrideEchoedFields(task.Input, output, j.EchoedFields...)
 }
 
-func (j *TemplateJob) ValidateOutput(task inference.Task, output []byte) ([]byte, []string, error) {
-	return j.Renderer.RenderCheck(j.CheckTemplate, task.Input, output)
+func (j *TemplateJob) ValidateOutput(ctx context.Context, task inference.Task, output []byte) ([]byte, []string, error) {
+	return j.Renderer.RenderCheck(ctx, j.CheckTemplate, task.Input, output)
 }
 
 func (j *TemplateJob) Build(ctx context.Context, doc inference.ModelDocument, previous inference.Results) ([]inference.Task, error) {
-	bundles, err := j.Renderer.RenderBundles(j.BundlesTemplate, doc)
+	bundles, err := j.Renderer.RenderBundles(ctx, j.BundlesTemplate, doc)
 	if err != nil {
 		return nil, err
 	}
