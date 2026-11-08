@@ -1,12 +1,13 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": ["config:recommended", "helpers:pinGitHubActionDigests"],
+  "dependencyDashboard": false,
   "platformAutomerge": false,
   "automergeStrategy": "squash",
   "postUpdateOptions": ["gomodTidy"],
   "lockFileMaintenance": {
     "enabled": true,
-    "schedule": ["before 4am"],
+    "schedule": ["at any time"],
     "automerge": true
   },
   "packageRules": [
