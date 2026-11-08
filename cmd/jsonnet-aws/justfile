@@ -1,7 +1,12 @@
 tool := "go tool -modfile=../../tools/go.mod"
 
-test:
+test-go:
     go test ./...
+
+test-jsonnet:
+    {{tool}} jpoet test .
+
+test: test-go test-jsonnet
 
 lint:
     {{tool}} golangci-lint run ./...

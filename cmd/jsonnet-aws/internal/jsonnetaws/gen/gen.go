@@ -41,7 +41,7 @@ func Exec(ctx context.Context, loader inference.ModelLoader, in Input) (Output, 
 	}
 	dir := in.Out
 	if dir == "" {
-		dir = filepath.Join(in.Service, "arcourse")
+		dir = filepath.Join("pkg", "arcourse-aws-"+in.Service)
 	}
 	dir, err = filepath.Abs(dir)
 	if err != nil {
