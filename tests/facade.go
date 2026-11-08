@@ -39,7 +39,7 @@ func NewE2EFacade(endpoint string, imports map[string]string) Facade {
 	)
 	opts := []jpoet.EnvOption{
 		jpoet.EnvWithPlugin(plugin),
-		jpoet.EnvFileImport([]string{".."}),
+		jpoet.EnvFileImport([]string{"../pkg/jsonnet-plugin-aws"}),
 	}
 	for filename, content := range imports {
 		opts = append(opts, jpoet.EnvStringImport(filename, content))

@@ -32,14 +32,14 @@ func (s *Stage) the_nodes_are_generated() *Stage {
 }
 
 func (s *Stage) the_generated_package_matches_the_published_one() *Stage {
-	require.Len(s.t, s.lastGenerateOutput.Files, 3)
+	require.Len(s.t, s.lastGenerateOutput.Files, 4)
 	for _, file := range s.lastGenerateOutput.Files {
 		name := filepath.Base(file)
 		generated, err := os.ReadFile(file)
 		require.NoError(s.t, err)
-		published, err := os.ReadFile(filepath.Join(s.serviceDir, "arcourse", name))
+		published, err := os.ReadFile(filepath.Join(repoRoot(), "pkg", "arcourse-aws-"+s.input.Service, name))
 		require.NoError(s.t, err)
-		require.Equal(s.t, string(published), string(generated), "services/%s/arcourse/%s is out of date; run `just arcourse-gen %s`", s.input.Service, name, s.input.Service)
+		require.Equal(s.t, string(published), string(generated), "pkg/arcourse-aws-%s/%s is out of date; run `just arcourse-gen %s`", s.input.Service, name, s.input.Service)
 	}
 	return s
 }

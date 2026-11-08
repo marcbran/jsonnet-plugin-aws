@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "dependencies": [
+    {
+      "source": {
+        "git": {
+          "remote": "https://github.com/marcbran/jsonnet.git",
+          "subdir": "arcourse/arcourse-ui"
+        }
+      },
+      "version": "arcourse/arcourse-ui"
+    }
+  ],
+  "legacyImports": true
+}

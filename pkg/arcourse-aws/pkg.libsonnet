@@ -1,12 +1,12 @@
 local p = import 'pkg/main.libsonnet';
 
 p.pkg({
-  source: 'https://github.com/marcbran/jsonnet-plugin-aws/tree/main/arcourse',
+  source: 'https://github.com/marcbran/jsonnet-plugin-aws/tree/main/pkg/arcourse-aws',
   repo: 'https://github.com/marcbran/jsonnet.git',
   branch: 'arcourse/aws/arcourse-aws',
   path: 'arcourse/aws/arcourse-aws',
   target: 'arcourse-aws',
-  external: ['root', 'arcourse-ui/main.libsonnet'],
+  external: ['root'],
 }, |||
   Arcourse entry nodes for AWS: the `aws` node listing the configured accounts and the
   `aws/$account` nodes listing their regions. Services come from the `arcourse-aws-<service>`
