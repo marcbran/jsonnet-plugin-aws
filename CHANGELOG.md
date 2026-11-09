@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.5.1](https://github.com/marcbran/jsonnet-plugin-aws/compare/v0.5.0...v0.5.1) (2026-11-09)
+
+
+### Bug Fixes
+
+* **deps:** update aws-sdk-go-v2 monorepo ([#25](https://github.com/marcbran/jsonnet-plugin-aws/issues/25)) ([c165d25](https://github.com/marcbran/jsonnet-plugin-aws/commit/c165d2577bb1bc930a860719005e37e6581226fe))
+* **deps:** update module github.com/marcbran/jpoet to v0.30.0 ([#28](https://github.com/marcbran/jsonnet-plugin-aws/issues/28)) ([54625d7](https://github.com/marcbran/jsonnet-plugin-aws/commit/54625d7ac1b8bd51bb3cbba3d6df1bee1667d42e))
+* **deps:** update module github.com/testcontainers/testcontainers-go to v0.45.0 ([#29](https://github.com/marcbran/jsonnet-plugin-aws/issues/29)) ([ff5d80e](https://github.com/marcbran/jsonnet-plugin-aws/commit/ff5d80e5ae7a63814f120449505a0a18149a2e7b))
+
 ## [0.5.0](https://github.com/marcbran/jsonnet-plugin-aws/compare/v0.4.0...v0.5.0) (2026-11-07)
 
 
