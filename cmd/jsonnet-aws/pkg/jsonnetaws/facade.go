@@ -34,4 +34,5 @@ type Facade interface {
 	InferResources(ctx context.Context, in InferInput) (InferOutput, error)
 	InferColumns(ctx context.Context, in InferInput) (InferOutput, error)
 	InferLinks(ctx context.Context, in InferInput) (InferOutput, error)
+	InferParams(ctx context.Context, in InferInput) (InferOutput, error)
 }

@@ -1,0 +1,82 @@
+[
+   {
+      "operation": "DescribeDomainChangeProgress",
+      "params": [
+         {
+            "name": "ChangeId",
+            "role": "filter"
+         }
+      ]
+   },
+   {
+      "operation": "ListApplications",
+      "params": [
+         {
+            "name": "statuses",
+            "role": "filter"
+         }
+      ]
+   },
+   {
+      "operation": "ListDataSourceAttachments",
+      "params": [
+         {
+            "name": "maxResults",
+            "role": "pagination"
+         },
+         {
+            "name": "nextToken",
+            "role": "pagination"
+         }
+      ]
+   },
+   {
+      "operation": "ListDomainMaintenances",
+      "params": [
+         {
+            "name": "Action",
+            "role": "filter"
+         },
+         {
+            "name": "Status",
+            "role": "filter"
+         }
+      ]
+   },
+   {
+      "operation": "ListDomainNames",
+      "params": [
+         {
+            "name": "EngineType",
+            "role": "filter"
+         }
+      ]
+   },
+   {
+      "operation": "ListVpcEndpointAccess",
+      "params": [
+         {
+            "name": "NextToken",
+            "role": "pagination"
+         }
+      ]
+   },
+   {
+      "operation": "ListVpcEndpoints",
+      "params": [
+         {
+            "name": "NextToken",
+            "role": "pagination"
+         }
+      ]
+   },
+   {
+      "operation": "ListVpcEndpointsForDomain",
+      "params": [
+         {
+            "name": "NextToken",
+            "role": "pagination"
+         }
+      ]
+   }
+]

@@ -1,0 +1,1 @@
+{"confidence":"high","operation":"ListObjectAnnotations","params":[{"name":"AnnotationPrefix","reason":"Restricts results to annotations whose names start with this prefix.","role":"filter"},{"name":"VersionId","reason":"Selects the object version whose annotations are listed.","role":"filter"}],"reason":"Both parameters narrow which annotations are returned."}

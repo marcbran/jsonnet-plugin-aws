@@ -1,0 +1,1 @@
+{"confidence":"high","operation":"DescribeNatGateways","params":[{"name":"NatGatewayIds","reason":"Restricts results to the specified NAT gateway IDs.","role":"filter"}],"reason":"NatGatewayIds selects which NAT gateways are returned."}

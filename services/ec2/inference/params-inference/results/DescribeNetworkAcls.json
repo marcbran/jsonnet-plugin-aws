@@ -1,0 +1,1 @@
+{"confidence":"high","operation":"DescribeNetworkAcls","params":[{"name":"NetworkAclIds","reason":"Restricts the response to the specified network ACL IDs.","role":"filter"}],"reason":"The parameter documentation identifies IDs used to select which network ACLs are returned."}

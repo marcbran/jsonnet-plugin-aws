@@ -88,3 +88,26 @@ func TestLinksInferWithCachedInference(t *testing.T) {
 		codex_was_not_called_for("DescribePullThroughCacheRules", "GetRepositoryPolicy", "DescribeRepositories").and().
 		the_output_matches("ecr/links.json")
 }
+
+func TestParamsInferWithCachedInference(t *testing.T) {
+	given, when, then := scenario(t)
+
+	given.
+		the_service("ecr").and().
+		the_resource_overrides("ecr/resources.json").and().
+		the_output_file("params.json").and().
+		a_cached_result("params-inference", "DescribePullThroughCacheRules", `{"confidence":"high","operation":"DescribePullThroughCacheRules","params":[{"name":"ecrRepositoryPrefixes","reason":"Restricts results to rules associated with the specified repository prefixes.","role":"filter"}],"reason":"The documentation says the prefixes select which rules are returned."}`).and().
+		a_cached_result("params-inference", "DescribeReplicationBackfillResults", `{"confidence":"high","operation":"DescribeReplicationBackfillResults","params":[{"name":"resultStatusFilter","reason":"Filters returned results by status.","role":"filter"}],"reason":"The documentation explicitly says this parameter filters the returned results."}`).and().
+		a_cached_result("params-inference", "DescribeRepositories", `{"confidence":"high","operation":"DescribeRepositories","params":[{"name":"repositoryNames","reason":"Restricts the response to the named repositories.","role":"filter"}],"reason":"repositoryNames selects which repositories are described."}`).and().
+		a_cached_result("params-inference", "DescribeRepositoryCreationTemplates", `{"confidence":"high","operation":"DescribeRepositoryCreationTemplates","params":[{"name":"prefixes","reason":"Limits results to templates associated with the specified repository namespace prefixes.","role":"filter"}],"reason":"The documentation says that specifying prefixes returns matching templates; otherwise all templates are returned."}`).and().
+		a_cached_result("params-inference", "ListPullTimeUpdateExclusions", `{"confidence":"high","operation":"ListPullTimeUpdateExclusions","params":[{"name":"maxResults","reason":"Limits the number of results returned per page.","role":"pagination"},{"name":"nextToken","reason":"Continues listing from the previous page.","role":"pagination"}],"reason":"Both parameters control paginated results."}`)
+
+	when.
+		the_command_is_run(awspkg.Facade.InferParams)
+
+	then.
+		the_error_mentions("params-inference/DescribeImages").and().
+		no_result_is_cached("params-inference", "DescribeImages").and().
+		codex_was_not_called_for("DescribeRepositories", "ListPullTimeUpdateExclusions").and().
+		the_output_matches("ecr/params.json")
+}

@@ -1,0 +1,1 @@
+{"confidence":"high","operation":"ListVpcEndpoints","params":[{"name":"NextToken","reason":"Continues the listing on the next page.","role":"pagination"}],"reason":"The documentation identifies NextToken as the position for retrieving the next page."}

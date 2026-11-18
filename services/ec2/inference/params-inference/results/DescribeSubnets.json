@@ -1,0 +1,1 @@
+{"confidence":"high","operation":"DescribeSubnets","params":[{"name":"SubnetIds","reason":"Limits results to the specified subnet IDs.","role":"filter"}],"reason":"SubnetIds narrows which subnets are returned."}

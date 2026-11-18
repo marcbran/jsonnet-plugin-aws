@@ -1,0 +1,1 @@
+{"confidence":"high","operation":"ListApplications","params":[{"name":"statuses","reason":"Restricts results to applications with the specified statuses.","role":"filter"}],"reason":"The documentation explicitly describes statuses as filters."}

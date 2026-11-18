@@ -1,0 +1,263 @@
+[
+   {
+      "operation": "DescribeAddresses",
+      "params": [
+         {
+            "name": "AllocationIds",
+            "role": "filter"
+         },
+         {
+            "name": "PublicIps",
+            "role": "filter"
+         }
+      ]
+   },
+   {
+      "operation": "DescribeClientVpnEndpoints",
+      "params": [
+         {
+            "name": "ClientVpnEndpointIds",
+            "role": "filter"
+         }
+      ]
+   },
+   {
+      "operation": "DescribeClientVpnTargetNetworks",
+      "params": [
+         {
+            "name": "AssociationIds",
+            "role": "filter"
+         }
+      ]
+   },
+   {
+      "operation": "DescribeCustomerGateways",
+      "params": [
+         {
+            "name": "CustomerGatewayIds",
+            "role": "filter"
+         }
+      ]
+   },
+   {
+      "operation": "DescribeDhcpOptions",
+      "params": [
+         {
+            "name": "DhcpOptionsIds",
+            "role": "filter"
+         }
+      ]
+   },
+   {
+      "operation": "DescribeEgressOnlyInternetGateways",
+      "params": [
+         {
+            "name": "EgressOnlyInternetGatewayIds",
+            "role": "filter"
+         }
+      ]
+   },
+   {
+      "operation": "DescribeInstances",
+      "params": [
+         {
+            "name": "IncludeManagedResources",
+            "role": "filter"
+         },
+         {
+            "name": "InstanceIds",
+            "role": "filter"
+         }
+      ]
+   },
+   {
+      "operation": "DescribeInternetGateways",
+      "params": [
+         {
+            "name": "InternetGatewayIds",
+            "role": "filter"
+         }
+      ]
+   },
+   {
+      "operation": "DescribeKeyPairs",
+      "params": [
+         {
+            "name": "IncludePublicKey",
+            "role": "shaping"
+         },
+         {
+            "name": "KeyNames",
+            "role": "filter"
+         },
+         {
+            "name": "KeyPairIds",
+            "role": "filter"
+         }
+      ]
+   },
+   {
+      "operation": "DescribeLaunchTemplates",
+      "params": [
+         {
+            "name": "IncludeManagedResources",
+            "role": "filter"
+         },
+         {
+            "name": "LaunchTemplateIds",
+            "role": "filter"
+         },
+         {
+            "name": "LaunchTemplateNames",
+            "role": "filter"
+         }
+      ]
+   },
+   {
+      "operation": "DescribeNatGateways",
+      "params": [
+         {
+            "name": "NatGatewayIds",
+            "role": "filter"
+         }
+      ]
+   },
+   {
+      "operation": "DescribeNetworkAcls",
+      "params": [
+         {
+            "name": "NetworkAclIds",
+            "role": "filter"
+         }
+      ]
+   },
+   {
+      "operation": "DescribeNetworkInterfaceAttribute",
+      "params": [
+         {
+            "name": "Attribute",
+            "role": "shaping"
+         }
+      ]
+   },
+   {
+      "operation": "DescribeNetworkInterfaces",
+      "params": [
+         {
+            "name": "IncludeManagedResources",
+            "role": "filter"
+         },
+         {
+            "name": "NetworkInterfaceIds",
+            "role": "filter"
+         }
+      ]
+   },
+   {
+      "operation": "DescribeRouteTables",
+      "params": [
+         {
+            "name": "RouteTableIds",
+            "role": "filter"
+         }
+      ]
+   },
+   {
+      "operation": "DescribeSecurityGroups",
+      "params": [
+         {
+            "name": "GroupIds",
+            "role": "filter"
+         },
+         {
+            "name": "GroupNames",
+            "role": "filter"
+         }
+      ]
+   },
+   {
+      "operation": "DescribeSubnets",
+      "params": [
+         {
+            "name": "SubnetIds",
+            "role": "filter"
+         }
+      ]
+   },
+   {
+      "operation": "DescribeTransitGatewayAttachments",
+      "params": [
+         {
+            "name": "TransitGatewayAttachmentIds",
+            "role": "filter"
+         }
+      ]
+   },
+   {
+      "operation": "DescribeTransitGateways",
+      "params": [
+         {
+            "name": "TransitGatewayIds",
+            "role": "filter"
+         }
+      ]
+   },
+   {
+      "operation": "DescribeVolumes",
+      "params": [
+         {
+            "name": "IncludeManagedResources",
+            "role": "filter"
+         },
+         {
+            "name": "VolumeIds",
+            "role": "filter"
+         }
+      ]
+   },
+   {
+      "operation": "DescribeVpcEndpoints",
+      "params": [
+         {
+            "name": "VpcEndpointIds",
+            "role": "filter"
+         }
+      ]
+   },
+   {
+      "operation": "DescribeVpcPeeringConnections",
+      "params": [
+         {
+            "name": "VpcPeeringConnectionIds",
+            "role": "filter"
+         }
+      ]
+   },
+   {
+      "operation": "DescribeVpcs",
+      "params": [
+         {
+            "name": "VpcIds",
+            "role": "filter"
+         }
+      ]
+   },
+   {
+      "operation": "DescribeVpnConnections",
+      "params": [
+         {
+            "name": "VpnConnectionIds",
+            "role": "filter"
+         }
+      ]
+   },
+   {
+      "operation": "DescribeVpnGateways",
+      "params": [
+         {
+            "name": "VpnGatewayIds",
+            "role": "filter"
+         }
+      ]
+   }
+]

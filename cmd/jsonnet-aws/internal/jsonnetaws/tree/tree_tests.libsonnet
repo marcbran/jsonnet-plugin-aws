@@ -259,7 +259,7 @@ local outline(node) =
       },
     },
     {
-      name: 'collection params, pagination and default columns',
+      name: 'collection params include scalar lists as arrays, with pagination and default columns',
       input:: function()
         local collection = widgets(treeOf());
         {
@@ -269,7 +269,7 @@ local outline(node) =
           columns: collection.columns,
         },
       expected: {
-        params: [{ name: 'owner', type: 'string' }],
+        params: [{ name: 'owner', type: 'string' }, { name: 'widgetNames', type: 'array', items: { type: 'string' } }],
         paginated: { inputToken: 'nextToken', outputToken: 'nextToken', pageSize: 'maxResults' },
         itemsPath: ['widgets'],
         columns: [
@@ -413,9 +413,39 @@ local outline(node) =
       expected: ['widgets'],
     },
     {
+      name: 'enum shapes, int enums, legacy enum traits and lists of enums carry their values',
+      input:: function()
+        local unit(value=null) = { target: 'smithy.api#Unit' } + (if value == null then {} else { traits: { 'smithy.api#enumValue': value } });
+        local tree = libTreeLib {
+          model:: model {
+            shapes+: {
+              'demo#DescribeWidgetsRequest': structure({
+                nextToken: member('demo#String'),
+                maxResults: member('demo#Count'),
+                state: member('demo#State'),
+                states: member('demo#States'),
+                level: member('demo#Level'),
+                legacy: member('demo#Legacy'),
+              }),
+              'demo#State': { type: 'enum', members: { ACTIVE: unit('active'), PAUSED: unit() } },
+              'demo#States': list('demo#State'),
+              'demo#Level': { type: 'intEnum', members: { HIGH: unit(2), LOW: unit(1) } },
+              'demo#Legacy': { type: 'string', traits: { 'smithy.api#enum': [{ value: 'a' }, { value: 'b' }] } },
+            },
+          },
+        };
+        widgets(tree).params,
+      expected: [
+        { name: 'legacy', type: 'string', enum: ['a', 'b'] },
+        { name: 'level', type: 'number', enum: [2, 1] },
+        { name: 'state', type: 'string', enum: ['active', 'PAUSED'] },
+        { name: 'states', type: 'array', items: { type: 'string', enum: ['active', 'PAUSED'] } },
+      ],
+    },
+    {
       name: 'hidden params are not exposed',
       input:: function()
-        widgets(treeOf({ hiddenParams: ['owner'] })).params,
+        widgets(treeOf({ hiddenParams: ['owner', 'widgetNames'] })).params,
       expected: [],
     },
     {

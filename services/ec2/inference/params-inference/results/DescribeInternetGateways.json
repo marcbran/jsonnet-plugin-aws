@@ -1,0 +1,1 @@
+{"confidence":"high","operation":"DescribeInternetGateways","params":[{"name":"InternetGatewayIds","reason":"Limits results to the specified internet gateway IDs.","role":"filter"}],"reason":"The parameter selects which internet gateways are described."}

@@ -58,6 +58,7 @@ local maxColumns = 6;
   model:: error 'tree requires a model',
   overrides:: {},
   columns:: [],
+  params:: [],
 
   local t = self,
   local shapes = t.model.shapes,
@@ -201,11 +202,48 @@ local maxColumns = 6;
     if std.objectHas(contextInputs, m)
   },
 
-  local scalarParams(op) = [
-    { name: m, type: paramType(shapeType(op.inputs[m].target)) }
-    for m in op.optional
-    if isScalar(op.inputs[m].target) && !std.member(hiddenParams, m) && !std.objectHas(contextInputs, m)
-  ],
+  local enumValues(id) =
+    local shape = std.get(shapes, id, {});
+    if std.member(['enum', 'intEnum'], shapeType(id)) then [
+      std.get(traitsOf(member), 'smithy.api#enumValue', name)
+      for name in std.objectFields(membersOf(id))
+      for member in [membersOf(id)[name]]
+    ]
+    else [entry.value for entry in std.get(traitsOf(shape), 'smithy.api#enum', [])],
+
+  local scalarSpec(id) =
+    local values = enumValues(id);
+    { type: paramType(shapeType(id)) } + (if std.length(values) > 0 then { enum: values } else {}),
+
+  local listItem(id) = if shapeType(id) == 'list' then shapes[id].member.target else null,
+
+  local isParam(id) = isScalar(id) || (listItem(id) != null && isScalar(listItem(id))),
+
+  local paramSpec(id) =
+    if listItem(id) != null then { type: 'array', items: scalarSpec(listItem(id)) }
+    else scalarSpec(id),
+
+  local inferredRoles(name) = {
+    [param.name]: param.role
+    for entry in t.params
+    if entry.operation == name
+    for param in entry.params
+    if std.member(['filter', 'shaping', 'pagination', 'sort'], param.role)
+  },
+
+  local documentationOf(member) =
+    local doc = std.get(traitsOf(member), 'smithy.api#documentation', null);
+    if doc == null then {} else { documentation: doc },
+
+  local scalarParams(op) =
+    local roles = inferredRoles(op.name);
+    [
+      { name: m } + paramSpec(op.inputs[m].target)
+      + (if std.objectHas(roles, m) then { role: roles[m] } else {})
+      + documentationOf(op.inputs[m])
+      for m in op.optional
+      if isParam(op.inputs[m].target) && !std.member(hiddenParams, m) && !std.objectHas(contextInputs, m)
+    ],
 
   local defaultColumns(c, id) =
     if c.itemId != null && isScalar(c.itemId) then [{ label: namingLib.label(namingLib.singular(c.noun)), path: [] }]

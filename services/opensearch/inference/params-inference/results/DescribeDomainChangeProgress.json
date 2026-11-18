@@ -1,0 +1,1 @@
+{"confidence":"high","operation":"DescribeDomainChangeProgress","params":[{"name":"ChangeId","reason":"Selects progress for a specific change; omitted, it returns the most recent change.","role":"filter"}],"reason":"ChangeId narrows the response to progress for the specified change."}

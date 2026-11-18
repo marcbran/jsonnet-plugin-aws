@@ -1,0 +1,1 @@
+{"confidence":"high","operation":"DescribeRepositories","params":[{"name":"repositoryNames","reason":"Restricts the response to the named repositories.","role":"filter"}],"reason":"repositoryNames selects which repositories are described."}

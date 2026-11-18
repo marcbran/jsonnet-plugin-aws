@@ -1,0 +1,1 @@
+{"confidence":"high","operation":"DescribeAddresses","params":[{"name":"AllocationIds","reason":"Limits results to the specified allocation IDs.","role":"filter"},{"name":"PublicIps","reason":"Limits results to the specified Elastic IP addresses.","role":"filter"}],"reason":"Both parameters identify which addresses to return."}

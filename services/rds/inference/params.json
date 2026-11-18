@@ -1,0 +1,170 @@
+[
+   {
+      "operation": "DescribeDBClusterBacktracks",
+      "params": [
+         {
+            "name": "BacktrackIdentifier",
+            "role": "filter"
+         }
+      ]
+   },
+   {
+      "operation": "DescribeDBClusterParameterGroups",
+      "params": [
+         {
+            "name": "DBClusterParameterGroupName",
+            "role": "filter"
+         }
+      ]
+   },
+   {
+      "operation": "DescribeDBClusterParameters",
+      "params": [
+         {
+            "name": "Source",
+            "role": "filter"
+         }
+      ]
+   },
+   {
+      "operation": "DescribeDBClusterSnapshots",
+      "params": [
+         {
+            "name": "DBClusterIdentifier",
+            "role": "filter"
+         },
+         {
+            "name": "DBClusterSnapshotIdentifier",
+            "role": "filter"
+         },
+         {
+            "name": "DbClusterResourceId",
+            "role": "filter"
+         },
+         {
+            "name": "IncludePublic",
+            "role": "filter"
+         },
+         {
+            "name": "IncludeShared",
+            "role": "filter"
+         },
+         {
+            "name": "SnapshotType",
+            "role": "filter"
+         }
+      ]
+   },
+   {
+      "operation": "DescribeDBClusters",
+      "params": [
+         {
+            "name": "DBClusterIdentifier",
+            "role": "filter"
+         },
+         {
+            "name": "IncludeShared",
+            "role": "filter"
+         }
+      ]
+   },
+   {
+      "operation": "DescribeDBInstances",
+      "params": [
+         {
+            "name": "DBInstanceIdentifier",
+            "role": "filter"
+         }
+      ]
+   },
+   {
+      "operation": "DescribeDBLogFiles",
+      "params": [
+         {
+            "name": "FileLastWritten",
+            "role": "filter"
+         },
+         {
+            "name": "FileSize",
+            "role": "filter"
+         },
+         {
+            "name": "FilenameContains",
+            "role": "filter"
+         }
+      ]
+   },
+   {
+      "operation": "DescribeDBParameterGroups",
+      "params": [
+         {
+            "name": "DBParameterGroupName",
+            "role": "filter"
+         }
+      ]
+   },
+   {
+      "operation": "DescribeDBParameters",
+      "params": [
+         {
+            "name": "Source",
+            "role": "filter"
+         }
+      ]
+   },
+   {
+      "operation": "DescribeDBSnapshots",
+      "params": [
+         {
+            "name": "DBInstanceIdentifier",
+            "role": "filter"
+         },
+         {
+            "name": "DBSnapshotIdentifier",
+            "role": "filter"
+         },
+         {
+            "name": "DbiResourceId",
+            "role": "filter"
+         },
+         {
+            "name": "IncludePublic",
+            "role": "filter"
+         },
+         {
+            "name": "IncludeShared",
+            "role": "filter"
+         },
+         {
+            "name": "SnapshotType",
+            "role": "filter"
+         }
+      ]
+   },
+   {
+      "operation": "DescribeDBSubnetGroups",
+      "params": [
+         {
+            "name": "DBSubnetGroupName",
+            "role": "filter"
+         }
+      ]
+   },
+   {
+      "operation": "DescribeOptionGroups",
+      "params": [
+         {
+            "name": "EngineName",
+            "role": "filter"
+         },
+         {
+            "name": "MajorEngineVersion",
+            "role": "filter"
+         },
+         {
+            "name": "OptionGroupName",
+            "role": "filter"
+         }
+      ]
+   }
+]

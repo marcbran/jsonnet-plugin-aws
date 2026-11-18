@@ -63,6 +63,10 @@ func Exec(ctx context.Context, loader inference.ModelLoader, in Input) (Output, 
 	if err != nil {
 		return Output{}, err
 	}
+	params, err := readJSON(filepath.Join(inputs, "params.json"), "[]")
+	if err != nil {
+		return Output{}, err
+	}
 	sub, err := fs.Sub(genLib, "lib")
 	if err != nil {
 		return Output{}, err
@@ -78,6 +82,7 @@ func Exec(ctx context.Context, loader inference.ModelLoader, in Input) (Output, 
 		infrajsonnet.Binding{Name: "resources", Value: resources},
 		infrajsonnet.Binding{Name: "columns", Value: columns},
 		infrajsonnet.Binding{Name: "links", Value: links},
+		infrajsonnet.Binding{Name: "params", Value: params},
 	)
 	if err != nil {
 		return Output{}, err

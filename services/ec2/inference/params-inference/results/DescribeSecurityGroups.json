@@ -1,0 +1,1 @@
+{"confidence":"high","operation":"DescribeSecurityGroups","params":[{"name":"GroupIds","reason":"Restricts results to security groups with the specified IDs.","role":"filter"},{"name":"GroupNames","reason":"Restricts results to security groups with the specified names or IDs.","role":"filter"}],"reason":"Both parameters select which security groups are described."}

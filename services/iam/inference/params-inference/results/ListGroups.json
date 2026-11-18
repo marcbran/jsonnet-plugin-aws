@@ -1,0 +1,1 @@
+{"confidence":"high","operation":"ListGroups","params":[{"name":"PathPrefix","reason":"Limits results to groups whose path starts with this prefix.","role":"filter"}],"reason":"PathPrefix is documented as filtering which groups are returned."}

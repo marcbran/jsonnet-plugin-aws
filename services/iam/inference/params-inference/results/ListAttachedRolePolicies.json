@@ -1,0 +1,1 @@
+{"confidence":"high","operation":"ListAttachedRolePolicies","params":[{"name":"PathPrefix","reason":"Filters policies to those with the specified path prefix.","role":"filter"}],"reason":"PathPrefix explicitly narrows the listed policies."}

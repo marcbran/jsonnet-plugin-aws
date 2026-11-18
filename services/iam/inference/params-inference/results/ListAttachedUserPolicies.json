@@ -1,0 +1,1 @@
+{"confidence":"high","operation":"ListAttachedUserPolicies","params":[{"name":"PathPrefix","reason":"Filters policies by path prefix.","role":"filter"}],"reason":"PathPrefix narrows the listed policies by their path."}

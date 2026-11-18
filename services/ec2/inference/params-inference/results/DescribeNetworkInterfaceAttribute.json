@@ -1,0 +1,1 @@
+{"confidence":"high","operation":"DescribeNetworkInterfaceAttribute","params":[{"name":"Attribute","reason":"Selects which network interface attribute is returned.","role":"shaping"}],"reason":"Attribute determines the response content; it does not filter or paginate listed items."}

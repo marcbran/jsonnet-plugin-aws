@@ -1,0 +1,1 @@
+{"confidence":"high","operation":"DescribeClientVpnEndpoints","params":[{"name":"ClientVpnEndpointIds","reason":"Limits results to the specified Client VPN endpoint IDs.","role":"filter"}],"reason":"ClientVpnEndpointIds narrows the endpoints returned."}

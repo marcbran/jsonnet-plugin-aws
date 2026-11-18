@@ -46,11 +46,12 @@ local pkg(service, title, global) = |||
   scope: if global then 'account' else 'account and region',
 };
 
-function(service, model, resources, columns, links)
+function(service, model, resources, columns, links, params)
   local tree = treeLib {
     model:: model,
     overrides:: resources,
     columns:: columns,
+    params:: params,
   };
   local serviceShape = model.shapes[tree.service.id];
   local traits = std.get(serviceShape, 'traits', {});

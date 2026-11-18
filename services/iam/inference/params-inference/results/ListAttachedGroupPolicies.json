@@ -1,0 +1,1 @@
+{"confidence":"high","operation":"ListAttachedGroupPolicies","params":[{"name":"PathPrefix","reason":"Filters policies by their path prefix.","role":"filter"}],"reason":"PathPrefix explicitly filters the results."}

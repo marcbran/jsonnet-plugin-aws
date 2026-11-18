@@ -1,0 +1,1 @@
+{"confidence":"high","operation":"DescribeInstances","params":[{"name":"IncludeManagedResources","reason":"Includes managed resources that would otherwise be hidden.","role":"filter"},{"name":"InstanceIds","reason":"Restricts results to the specified instance IDs.","role":"filter"}],"reason":"Both parameters control which instances are returned."}

@@ -1,0 +1,1 @@
+{"confidence":"high","operation":"ListDomainNames","params":[{"name":"EngineType","reason":"Filters results by domain engine type.","role":"filter"}],"reason":"EngineType narrows the returned domain names by engine type."}

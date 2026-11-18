@@ -1,0 +1,1 @@
+{"confidence":"high","operation":"DescribeVpnGateways","params":[{"name":"VpnGatewayIds","reason":"Limits results to the specified virtual private gateway IDs.","role":"filter"}],"reason":"VpnGatewayIds narrows which gateways are returned."}

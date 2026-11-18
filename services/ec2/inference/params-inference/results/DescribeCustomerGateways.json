@@ -1,0 +1,1 @@
+{"confidence":"high","operation":"DescribeCustomerGateways","params":[{"name":"CustomerGatewayIds","reason":"Limits results to the specified customer gateway IDs; if omitted, describes all gateways.","role":"filter"}],"reason":"CustomerGatewayIds narrows the listed customer gateways by ID."}

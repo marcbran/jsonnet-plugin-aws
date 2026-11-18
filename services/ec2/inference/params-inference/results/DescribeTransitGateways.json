@@ -1,0 +1,1 @@
+{"confidence":"high","operation":"DescribeTransitGateways","params":[{"name":"TransitGatewayIds","reason":"Limits results to the specified transit gateway IDs.","role":"filter"}],"reason":"TransitGatewayIds narrows the set of returned transit gateways."}

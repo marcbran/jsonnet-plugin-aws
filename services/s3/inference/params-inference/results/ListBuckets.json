@@ -1,0 +1,1 @@
+{"confidence":"high","operation":"ListBuckets","params":[{"name":"Prefix","reason":"Limits results to bucket names beginning with this prefix.","role":"filter"}],"reason":"The documentation explicitly says Prefix limits which buckets are returned."}
