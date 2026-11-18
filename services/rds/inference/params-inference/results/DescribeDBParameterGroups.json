@@ -1,0 +1,1 @@
+{"confidence":"high","operation":"DescribeDBParameterGroups","params":[{"name":"DBParameterGroupName","reason":"Restricts the results to the named DB parameter group.","role":"filter"}],"reason":"The parameter selects a specific group to return."}

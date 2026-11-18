@@ -1,0 +1,1 @@
+{"confidence":"high","operation":"DescribeDBSubnetGroups","params":[{"name":"DBSubnetGroupName","reason":"Limits the results to the named DB subnet group.","role":"filter"}],"reason":"The parameter selects which DB subnet group to describe."}

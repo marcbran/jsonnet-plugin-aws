@@ -1,0 +1,1 @@
+{"confidence":"high","operation":"DescribeEgressOnlyInternetGateways","params":[{"name":"EgressOnlyInternetGatewayIds","reason":"Limits the results to the specified gateway IDs.","role":"filter"}],"reason":"The parameter documentation says it specifies which egress-only internet gateways to return."}

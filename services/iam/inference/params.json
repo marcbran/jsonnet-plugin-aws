@@ -1,0 +1,86 @@
+[
+   {
+      "operation": "ListAttachedGroupPolicies",
+      "params": [
+         {
+            "name": "PathPrefix",
+            "role": "filter"
+         }
+      ]
+   },
+   {
+      "operation": "ListAttachedRolePolicies",
+      "params": [
+         {
+            "name": "PathPrefix",
+            "role": "filter"
+         }
+      ]
+   },
+   {
+      "operation": "ListAttachedUserPolicies",
+      "params": [
+         {
+            "name": "PathPrefix",
+            "role": "filter"
+         }
+      ]
+   },
+   {
+      "operation": "ListGroups",
+      "params": [
+         {
+            "name": "PathPrefix",
+            "role": "filter"
+         }
+      ]
+   },
+   {
+      "operation": "ListInstanceProfiles",
+      "params": [
+         {
+            "name": "PathPrefix",
+            "role": "filter"
+         }
+      ]
+   },
+   {
+      "operation": "ListPolicies",
+      "params": [
+         {
+            "name": "OnlyAttached",
+            "role": "filter"
+         },
+         {
+            "name": "PathPrefix",
+            "role": "filter"
+         },
+         {
+            "name": "PolicyUsageFilter",
+            "role": "filter"
+         },
+         {
+            "name": "Scope",
+            "role": "filter"
+         }
+      ]
+   },
+   {
+      "operation": "ListRoles",
+      "params": [
+         {
+            "name": "PathPrefix",
+            "role": "filter"
+         }
+      ]
+   },
+   {
+      "operation": "ListUsers",
+      "params": [
+         {
+            "name": "PathPrefix",
+            "role": "filter"
+         }
+      ]
+   }
+]

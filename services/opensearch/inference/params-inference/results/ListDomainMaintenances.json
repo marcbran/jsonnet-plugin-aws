@@ -1,0 +1,1 @@
+{"confidence":"high","operation":"ListDomainMaintenances","params":[{"name":"Action","reason":"Limits results to maintenances with the specified action.","role":"filter"},{"name":"Status","reason":"Limits results to maintenances with the specified status.","role":"filter"}],"reason":"Both parameters narrow the returned maintenance items by action or status."}

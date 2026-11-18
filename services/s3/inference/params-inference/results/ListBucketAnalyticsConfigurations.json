@@ -1,0 +1,1 @@
+{"confidence":"high","operation":"ListBucketAnalyticsConfigurations","params":[{"name":"ContinuationToken","reason":"Marks where the listing should continue.","role":"pagination"}],"reason":"The documentation identifies ContinuationToken as the position from which the request should begin."}

@@ -1,0 +1,1 @@
+{"confidence":"high","operation":"DescribeVpcEndpoints","params":[{"name":"VpcEndpointIds","reason":"Limits the returned endpoints to the specified IDs.","role":"filter"}],"reason":"VpcEndpointIds narrows the list to specified VPC endpoints."}

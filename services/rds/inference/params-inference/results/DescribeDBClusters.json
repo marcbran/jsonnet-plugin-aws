@@ -1,0 +1,1 @@
+{"confidence":"high","operation":"DescribeDBClusters","params":[{"name":"DBClusterIdentifier","reason":"Returns only the specified DB cluster.","role":"filter"},{"name":"IncludeShared","reason":"Includes clusters shared from other accounts.","role":"filter"}],"reason":"Both parameters determine which clusters are returned."}

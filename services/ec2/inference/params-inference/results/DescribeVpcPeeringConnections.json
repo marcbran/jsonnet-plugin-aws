@@ -1,0 +1,1 @@
+{"confidence":"high","operation":"DescribeVpcPeeringConnections","params":[{"name":"VpcPeeringConnectionIds","reason":"Restricts results to the specified VPC peering connection IDs.","role":"filter"}],"reason":"The parameter explicitly selects which connections to describe."}

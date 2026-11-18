@@ -1,0 +1,1 @@
+{"confidence":"high","operation":"ListBucketIntelligentTieringConfigurations","params":[{"name":"ContinuationToken","reason":"Marks where the next listing request should begin.","role":"pagination"}],"reason":"ContinuationToken identifies the position to continue listing from."}

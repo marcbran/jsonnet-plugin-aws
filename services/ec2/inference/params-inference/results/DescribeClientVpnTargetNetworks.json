@@ -1,0 +1,1 @@
+{"confidence":"high","operation":"DescribeClientVpnTargetNetworks","params":[{"name":"AssociationIds","reason":"Limits results to the specified target network association IDs.","role":"filter"}],"reason":"AssociationIds explicitly narrows the returned target network associations."}

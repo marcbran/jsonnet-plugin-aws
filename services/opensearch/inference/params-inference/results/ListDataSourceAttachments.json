@@ -1,0 +1,1 @@
+{"confidence":"high","operation":"ListDataSourceAttachments","params":[{"name":"maxResults","reason":"Sets the maximum results per page.","role":"pagination"},{"name":"nextToken","reason":"Continues listing from the previous page.","role":"pagination"}],"reason":"Both parameters control pagination."}

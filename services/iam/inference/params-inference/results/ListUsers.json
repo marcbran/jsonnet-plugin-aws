@@ -1,0 +1,1 @@
+{"confidence":"high","operation":"ListUsers","params":[{"name":"PathPrefix","reason":"Limits results to user names whose paths start with this prefix.","role":"filter"}],"reason":"The documentation explicitly describes PathPrefix as filtering the results."}

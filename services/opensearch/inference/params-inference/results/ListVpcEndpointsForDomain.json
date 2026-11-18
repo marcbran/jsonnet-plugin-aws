@@ -1,0 +1,1 @@
+{"confidence":"high","operation":"ListVpcEndpointsForDomain","params":[{"name":"NextToken","reason":"Continues the listing on the next page.","role":"pagination"}],"reason":"NextToken identifies the next page of results."}

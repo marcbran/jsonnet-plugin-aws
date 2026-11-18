@@ -18,7 +18,7 @@ local paginated = {
   outputToken:: 'nextToken',
   pageSize:: null,
   _paramSpecs+: [
-    { name: name, type: if name == $.pageSize then 'number' else 'string', default: null }
+    { name: name, type: if name == $.pageSize then 'number' else 'string', role: 'pagination', default: null }
     for name in [$.pageSize, $.inputToken]
     if name != null
   ],

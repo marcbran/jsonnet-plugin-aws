@@ -26,6 +26,7 @@ local collect(node, segments, params) =
         required: c.required,
         detail: if c.id == null then null else std.get(c.id, 'detail', null),
         documentation: c.documentation,
+        queryParams: c.params,
       },
     ] + (if c.children == null then [] else collect(c.children, cSegments + ['{' + c.id.param + '}'], cParams))
     for c in node.collections

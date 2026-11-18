@@ -1,0 +1,1 @@
+{"confidence":"high","operation":"DescribeVpnConnections","params":[{"name":"VpnConnectionIds","reason":"Restricts results to the specified VPN connection IDs.","role":"filter"}],"reason":"The parameter documentation says it accepts VPN connection IDs and otherwise describes all VPN connections."}

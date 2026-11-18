@@ -1,0 +1,1 @@
+{"confidence":"high","operation":"DescribeTransitGatewayAttachments","params":[{"name":"TransitGatewayAttachmentIds","reason":"Limits results to the specified attachment IDs.","role":"filter"}],"reason":"The parameter documentation identifies attachment IDs used to narrow the returned attachments."}

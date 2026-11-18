@@ -1,0 +1,1 @@
+{"confidence":"high","operation":"ListBucketInventoryConfigurations","params":[{"name":"ContinuationToken","reason":"Continues a truncated listing from the previous response.","role":"pagination"}],"reason":"The documentation identifies the token as the position for continuing a truncated listing."}

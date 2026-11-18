@@ -1,0 +1,14 @@
+[
+  import "DescribeDBClusterBacktracks.json",
+  import "DescribeDBClusterParameterGroups.json",
+  import "DescribeDBClusterParameters.json",
+  import "DescribeDBClusterSnapshots.json",
+  import "DescribeDBClusters.json",
+  import "DescribeDBInstances.json",
+  import "DescribeDBLogFiles.json",
+  import "DescribeDBParameterGroups.json",
+  import "DescribeDBParameters.json",
+  import "DescribeDBSnapshots.json",
+  import "DescribeDBSubnetGroups.json",
+  import "DescribeOptionGroups.json",
+]

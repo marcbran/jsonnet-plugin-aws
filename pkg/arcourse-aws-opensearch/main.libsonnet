@@ -17,7 +17,9 @@ local a = import 'arcourse-ui/main.libsonnet',
     response:: call(
       self.ctx,
       'ListApplications',
-      self.page
+      self.page {
+        statuses: std.get($._params, 'statuses', null),
+      }
     ),
     data:: self.response,
     table:: {
@@ -35,6 +37,9 @@ local a = import 'arcourse-ui/main.libsonnet',
         keys: [{ path: ['id'] }],
         value: [{ const: 'aws' }, { origin: 'account' }, { origin: 'region' }, { const: 'opensearch' }, { const: 'applications' }, { param: 'id', path: ['id'] }],
       },
+    ],
+    _paramSpecs+: [
+      { default: null, items: { enum: ['ACTIVE', 'CREATING', 'DELETING', 'FAILED', 'UPDATING'], type: 'string' }, name: 'statuses', role: 'filter', type: 'array' },
     ],
   }],
   [['aws', '$account', '$region', 'opensearch', 'applications', '$id'], a.resource.node + aws.regional + {
@@ -73,8 +78,8 @@ local a = import 'arcourse-ui/main.libsonnet',
       },
     ],
     _paramSpecs+: [
-      { default: null, name: 'maxResults', type: 'number' },
-      { default: null, name: 'nextToken', type: 'string' },
+      { default: null, name: 'maxResults', role: 'pagination', type: 'number' },
+      { default: null, name: 'nextToken', role: 'pagination', type: 'string' },
     ],
   }],
   [['aws', '$account', '$region', 'opensearch', 'applications', '$id', 'dataSourceAttachments', '$dataSourceArn'], a.resource.node + aws.regional + {
@@ -112,7 +117,7 @@ local a = import 'arcourse-ui/main.libsonnet',
       },
     ],
     _paramSpecs+: [
-      { default: null, name: 'EngineType', type: 'string' },
+      { default: null, enum: ['Elasticsearch', 'OpenSearch'], name: 'EngineType', role: 'filter', type: 'string' },
     ],
   }],
   [['aws', '$account', '$region', 'opensearch', 'domains', '$DomainName'], a.resource.node + aws.regional + {
@@ -201,7 +206,7 @@ local a = import 'arcourse-ui/main.libsonnet',
       ],
     },
     _paramSpecs+: [
-      { default: null, name: 'ChangeId', type: 'string' },
+      { default: null, name: 'ChangeId', role: 'filter', type: 'string' },
     ],
   }],
   [['aws', '$account', '$region', 'opensearch', 'domains', '$DomainName', 'maintenances'], a.table.node + aws.regional + aws.paginated + {
@@ -229,8 +234,8 @@ local a = import 'arcourse-ui/main.libsonnet',
       ],
     },
     _paramSpecs+: [
-      { default: null, name: 'Action', type: 'string' },
-      { default: null, name: 'Status', type: 'string' },
+      { default: null, enum: ['REBOOT_NODE', 'RESTART_DASHBOARD', 'RESTART_SEARCH_PROCESS'], name: 'Action', role: 'filter', type: 'string' },
+      { default: null, enum: ['COMPLETED', 'FAILED', 'IN_PROGRESS', 'PENDING', 'TIMED_OUT'], name: 'Status', role: 'filter', type: 'string' },
     ],
   }],
   [['aws', '$account', '$region', 'opensearch', 'domains', '$DomainName', 'nodes'], a.table.node + aws.regional + {
@@ -358,7 +363,7 @@ local a = import 'arcourse-ui/main.libsonnet',
       ],
     },
     _paramSpecs+: [
-      { default: null, name: 'NextToken', type: 'string' },
+      { default: null, name: 'NextToken', role: 'pagination', type: 'string' },
     ],
   }],
   [['aws', '$account', '$region', 'opensearch', 'domains', '$DomainName', 'vpcEndpoints'], a.table.node + aws.regional + {
@@ -380,7 +385,7 @@ local a = import 'arcourse-ui/main.libsonnet',
       ],
     },
     _paramSpecs+: [
-      { default: null, name: 'NextToken', type: 'string' },
+      { default: null, name: 'NextToken', role: 'pagination', type: 'string' },
     ],
   }],
   [['aws', '$account', '$region', 'opensearch', 'domains', '$DomainName', 'config'], a.resource.node + aws.regional + {
@@ -486,7 +491,7 @@ local a = import 'arcourse-ui/main.libsonnet',
       ],
     },
     _paramSpecs+: [
-      { default: null, name: 'NextToken', type: 'string' },
+      { default: null, name: 'NextToken', role: 'pagination', type: 'string' },
     ],
   }],
 ]

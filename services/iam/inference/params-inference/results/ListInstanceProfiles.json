@@ -1,0 +1,1 @@
+{"confidence":"high","operation":"ListInstanceProfiles","params":[{"name":"PathPrefix","reason":"Limits results to instance profiles whose path starts with this prefix.","role":"filter"}],"reason":"PathPrefix explicitly filters the listed instance profiles by path."}

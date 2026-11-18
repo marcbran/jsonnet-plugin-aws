@@ -9,8 +9,8 @@ arcourse-infer service job:
     #!/usr/bin/env bash
     set -euo pipefail
     case "{{job}}" in
-      resources|columns|links) ;;
-      *) echo "unknown inference job: {{job}}; expected resources, columns or links" >&2; exit 1 ;;
+      resources|columns|links|params) ;;
+      *) echo "unknown inference job: {{job}}; expected resources, columns, links or params" >&2; exit 1 ;;
     esac
     extra=()
     if [ -n "${LIMIT:-}" ]; then extra+=(--limit "$LIMIT"); fi
@@ -20,7 +20,7 @@ arcourse-infer service job:
       --workdir "services/{{service}}/inference" \
       "${extra[@]+"${extra[@]}"}"
 
-arcourse-infer-service service: (arcourse-infer service "resources") (arcourse-infer service "columns") (arcourse-infer service "links") (arcourse-gen service)
+arcourse-infer-service service: (arcourse-infer service "resources") (arcourse-infer service "columns") (arcourse-infer service "links") (arcourse-infer service "params") (arcourse-gen service)
 
 build-jsonnet: vendor-jsonnet
     for dir in pkg/*/; do \

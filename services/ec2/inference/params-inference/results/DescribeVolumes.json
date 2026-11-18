@@ -1,0 +1,1 @@
+{"confidence":"high","operation":"DescribeVolumes","params":[{"name":"IncludeManagedResources","reason":"Includes managed resources in the results when set to true.","role":"filter"},{"name":"VolumeIds","reason":"Limits the results to the specified volume IDs.","role":"filter"}],"reason":"Both parameters determine which volumes are included in the response."}

@@ -1,0 +1,1 @@
+{"confidence":"high","operation":"ListRoles","params":[{"name":"PathPrefix","reason":"Returns only roles whose path starts with this prefix.","role":"filter"}],"reason":"The documentation explicitly says PathPrefix filters the results."}

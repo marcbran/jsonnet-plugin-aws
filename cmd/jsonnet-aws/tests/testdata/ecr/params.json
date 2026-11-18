@@ -1,0 +1,51 @@
+[
+   {
+      "operation": "DescribePullThroughCacheRules",
+      "params": [
+         {
+            "name": "ecrRepositoryPrefixes",
+            "role": "filter"
+         }
+      ]
+   },
+   {
+      "operation": "DescribeReplicationBackfillResults",
+      "params": [
+         {
+            "name": "resultStatusFilter",
+            "role": "filter"
+         }
+      ]
+   },
+   {
+      "operation": "DescribeRepositories",
+      "params": [
+         {
+            "name": "repositoryNames",
+            "role": "filter"
+         }
+      ]
+   },
+   {
+      "operation": "DescribeRepositoryCreationTemplates",
+      "params": [
+         {
+            "name": "prefixes",
+            "role": "filter"
+         }
+      ]
+   },
+   {
+      "operation": "ListPullTimeUpdateExclusions",
+      "params": [
+         {
+            "name": "maxResults",
+            "role": "pagination"
+         },
+         {
+            "name": "nextToken",
+            "role": "pagination"
+         }
+      ]
+   }
+]

@@ -101,3 +101,5 @@ var resourcesCmd = newInferCmd("resources", "Work with resource tree overrides",
 var columnsCmd = newInferCmd("columns", "Work with table columns", awspkg.Facade.InferColumns)
 
 var linksCmd = newInferCmd("links", "Work with links between resources", awspkg.Facade.InferLinks)
+
+var paramsCmd = newInferCmd("params", "Work with the roles of list operation params", awspkg.Facade.InferParams)

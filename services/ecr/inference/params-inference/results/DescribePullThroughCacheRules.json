@@ -1,0 +1,1 @@
+{"confidence":"high","operation":"DescribePullThroughCacheRules","params":[{"name":"ecrRepositoryPrefixes","reason":"Restricts results to rules associated with the specified repository prefixes.","role":"filter"}],"reason":"The documentation says the prefixes select which rules are returned."}

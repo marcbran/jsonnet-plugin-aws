@@ -1,0 +1,1 @@
+{"confidence":"high","operation":"DescribeRepositoryCreationTemplates","params":[{"name":"prefixes","reason":"Limits results to templates associated with the specified repository namespace prefixes.","role":"filter"}],"reason":"The documentation says that specifying prefixes returns matching templates; otherwise all templates are returned."}

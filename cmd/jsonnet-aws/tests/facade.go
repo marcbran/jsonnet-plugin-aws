@@ -67,6 +67,10 @@ func (f *CLIFacade) InferLinks(ctx context.Context, in awspkg.InferInput) (awspk
 	return f.infer(ctx, "links", in)
 }
 
+func (f *CLIFacade) InferParams(ctx context.Context, in awspkg.InferInput) (awspkg.InferOutput, error) {
+	return f.infer(ctx, "params", in)
+}
+
 func (f *CLIFacade) infer(ctx context.Context, kind string, in awspkg.InferInput) (awspkg.InferOutput, error) {
 	args := []string{kind, "infer", in.Service, "-q"}
 	if in.Out != "" {

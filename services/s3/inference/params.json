@@ -1,0 +1,151 @@
+[
+   {
+      "operation": "ListBucketAnalyticsConfigurations",
+      "params": [
+         {
+            "name": "ContinuationToken",
+            "role": "pagination"
+         }
+      ]
+   },
+   {
+      "operation": "ListBucketIntelligentTieringConfigurations",
+      "params": [
+         {
+            "name": "ContinuationToken",
+            "role": "pagination"
+         }
+      ]
+   },
+   {
+      "operation": "ListBucketInventoryConfigurations",
+      "params": [
+         {
+            "name": "ContinuationToken",
+            "role": "pagination"
+         }
+      ]
+   },
+   {
+      "operation": "ListBucketMetricsConfigurations",
+      "params": [
+         {
+            "name": "ContinuationToken",
+            "role": "pagination"
+         }
+      ]
+   },
+   {
+      "operation": "ListBuckets",
+      "params": [
+         {
+            "name": "Prefix",
+            "role": "filter"
+         }
+      ]
+   },
+   {
+      "operation": "ListMultipartUploads",
+      "params": [
+         {
+            "name": "Delimiter",
+            "role": "shaping"
+         },
+         {
+            "name": "EncodingType",
+            "role": "shaping"
+         },
+         {
+            "name": "KeyMarker",
+            "role": "pagination"
+         },
+         {
+            "name": "MaxUploads",
+            "role": "pagination"
+         },
+         {
+            "name": "Prefix",
+            "role": "filter"
+         },
+         {
+            "name": "UploadIdMarker",
+            "role": "pagination"
+         }
+      ]
+   },
+   {
+      "operation": "ListObjectAnnotations",
+      "params": [
+         {
+            "name": "AnnotationPrefix",
+            "role": "filter"
+         },
+         {
+            "name": "VersionId",
+            "role": "filter"
+         }
+      ]
+   },
+   {
+      "operation": "ListObjectVersions",
+      "params": [
+         {
+            "name": "Delimiter",
+            "role": "shaping"
+         },
+         {
+            "name": "EncodingType",
+            "role": "other"
+         },
+         {
+            "name": "KeyMarker",
+            "role": "pagination"
+         },
+         {
+            "name": "MaxKeys",
+            "role": "pagination"
+         },
+         {
+            "name": "OptionalObjectAttributes",
+            "role": "shaping"
+         },
+         {
+            "name": "Prefix",
+            "role": "filter"
+         },
+         {
+            "name": "VersionIdMarker",
+            "role": "pagination"
+         }
+      ]
+   },
+   {
+      "operation": "ListObjectsV2",
+      "params": [
+         {
+            "name": "Delimiter",
+            "role": "shaping"
+         },
+         {
+            "name": "EncodingType",
+            "role": "other"
+         },
+         {
+            "name": "FetchOwner",
+            "role": "shaping"
+         },
+         {
+            "name": "OptionalObjectAttributes",
+            "role": "shaping"
+         },
+         {
+            "name": "Prefix",
+            "role": "filter"
+         },
+         {
+            "name": "StartAfter",
+            "role": "pagination"
+         }
+      ]
+   }
+]

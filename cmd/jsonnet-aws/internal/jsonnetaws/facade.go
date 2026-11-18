@@ -10,6 +10,7 @@ import (
 	"github.com/marcbran/jsonnet-plugin-aws/cmd/jsonnet-aws/internal/jsonnetaws/gen"
 	"github.com/marcbran/jsonnet-plugin-aws/cmd/jsonnet-aws/internal/jsonnetaws/infer"
 	"github.com/marcbran/jsonnet-plugin-aws/cmd/jsonnet-aws/internal/jsonnetaws/links"
+	"github.com/marcbran/jsonnet-plugin-aws/cmd/jsonnet-aws/internal/jsonnetaws/params"
 	"github.com/marcbran/jsonnet-plugin-aws/cmd/jsonnet-aws/internal/jsonnetaws/resources"
 	awspkg "github.com/marcbran/jsonnet-plugin-aws/cmd/jsonnet-aws/pkg/jsonnetaws"
 )
@@ -55,6 +56,14 @@ func (f *facade) InferColumns(ctx context.Context, in awspkg.InferInput) (awspkg
 
 func (f *facade) InferLinks(ctx context.Context, in awspkg.InferInput) (awspkg.InferOutput, error) {
 	kind, err := links.Kind()
+	if err != nil {
+		return awspkg.InferOutput{}, err
+	}
+	return f.infer(ctx, kind, in)
+}
+
+func (f *facade) InferParams(ctx context.Context, in awspkg.InferInput) (awspkg.InferOutput, error) {
+	kind, err := params.Kind()
 	if err != nil {
 		return awspkg.InferOutput{}, err
 	}
