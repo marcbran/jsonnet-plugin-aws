@@ -4,12 +4,12 @@ go 1.26.0
 
 require (
 	github.com/aws/aws-sdk-go-v2 v1.48.0
-	github.com/aws/aws-sdk-go-v2/credentials v1.21.2
+	github.com/aws/aws-sdk-go-v2/credentials v1.21.3
 	github.com/aws/aws-sdk-go-v2/service/ec2 v1.349.0
 	github.com/aws/aws-sdk-go-v2/service/ecr v1.69.0
-	github.com/aws/aws-sdk-go-v2/service/iam v1.67.0
+	github.com/aws/aws-sdk-go-v2/service/iam v1.68.0
 	github.com/aws/aws-sdk-go-v2/service/opensearch v1.88.1
-	github.com/aws/aws-sdk-go-v2/service/rds v1.133.0
+	github.com/aws/aws-sdk-go-v2/service/rds v1.134.0
 	github.com/aws/aws-sdk-go-v2/service/s3 v1.116.0
 	github.com/marcbran/jpoet v0.30.0
 	github.com/marcbran/jsonnet-plugin-jsonnet v0.4.0
