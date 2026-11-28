@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.6.0](https://github.com/marcbran/jsonnet-plugin-aws/compare/v0.5.1...v0.6.0) (2026-11-28)
+
+
+### Features
+
+* type param specs and infer their roles ([#46](https://github.com/marcbran/jsonnet-plugin-aws/issues/46)) ([cf94cc3](https://github.com/marcbran/jsonnet-plugin-aws/commit/cf94cc3cb0196bb06d2cf78e6dd670ad6f9a9065))
+
 ## [0.5.1](https://github.com/marcbran/jsonnet-plugin-aws/compare/v0.5.0...v0.5.1) (2026-11-09)
 
 
